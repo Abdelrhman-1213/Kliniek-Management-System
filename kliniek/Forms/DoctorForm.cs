@@ -88,7 +88,6 @@ namespace kliniek.Forms
             flowLayoutPanel1.Controls.Clear();
             Data.DataStore data = Program.SharedData;
 
-            // جيب المرضى الخاصين بالدكتور ده بس
             var myPatients = data.patient.Where(p =>
                 data.appointments.Any(a =>
                     a.DoctorUserName == Program.SharedData.LogedInDoc.UserName &&
@@ -98,7 +97,7 @@ namespace kliniek.Forms
 
             foreach (var p in myPatients)
             {
-                // كارت لكل مريض
+            
                 Panel card = new Panel
                 {
                     Width = 220,
@@ -151,13 +150,12 @@ namespace kliniek.Forms
                 };
                 btnDelete.FlatAppearance.BorderSize = 0;
 
-                // لما تضغط حذف
-                var patient = p; // مهم عشان الـ closure
+                var patient = p; 
                 btnDelete.Click += (s, e) =>
                 {
                     data.patient.Remove(patient);
                     data.Save();
-                    LoadPatients(); // تحديث الكروت
+                    LoadPatients(); 
                 };
 
                 card.Controls.AddRange(new Control[] { lblName, lblInfo, btnView, btnDelete });
