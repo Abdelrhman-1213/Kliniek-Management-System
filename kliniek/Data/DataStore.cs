@@ -13,6 +13,7 @@ namespace kliniek.Data
     public class DataStore
     {
         public Doctor LogedInDoc = null;
+        public Patient LoggedInPatient = null;
         public List<Patient> patient = [];
         public List<Doctor> doctor = [];
         public List<Appointment> appointments = [];
@@ -32,7 +33,15 @@ namespace kliniek.Data
             "أنف وأذن وحنجرة","المخ والأعصاب",
             "الطب النفسي", "المسالك البولية",
         ];
+        public List<string> time = [
 
+         "اختر الوقت ...", // نص إرشادي في البداية
+            "09:00 AM",
+            "11:00 AM",
+            "01:00 PM",
+            "3:00 PM",
+            "05:00 PM"
+        ];
         public void Save()
         {
             try
