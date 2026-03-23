@@ -79,11 +79,15 @@ namespace kliniek.Forms
                 }
 
                 if (foundPatient == null) MessageBox.Show("اسم المستخدم غير موجود.");
-                else if (foundPatient.password != textBox2.Text) MessageBox.Show("كلمة المرور خاطئة.");
+                else if (foundPatient.password != textBox2.Text)
+                {
+                    Program.SharedData.LoggedInPatient = null;
+                    MessageBox.Show("كلمة المرور خاطئة."); 
+                }
                 else
                 {
                     data.LoggedInPatient = foundPatient;
-                    //new PatientForm(data).Show();
+                    new PatientForm().Show();
                     this.Hide();
                 }
             }

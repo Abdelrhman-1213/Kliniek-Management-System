@@ -7,7 +7,8 @@ namespace kliniek.Data
     public class DataStore
     {
         public Doctor? LogedInDoc = null;
-        public Patient LoggedInPatient = null;
+        public Patient? LoggedInPatient = null;
+        
         public const string SecretCode = "#3107ML";
         public List<Patient> patient = [];
         public List<Doctor> doctor = [];
@@ -29,7 +30,7 @@ namespace kliniek.Data
             "أنف وأذن وحنجرة","المخ والأعصاب",
             "الطب النفسي", "المسالك البولية",
         ];
-        public List<string> time = [
+      
 
         public List<string> time = [
 
@@ -114,25 +115,48 @@ namespace kliniek.Data
         // ==================
         // الحففففففففففففففظ
         // ==================
-        public async Task Save()
+        public async Task SavePatient(Patient p)
         {
-            try
-            {
-                var request = new HttpRequestMessage(HttpMethod.Post,
-                    $"{SupabaseConfig.Url}/rest/v1/doctors");
-                request.Headers.Add("Prefer", "resolution=merge-duplicates");
-                request.Content = new StringContent(
-                    JsonConvert.SerializeObject(doctor),
-                    Encoding.UTF8, "application/json");
+            var request = new HttpRequestMessage(HttpMethod.Post,
+                $"{SupabaseConfig.Url}/rest/v1/patients");
+            request.Headers.Add("Prefer", "resolution=merge-duplicates");
+            request.Content = new StringContent(
+                JsonConvert.SerializeObject(new List<Patient> { p }),
+                Encoding.UTF8, "application/json");
+            await client.SendAsync(request);
+        }
 
-                var response = await client.SendAsync(request);
-                string responseBody = await response.Content.ReadAsStringAsync();
+        public async Task SaveDoctor(Doctor d)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Post,
+                $"{SupabaseConfig.Url}/rest/v1/doctors");
+            request.Headers.Add("Prefer", "resolution=merge-duplicates");
+            request.Content = new StringContent(
+                JsonConvert.SerializeObject(new List<Doctor> { d }),
+                Encoding.UTF8, "application/json");
+            await client.SendAsync(request);
+        }
 
-            }
-            catch (Exception ex)
+        public async Task SaveAppointment(Appointment a)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Post,
+       $"{SupabaseConfig.Url}/rest/v1/appointments");
+
+            // مش "resolution=merge-duplicates" عشان دايماً يضيف جديد
+            request.Headers.Add("Prefer", "return=minimal");
+
+            var obj = new
             {
-                MessageBox.Show($"خطأ: {ex.Message}");
-            }
+                doctorusername = a.doctorusername,
+                patientusername = a.patientusername,
+                date = a.date,
+                status = a.status
+            };
+
+            request.Content = new StringContent(
+                JsonConvert.SerializeObject(obj),
+                Encoding.UTF8, "application/json");
+            await client.SendAsync(request);
         }
 
         public async Task DeleteDoctor(string username)
@@ -140,7 +164,41 @@ namespace kliniek.Data
             try
             {
                 await client.DeleteAsync(
+                    $"{SupabaseConfig.Url}/rest/v1/appointments?doctorusername=eq.{username}"
+                );
+
+                await client.DeleteAsync(
                     $"{SupabaseConfig.Url}/rest/v1/doctors?username=eq.{username}"
+                );
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"خطأ في الحذف: {ex.Message}");
+            }
+        }
+        public async Task DeletePatient(string username)
+        {
+            try
+            {
+                await client.DeleteAsync(
+                    $"{SupabaseConfig.Url}/rest/v1/appointments?patientusername=eq.{username}"
+                );
+
+                await client.DeleteAsync(
+                    $"{SupabaseConfig.Url}/rest/v1/patients?username=eq.{username}"
+                );
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"خطأ في الحذف: {ex.Message}");
+            }
+        }
+        public async Task DeleteApp(int id)
+        {
+            try
+            {
+                await client.DeleteAsync(
+                    $"{SupabaseConfig.Url}/rest/v1/appointments?id=eq.{id}"
                 );
             }
             catch (Exception ex)

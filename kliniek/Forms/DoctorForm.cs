@@ -233,33 +233,31 @@ namespace kliniek.Forms
                 };
                 btnView.FlatAppearance.BorderSize = 0;
 
-                Button btnDelete = new()
-                {
-                    Text = "حذف",
-                    Width = 80,
-                    Height = 28,
-                    Location = new Point(100, 85),
-                    BackColor = Color.FromArgb(74, 26, 26),
-                    ForeColor = Color.FromArgb(255, 107, 107),
-                    FlatStyle = FlatStyle.Flat,
-                    Font = new Font("Segoe UI", 9)
-                };
-                btnDelete.FlatAppearance.BorderSize = 0;
-
-
+                //Button btnDelete = new()
+                //{
+                //    Text = "حذف",
+                //    Width = 80,
+                //    Height = 28,
+                //    Location = new Point(100, 85),
+                //    BackColor = Color.FromArgb(74, 26, 26),
+                //    ForeColor = Color.FromArgb(255, 107, 107),
+                //    FlatStyle = FlatStyle.Flat,
+                //    Font = new Font("Segoe UI", 9)
+                //};
+                //btnDelete.FlatAppearance.BorderSize = 0;
                 var patient = p;
-                btnDelete.Click += async (s, e) =>
-                {
-                    data.patient.Remove(patient);
-                    await data.Save();
-                    LoadPatients();
-                };
+                //btnDelete.Click += async (s, e) =>
+                //{
+                //    data.patient.Remove(patient);
+                //    await data.DeleteApp();
+                //    LoadPatients();
+                //};
                 btnView.Click += (s, e) =>
                 {
                     new PatientDetailsForm(patient).ShowDialog();
                 };
 
-                card.Controls.AddRange([lblName, lblInfo, btnView, btnDelete]);
+                card.Controls.AddRange([lblName, lblInfo, btnView]);
                 flowLayoutPanel1.Controls.Add(card);
             }
         }

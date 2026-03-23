@@ -132,7 +132,7 @@ namespace kliniek.Forms
                                 comboBox2.SelectedItem?.ToString() ?? ""
                             );
                             data.patient.Add(Patient1);
-                            await data.Save();
+                            await data.SavePatient(Patient1);
                             MessageBox.Show("تم التسجيل بنجاح!");
                             this.Close();
                         }
@@ -166,7 +166,7 @@ namespace kliniek.Forms
                                     comboBox1.SelectedItem?.ToString() ?? ""
                                 );
                                 data.doctor.Add(doctor1);
-                                await data.Save();
+                                await data.SaveDoctor(doctor1);
                                 MessageBox.Show("تم التسجيل بنجاح!");
                                 this.Close();
                             }
