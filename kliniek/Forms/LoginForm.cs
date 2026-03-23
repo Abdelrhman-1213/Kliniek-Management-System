@@ -94,6 +94,8 @@ namespace kliniek.Forms
                 else if (foundPatient.Password != textBox2.Text) MessageBox.Show("كلمة المرور خاطئة.");
                 else
                 {
+                    data.LoggedInPatient = foundPatient;
+                        
                     MessageBox.Show($"{foundPatient.FullName} أهلا بك");
                     new PatientForm().Show();
                     this.Hide();
