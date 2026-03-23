@@ -1,5 +1,6 @@
 using kliniek.Forms;
 using kliniek.Data;
+using System.Threading.Tasks;
 namespace kliniek
 {
     internal static class Program
@@ -10,13 +11,13 @@ namespace kliniek
         ///  The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static async Task Main()
         {
             
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            SharedData.Load();
+            await SharedData.Load();
             Application.Run(new LoginForm());
         }
     }

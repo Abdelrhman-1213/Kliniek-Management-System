@@ -1,24 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace kliniek.Models
+﻿namespace kliniek.Models
 {
-    public class Appointment
+    public class Appointment(string doctorUserName, string patientUserName, DateTime date, string status)
     {
-        public string DoctorUserName { get; set; }
-        public string PatientUserName { get; set; }
-        public DateTime Date { get; set; }
-        public string Status { get; set; }
-
-        public Appointment(string doctorUserName, string patientUserName, DateTime date, string status)
-        {
-            DoctorUserName = doctorUserName;
-            PatientUserName = patientUserName;
-            Date = date;
-            Status = status;
-        }
+        public string doctorusername { get; set; } = doctorUserName;
+        public string patientusername { get; set; } = patientUserName;
+        public DateTime date { get; set; } = date;
+        public string status { get; set; } = status;
     }
 }

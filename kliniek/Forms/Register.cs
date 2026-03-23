@@ -1,16 +1,6 @@
 ﻿using kliniek.Data;
 using kliniek.Models;
-using MaterialSkin2DotNet.Controls;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace kliniek.Forms
 {
@@ -27,7 +17,7 @@ namespace kliniek.Forms
             comboBox1.DataSource = data.specializations;
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void Panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
@@ -70,8 +60,9 @@ namespace kliniek.Forms
 
             Age.Visible = false;
             label13.Visible = false;
-            FullName.Width = 435;
-            FullName.Location = new Point(90, 216);
+            DoctorCode.Visible = true;
+            label15.Visible = true;
+
 
             comboBox2.Visible = false;
             label14.Visible = false;
@@ -87,6 +78,8 @@ namespace kliniek.Forms
 
             Age.Visible = true;
             label13.Visible = true;
+            DoctorCode.Visible = false;
+            label15.Visible = false;
             FullName.Width = 294;
             FullName.Location = new Point(231, 216);
 
@@ -96,21 +89,24 @@ namespace kliniek.Forms
             UserName.Location = new Point(231, 297);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
             Data.DataStore data = Program.SharedData;
             string TypeOfUser = patient.Checked ? "Patient" : "Doctor";
+            bool PassIsWe;
+            if (PassWord.Text.Length < 6) PassIsWe = true;
+            else PassIsWe = false;
 
             bool userExists = false;
             foreach (var p in data.patient)
             {
-                if (p.UserName == UserName.Text) { userExists = true; break; }
+                if (p.username == UserName.Text) { userExists = true; break; }
             }
             if (!userExists)
             {
                 foreach (var d in data.doctor)
                 {
-                    if (d.UserName == UserName.Text) { userExists = true; break; }
+                    if (d.username == UserName.Text) { userExists = true; break; }
                 }
             }
 
@@ -118,24 +114,28 @@ namespace kliniek.Forms
             {
                 if (!(UserName.Text.Length < 1) && !(PassWord.Text.Length < 1) && !(FullName.Text.Length < 1) && !(Age.Text.Length < 1) && !(comboBox1.SelectedIndex == 0) && !(comboBox2.SelectedItem == null))
                 {
-                    if (userExists)
-                    {
-                        MessageBox.Show("اسم المستخدم موجود بالفعل");
-                    }
+                    if (PassIsWe) MessageBox.Show("يجب أن تكون كلمة المرور 6 أحرف على الأقل");
                     else
                     {
-                        Patient Patient1 = new(
-                            UserName.Text,
-                            PassWord.Text,
-                            FullName.Text,
-                            comboBox1.SelectedItem?.ToString()??"",
-                            int.Parse(Age.Text),
-                            comboBox2.SelectedItem?.ToString() ?? ""
-                        );
-                        data.patient.Add(Patient1);
-                        data.Save();
-                        MessageBox.Show("تم التسجيل بنجاح!");
-                        this.Close();
+                        if (userExists)
+                        {
+                            MessageBox.Show("اسم المستخدم موجود بالفعل");
+                        }
+                        else
+                        {
+                            Patient Patient1 = new(
+                                UserName.Text,
+                                PassWord.Text,
+                                FullName.Text,
+                                comboBox1.SelectedItem?.ToString() ?? "",
+                                int.Parse(Age.Text),
+                                comboBox2.SelectedItem?.ToString() ?? ""
+                            );
+                            data.patient.Add(Patient1);
+                            await data.Save();
+                            MessageBox.Show("تم التسجيل بنجاح!");
+                            this.Close();
+                        }
                     }
                 }
                 else
@@ -145,24 +145,32 @@ namespace kliniek.Forms
             }
             else if (TypeOfUser == "Doctor")
             {
-                if (!(UserName.Text.Length < 1) && !(PassWord.Text.Length < 1) && !(FullName.Text.Length < 1) && !(comboBox1.SelectedIndex == 0))
+                if (!(UserName.Text.Length < 1) && !(PassWord.Text.Length < 1) && !(FullName.Text.Length < 1) && !(comboBox1.SelectedIndex == 0) && !(DoctorCode.Text.Length < 1))
                 {
-                    if (userExists)
-                    {
-                        MessageBox.Show("اسم المستخدم موجود بالفعل");
-                    }
+                    if (DoctorCode.Text != DataStore.SecretCode) MessageBox.Show("كود الطبيب خاطئ");
                     else
                     {
-                        Doctor doctor1 = new(
-                            UserName.Text,
-                            PassWord.Text,
-                            FullName.Text,
-                            comboBox1.SelectedItem?.ToString() ?? ""
-                        );
-                        data.doctor.Add(doctor1);
-                        data.Save();
-                        MessageBox.Show("تم التسجيل بنجاح!");
-                        this.Close();
+                        if (PassIsWe) MessageBox.Show("يجب أن تكون كلمة المرور 6 أحرف على الأقل");
+                        else
+                        {
+                            if (userExists)
+                            {
+                                MessageBox.Show("اسم المستخدم موجود بالفعل");
+                            }
+                            else
+                            {
+                                Doctor doctor1 = new(
+                                    UserName.Text,
+                                    PassWord.Text,
+                                    FullName.Text,
+                                    comboBox1.SelectedItem?.ToString() ?? ""
+                                );
+                                data.doctor.Add(doctor1);
+                                await data.Save();
+                                MessageBox.Show("تم التسجيل بنجاح!");
+                                this.Close();
+                            }
+                        }
                     }
                 }
                 else
@@ -170,8 +178,8 @@ namespace kliniek.Forms
                     MessageBox.Show("البيانات ناقصة ...");
                 }
             }
-            
-            
+
+
         }
 
         private void label9_Click(object sender, EventArgs e)
@@ -182,6 +190,16 @@ namespace kliniek.Forms
         private void label8_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FullName_TextChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }

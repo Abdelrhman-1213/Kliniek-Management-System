@@ -1,16 +1,6 @@
 ﻿using kliniek.Models;
-using MaterialSkin2DotNet.Controls;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace kliniek.Forms
 {
@@ -26,31 +16,31 @@ namespace kliniek.Forms
 
             Data.DataStore data = Program.SharedData;
 
-            label1.Text = $"د. {data.LogedInDoc.FullName}";
-            label2.Text = data.LogedInDoc.Specialization;
+            label1.Text = $"د. {data.LogedInDoc?.fullname}";
+            label2.Text = data.LogedInDoc?.specialization;
             panel1.Dock = DockStyle.Left;
             label4.Text = DateTime.Now.ToString("d");
 
             int myPatientsCount = data.patient.Count(p =>
                 data.appointments.Any(a =>
-                    a.DoctorUserName == data.LogedInDoc.UserName &&
-                    a.PatientUserName == p.UserName
+                    a.doctorusername == data.LogedInDoc?.username &&
+                    a.patientusername == p.username
                 )
             );
 
 
             int todayAppts = data.appointments.Count(a =>
-                a.DoctorUserName == data.LogedInDoc.UserName &&
-                a.Date.Date == DateTime.Today
+                a.doctorusername == data.LogedInDoc?.username &&
+                a.date.Date == DateTime.Today
             );
 
 
-            int weekPresc = 0;
+            //int weekPresc = 0; // عند إضافة ميزة الروشتة للبرنامج
 
 
             lblPatientsCount.Text = myPatientsCount.ToString();
             lblTodayAppts.Text = todayAppts.ToString();
-            lblWeekPresc.Text = weekPresc.ToString();
+            //lblWeekPresc.Text = weekPresc.ToString(); // عند إضافة ميزة الروشتة للبرنامج
 
             LoadPatients();
             LoadTodayAppointments();
@@ -60,14 +50,15 @@ namespace kliniek.Forms
 
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void Panel1_Paint(object sender, PaintEventArgs e)
         {
 
 
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        bool logO;
+        private void Button1_Click(object sender, EventArgs e)
         {
+            logO = true;
             new LoginForm().Show();
             this.Close();
         }
@@ -77,12 +68,12 @@ namespace kliniek.Forms
             panel1.Height = this.Height;
         }
 
-        private void label5_Click(object sender, EventArgs e)
+        private void Label5_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void panel9_Paint(object sender, PaintEventArgs e)
+        private void Panel9_Paint(object sender, PaintEventArgs e)
         {
 
         }
@@ -93,27 +84,27 @@ namespace kliniek.Forms
 
             var todayAppts = data.appointments
                 .Where(a =>
-                    a.DoctorUserName == Program.SharedData.LogedInDoc.UserName &&
-                    a.Date.Date == DateTime.Today)
+                    a.doctorusername == Program.SharedData.LogedInDoc?.username &&
+                    a.date.Date == DateTime.Today)
                 .Take(7)
                 .ToList();
 
             foreach (var appt in todayAppts)
             {
                 var patient = data.patient
-                    .FirstOrDefault(p => p.UserName == appt.PatientUserName);
+                    .FirstOrDefault(p => p.username == appt.patientusername);
 
                 Panel card = new()
                 {
                     Width = flowLayoutPanel2.Width - 40,
                     Margin = new Padding(20, 5, 20, 5),
                     Height = 60,
-                    BackColor = Color.FromArgb(38, 48, 68)                 
+                    BackColor = Color.FromArgb(38, 48, 68)
                 };
 
                 Label lblName = new()
                 {
-                    Text = "👤 " + (patient?.FullName ?? "غير معروف"),
+                    Text = "👤 " + (patient?.fullname ?? "غير معروف"),
                     ForeColor = Color.White,
                     Font = new Font("Segoe UI", 10, FontStyle.Bold),
                     AutoSize = true,
@@ -122,7 +113,7 @@ namespace kliniek.Forms
 
                 Label lblTime = new()
                 {
-                    Text = appt.Date.ToString("hh:mm tt"),
+                    Text = appt.date.ToString("hh:mm tt"),
                     ForeColor = Color.FromArgb(150, 175, 210),
                     Font = new Font("Segoe UI", 9),
                     AutoSize = true,
@@ -131,18 +122,18 @@ namespace kliniek.Forms
 
                 Label lblStatus = new()
                 {
-                    Text = appt.Status,
+                    Text = appt.status,
                     AutoSize = true,
                     Font = new Font("Segoe UI", 9),
                     Location = new Point(card.Width - 90, 20)
                 };
-                
-                if (appt.Status == "مؤكد")
+
+                if (appt.status == "مؤكد")
                 {
                     lblStatus.ForeColor = Color.FromArgb(106, 191, 106);
                     lblStatus.BackColor = Color.FromArgb(26, 61, 26);
                 }
-                else if (appt.Status == "انتظار")
+                else if (appt.status == "انتظار")
                 {
                     lblStatus.ForeColor = Color.FromArgb(220, 180, 50);
                     lblStatus.BackColor = Color.FromArgb(61, 49, 15);
@@ -156,23 +147,26 @@ namespace kliniek.Forms
                 card.Controls.AddRange([lblName, lblTime, lblStatus]);
                 flowLayoutPanel2.Controls.Add(card);
             }
-        } // لعرض المواعيد
+        }
         // زهجججججججججججججججججججججت
         private void Label6_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void TextBox1_TextChanged(object sender, EventArgs e)
         {
+            string search = textBox1.Text.ToLower(); // بياخد الحرف بحرفه
             Data.DataStore data = Program.SharedData;
-            string search = textBox1.Text.ToLower(); // بياخد الكتابة
 
-            var filtered = data.patient.Where(p =>
-                p.FullName.ToLower().Contains(search) // بيجيب كل الي يحتوي على الحروف دي
-            ).ToList(); // يخزن
+            var filtered = data.patient.Where(p =>  //  بتبحث
+                p.fullname.Contains(search, StringComparison.CurrentCultureIgnoreCase) && // عن الي يحتوي على الكلمات
+                data.appointments.Any(a => // any بتشوف الأول هل فيه المريض دا عند الطبيب دا ولا لععع
+                    a.doctorusername == data.LogedInDoc?.username &&
+                    a.patientusername == p.username)
+            ).ToList();
 
-            LoadPatients(filtered); // يبعت للعرض
+            LoadPatients(filtered);
         }
 
         private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -180,27 +174,27 @@ namespace kliniek.Forms
 
         }
 
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        private void ListView1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void LoadPatients(List<Patient> list = null)
+        private void LoadPatients(List<Patient>? list = null)
         {
             flowLayoutPanel1.Controls.Clear();
             Data.DataStore data = Program.SharedData;
 
-            // جيب المرضى الخاصين بالدكتور ده بس
-            var myPatients = data.patient.Where(p =>
+            // جيب المرضى الخاصين بالدكتور دعع بس
+            var myPatients = list ?? [.. data.patient.Where(p =>
                 data.appointments.Any(a =>
-                    a.DoctorUserName == Program.SharedData.LogedInDoc.UserName &&
-                    a.PatientUserName == p.UserName
+                    a.doctorusername == Program.SharedData.LogedInDoc?.username &&
+                    a.patientusername == p.username
                 )
             )];
 
             foreach (var p in myPatients)
             {
-                Panel card = new Panel
+                Panel card = new()
                 {
                     Width = 220,
                     Height = 130,
@@ -208,25 +202,25 @@ namespace kliniek.Forms
                     Margin = new Padding(12)
                 };
 
-                Label lblName = new Label
+                Label lblName = new()
                 {
-                    Text = "👤 " + p.FullName,
+                    Text = "👤 " + p.fullname,
                     ForeColor = Color.White,
                     Font = new Font("Segoe UI", 10, FontStyle.Bold),
                     AutoSize = true,
                     Location = new Point(10, 12)
                 };
 
-                Label lblInfo = new Label
+                Label lblInfo = new()
                 {
-                    Text = $"السن: {p.Age}   |   {p.BloodType}",
+                    Text = $"السن: {p.age}   |   {p.bloodtype}",
                     ForeColor = Color.FromArgb(160, 160, 160),
                     Font = new Font("Segoe UI", 9),
                     AutoSize = true,
                     Location = new Point(10, 40)
                 };
 
-                Button btnView = new Button
+                Button btnView = new()
                 {
                     Text = "عرض",
                     Width = 80,
@@ -239,7 +233,7 @@ namespace kliniek.Forms
                 };
                 btnView.FlatAppearance.BorderSize = 0;
 
-                Button btnDelete = new Button
+                Button btnDelete = new()
                 {
                     Text = "حذف",
                     Width = 80,
@@ -252,27 +246,31 @@ namespace kliniek.Forms
                 };
                 btnDelete.FlatAppearance.BorderSize = 0;
 
-                // لما تضغط حذف
-                var patient = p; // مهم عشان الـ closure
-                btnDelete.Click += (s, e) =>
+
+                var patient = p;
+                btnDelete.Click += async (s, e) =>
                 {
                     data.patient.Remove(patient);
-                    data.Save();
-                    LoadPatients(); // تحديث الكروت
+                    await data.Save();
+                    LoadPatients();
+                };
+                btnView.Click += (s, e) =>
+                {
+                    new PatientDetailsForm(patient).ShowDialog();
                 };
 
                 card.Controls.AddRange([lblName, lblInfo, btnView, btnDelete]);
                 flowLayoutPanel1.Controls.Add(card);
             }
-        } // لعرض المرضى 
+        }
 
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        private void RadioButton2_CheckedChanged(object sender, EventArgs e)
         {
             panel4.Visible = false;
             panel10.Visible = true;
         }
 
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        private void RadioButton1_CheckedChanged(object sender, EventArgs e)
         {
             panel4.Visible = true;
             panel10.Visible = false;
@@ -280,12 +278,30 @@ namespace kliniek.Forms
 
         private void DoctorForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            if (logO) this.Hide();
+            else Application.Exit();
         }
 
-        private void label3_Click(object sender, EventArgs e)
+        private void Label3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private async void button2_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show("هل أنت متأكد من حذف الحساب؟", "تأكيد", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
+            {
+                if (Program.SharedData.LogedInDoc != null)
+                {
+                    await Program.SharedData.DeleteDoctor(Program.SharedData.LogedInDoc.username);
+                    Program.SharedData.doctor.Remove(Program.SharedData.LogedInDoc);
+                    logO = true;
+                    new LoginForm().Show();
+                    if (logO) this.Close();
+                }
+            }
         }
     }
 }

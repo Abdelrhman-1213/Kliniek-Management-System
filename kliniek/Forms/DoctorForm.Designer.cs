@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DoctorForm));
             panel1 = new Panel();
+            button2 = new Button();
             button1 = new Button();
             radioButton1 = new RadioButton();
             radioButton2 = new RadioButton();
@@ -46,9 +47,6 @@
             panel8 = new Panel();
             label5 = new Label();
             lblTodayAppts = new Label();
-            panel7 = new Panel();
-            label7 = new Label();
-            lblWeekPresc = new Label();
             panel6 = new Panel();
             label11 = new Label();
             lblPatientsCount = new Label();
@@ -62,7 +60,6 @@
             panel4.SuspendLayout();
             flowLayoutPanel2.SuspendLayout();
             panel8.SuspendLayout();
-            panel7.SuspendLayout();
             panel6.SuspendLayout();
             panel10.SuspendLayout();
             panel15.SuspendLayout();
@@ -71,6 +68,7 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(21, 32, 43);
+            panel1.Controls.Add(button2);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(radioButton1);
             panel1.Controls.Add(radioButton2);
@@ -83,7 +81,26 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(269, 780);
             panel1.TabIndex = 0;
-            panel1.Paint += panel1_Paint;
+            panel1.Paint += Panel1_Paint;
+            // 
+            // button2
+            // 
+            button2.AutoSize = true;
+            button2.FlatAppearance.BorderColor = Color.Gray;
+            button2.FlatAppearance.BorderSize = 0;
+            button2.FlatAppearance.MouseDownBackColor = Color.FromArgb(33, 33, 33);
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button2.ForeColor = Color.Firebrick;
+            button2.Location = new Point(19, 704);
+            button2.Name = "button2";
+            button2.RightToLeft = RightToLeft.Yes;
+            button2.Size = new Size(233, 42);
+            button2.TabIndex = 10;
+            button2.Text = "حذف الحساب   🗑️";
+            button2.TextAlign = ContentAlignment.MiddleRight;
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // button1
             // 
@@ -94,14 +111,14 @@
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.White;
-            button1.Location = new Point(19, 699);
+            button1.Location = new Point(19, 656);
             button1.Name = "button1";
             button1.Size = new Size(233, 42);
             button1.TabIndex = 9;
             button1.Text = "🚪    تسجيل الخروج";
             button1.TextAlign = ContentAlignment.MiddleLeft;
             button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            button1.Click += Button1_Click;
             // 
             // radioButton1
             // 
@@ -120,7 +137,7 @@
             radioButton1.TabStop = true;
             radioButton1.Text = "🏠    الرئيسية\n";
             radioButton1.UseVisualStyleBackColor = true;
-            radioButton1.CheckedChanged += radioButton1_CheckedChanged;
+            radioButton1.CheckedChanged += RadioButton1_CheckedChanged;
             // 
             // radioButton2
             // 
@@ -139,7 +156,7 @@
             radioButton2.TabStop = true;
             radioButton2.Text = "👥    المرضى";
             radioButton2.UseVisualStyleBackColor = true;
-            radioButton2.CheckedChanged += radioButton2_CheckedChanged;
+            radioButton2.CheckedChanged += RadioButton2_CheckedChanged;
             // 
             // label2
             // 
@@ -177,7 +194,7 @@
             // panel3
             // 
             panel3.BackColor = Color.Gray;
-            panel3.Location = new Point(0, 674);
+            panel3.Location = new Point(0, 631);
             panel3.Margin = new Padding(0);
             panel3.Name = "panel3";
             panel3.Size = new Size(269, 2);
@@ -199,7 +216,6 @@
             panel4.Controls.Add(label4);
             panel4.Controls.Add(label3);
             panel4.Controls.Add(panel8);
-            panel4.Controls.Add(panel7);
             panel4.Controls.Add(panel6);
             panel4.Location = new Point(251, -1);
             panel4.Name = "panel4";
@@ -248,16 +264,16 @@
             label3.Size = new Size(91, 31);
             label3.TabIndex = 0;
             label3.Text = "الرئيسية";
-            label3.Click += label3_Click;
+            label3.Click += Label3_Click;
             // 
             // panel8
             // 
             panel8.BackColor = Color.FromArgb(21, 32, 43);
             panel8.Controls.Add(label5);
             panel8.Controls.Add(lblTodayAppts);
-            panel8.Location = new Point(454, 112);
+            panel8.Location = new Point(646, 112);
             panel8.Name = "panel8";
-            panel8.Size = new Size(281, 169);
+            panel8.Size = new Size(445, 169);
             panel8.TabIndex = 2;
             // 
             // label5
@@ -265,7 +281,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Gray;
-            label5.Location = new Point(19, 12);
+            label5.Location = new Point(0, 0);
             label5.Name = "label5";
             label5.Size = new Size(98, 23);
             label5.TabIndex = 7;
@@ -276,43 +292,11 @@
             lblTodayAppts.AutoSize = true;
             lblTodayAppts.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTodayAppts.ForeColor = Color.FromArgb(37, 99, 235);
-            lblTodayAppts.Location = new Point(19, 86);
+            lblTodayAppts.Location = new Point(196, 67);
             lblTodayAppts.Name = "lblTodayAppts";
             lblTodayAppts.Size = new Size(34, 46);
             lblTodayAppts.TabIndex = 6;
             lblTodayAppts.Text = "-";
-            // 
-            // panel7
-            // 
-            panel7.BackColor = Color.FromArgb(21, 32, 43);
-            panel7.Controls.Add(label7);
-            panel7.Controls.Add(lblWeekPresc);
-            panel7.Location = new Point(806, 112);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(281, 169);
-            panel7.TabIndex = 2;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.ForeColor = Color.Gray;
-            label7.Location = new Point(22, 12);
-            label7.Name = "label7";
-            label7.Size = new Size(116, 23);
-            label7.TabIndex = 7;
-            label7.Text = "إجمالي المرضى";
-            // 
-            // lblWeekPresc
-            // 
-            lblWeekPresc.AutoSize = true;
-            lblWeekPresc.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblWeekPresc.ForeColor = Color.FromArgb(37, 99, 235);
-            lblWeekPresc.Location = new Point(22, 86);
-            lblWeekPresc.Name = "lblWeekPresc";
-            lblWeekPresc.Size = new Size(34, 46);
-            lblWeekPresc.TabIndex = 6;
-            lblWeekPresc.Text = "-";
             // 
             // panel6
             // 
@@ -321,7 +305,7 @@
             panel6.Controls.Add(lblPatientsCount);
             panel6.Location = new Point(109, 112);
             panel6.Name = "panel6";
-            panel6.Size = new Size(281, 169);
+            panel6.Size = new Size(445, 169);
             panel6.TabIndex = 1;
             // 
             // label11
@@ -329,7 +313,7 @@
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label11.ForeColor = Color.Gray;
-            label11.Location = new Point(25, 12);
+            label11.Location = new Point(0, 0);
             label11.Name = "label11";
             label11.Size = new Size(116, 23);
             label11.TabIndex = 5;
@@ -340,7 +324,7 @@
             lblPatientsCount.AutoSize = true;
             lblPatientsCount.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblPatientsCount.ForeColor = Color.White;
-            lblPatientsCount.Location = new Point(25, 86);
+            lblPatientsCount.Location = new Point(192, 67);
             lblPatientsCount.Name = "lblPatientsCount";
             lblPatientsCount.Size = new Size(34, 46);
             lblPatientsCount.TabIndex = 0;
@@ -389,7 +373,7 @@
             textBox1.RightToLeft = RightToLeft.Yes;
             textBox1.Size = new Size(250, 24);
             textBox1.TabIndex = 11;
-            textBox1.TextChanged += textBox1_TextChanged;
+            textBox1.TextChanged += TextBox1_TextChanged;
             // 
             // label20
             // 
@@ -415,7 +399,7 @@
             MinimumSize = new Size(1445, 814);
             Name = "DoctorForm";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "DoctorForm";
+            Text = "333";
             FormClosed += DoctorForm_FormClosed;
             Load += DoctorForm_Load;
             SizeChanged += DoctorForm_SizeChanged;
@@ -428,8 +412,6 @@
             flowLayoutPanel2.PerformLayout();
             panel8.ResumeLayout(false);
             panel8.PerformLayout();
-            panel7.ResumeLayout(false);
-            panel7.PerformLayout();
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
             panel10.ResumeLayout(false);
@@ -456,18 +438,16 @@
         private Panel panel6;
         private Label lblPatientsCount;
         private Panel panel8;
-        private Panel panel7;
         private Label label5;
         private Label lblTodayAppts;
         private Label label11;
         private Label label10;
-        private Label label7;
-        private Label lblWeekPresc;
         private Panel panel10;
         private Label label20;
         private TextBox textBox1;
         private Panel panel15;
         private FlowLayoutPanel flowLayoutPanel1;
         private FlowLayoutPanel flowLayoutPanel2;
+        private Button button2;
     }
 }

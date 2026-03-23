@@ -68,7 +68,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(401, 558);
             panel1.TabIndex = 0;
-            panel1.Paint += panel1_Paint;
+            panel1.Paint += Panel1_Paint;
             // 
             // pictureBox1
             // 
@@ -157,7 +157,7 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(518, 558);
             panel2.TabIndex = 1;
-            panel2.Paint += panel2_Paint;
+            panel2.Paint += Panel2_Paint;
             // 
             // linkLabel1
             // 
@@ -172,7 +172,7 @@
             linkLabel1.TabStop = true;
             linkLabel1.Text = "هنا";
             linkLabel1.VisitedLinkColor = Color.FromArgb(33, 100, 180);
-            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
+            linkLabel1.LinkClicked += LinkLabel1_LinkClicked;
             // 
             // label10
             // 
@@ -235,7 +235,7 @@
             textBox1.Size = new Size(347, 37);
             textBox1.TabIndex = 12;
             textBox1.TextAlign = HorizontalAlignment.Center;
-            textBox1.KeyDown += textBox1_KeyDown;
+            textBox1.KeyDown += TextBox1_KeyDown;
             // 
             // label8
             // 
@@ -275,7 +275,7 @@
             radioButton1.Text = "مريض";
             radioButton1.TextAlign = ContentAlignment.MiddleCenter;
             radioButton1.UseVisualStyleBackColor = true;
-            radioButton1.Click += radioButton1_Click;
+            radioButton1.Click += RadioButton1_Click;
             // 
             // radioButton2
             // 
@@ -305,7 +305,7 @@
             label7.Size = new Size(176, 25);
             label7.TabIndex = 6;
             label7.Text = "سجل الدخول للمتابعة.";
-            label7.Click += label7_Click;
+            label7.Click += Label7_Click;
             // 
             // label6
             // 

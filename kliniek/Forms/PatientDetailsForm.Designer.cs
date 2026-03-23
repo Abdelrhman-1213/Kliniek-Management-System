@@ -142,7 +142,7 @@
             panel7.Name = "panel7";
             panel7.Size = new Size(515, 105);
             panel7.TabIndex = 2;
-            panel7.Paint += panel7_Paint;
+            panel7.Paint += Panel7_Paint;
             // 
             // lblLastAppt
             // 

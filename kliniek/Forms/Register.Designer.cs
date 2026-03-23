@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Register));
             panel1 = new Panel();
+            DoctorCode = new TextBox();
+            label15 = new Label();
             label14 = new Label();
             comboBox2 = new ComboBox();
             Age = new TextBox();
@@ -66,6 +68,8 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(15, 23, 42);
+            panel1.Controls.Add(DoctorCode);
+            panel1.Controls.Add(label15);
             panel1.Controls.Add(label14);
             panel1.Controls.Add(comboBox2);
             panel1.Controls.Add(Age);
@@ -88,7 +92,29 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(594, 661);
             panel1.TabIndex = 0;
-            panel1.Paint += panel1_Paint;
+            panel1.Paint += Panel1_Paint;
+            // 
+            // DoctorCode
+            // 
+            DoctorCode.BackColor = Color.FromArgb(21, 32, 43);
+            DoctorCode.Font = new Font("Segoe UI", 13.2000008F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            DoctorCode.ForeColor = Color.White;
+            DoctorCode.Location = new Point(90, 216);
+            DoctorCode.Name = "DoctorCode";
+            DoctorCode.PlaceholderText = "الكود";
+            DoctorCode.Size = new Size(131, 37);
+            DoctorCode.TabIndex = 37;
+            DoctorCode.TextAlign = HorizontalAlignment.Center;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.ForeColor = Color.White;
+            label15.Location = new Point(138, 193);
+            label15.Name = "label15";
+            label15.Size = new Size(83, 20);
+            label15.TabIndex = 36;
+            label15.Text = "كود الطبيب";
             // 
             // label14
             // 
@@ -149,6 +175,7 @@
             FullName.Size = new Size(294, 37);
             FullName.TabIndex = 31;
             FullName.TextAlign = HorizontalAlignment.Center;
+            FullName.TextChanged += FullName_TextChanged;
             // 
             // label12
             // 
@@ -369,12 +396,13 @@
             pictureBox1.ErrorImage = (Image)resources.GetObject("pictureBox1.ErrorImage");
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.InitialImage = (Image)resources.GetObject("pictureBox1.InitialImage");
-            pictureBox1.Location = new Point(142, 142);
+            pictureBox1.Location = new Point(132, 125);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(88, 99);
+            pictureBox1.Size = new Size(107, 116);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 11;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // label5
             // 
@@ -398,6 +426,7 @@
             label4.Size = new Size(188, 25);
             label4.TabIndex = 9;
             label4.Text = "وصفات طبية رقمية ✅";
+            label4.Visible = false;
             // 
             // label3
             // 
@@ -428,11 +457,11 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(142, 244);
+            label1.Location = new Point(132, 244);
             label1.Name = "label1";
-            label1.Size = new Size(88, 38);
+            label1.Size = new Size(107, 38);
             label1.TabIndex = 6;
-            label1.Text = "Clinic";
+            label1.Text = "Kliniek";
             // 
             // Register
             // 
@@ -488,5 +517,7 @@
         private Label label13;
         private Label label14;
         private ComboBox comboBox2;
+        private TextBox DoctorCode;
+        private Label label15;
     }
 }

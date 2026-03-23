@@ -1,5 +1,4 @@
-﻿using MaterialSkin2DotNet.Controls;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,7 +10,7 @@ using System.Windows.Forms;
 
 namespace kliniek.Forms
 {
-    public partial class PatientForm : MaterialForm
+    public partial class PatientForm : Form
     {
         public PatientForm()
         {

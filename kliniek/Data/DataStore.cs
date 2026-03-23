@@ -1,21 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using kliniek.Models;
+﻿using kliniek.Models;
 using Newtonsoft.Json;
-using System.Windows.Forms;
-using System.IO;
+using System.Text;
 
 namespace kliniek.Data
 {
     public class DataStore
     {
-        public Doctor LogedInDoc = null;
+        public Doctor? LogedInDoc = null;
+        public Patient LoggedInPatient = null;
+        public const string SecretCode = "#3107ML";
         public List<Patient> patient = [];
         public List<Doctor> doctor = [];
         public List<Appointment> appointments = [];
+
         public List<string> bloodtybe =
         [
             "اختر فصيلة الدم...",
@@ -23,8 +20,8 @@ namespace kliniek.Data
         ];
 
         public List<string> specializations = [
-        
-            "اختر التخصص...", // نص إرشادي في البداية
+
+            "اختر التخصص...", // هتجاهلها يا دكتور في الكود
             "طب الباطنة","طب الأطفال",
             "أمراض القلب","الجراحة العامة",
             "طب العظام","الجلدية والتجميل",
@@ -33,11 +30,22 @@ namespace kliniek.Data
             "الطب النفسي", "المسالك البولية",
         ];
 
+        public List<string> time = [
+
+         "اختر الوقت ...", // نص إرشادي في البداية
+            "09:00 AM",
+            "11:00 AM",
+            "01:00 PM",
+            "3:00 PM",
+            "05:00 PM"
+        ];
+
+        /*
         public void Save()
         {
             try
             {
-                var obj = new { patients = patient, doctors = doctor, appointments = appointments };
+                var obj = new { Patients = patient, Doctors = doctor, Appointments = appointments};
                 string json = JsonConvert.SerializeObject(obj, Formatting.Indented);
                 File.WriteAllText("data.json", json);
             }
@@ -46,8 +54,6 @@ namespace kliniek.Data
                 MessageBox.Show($"خطأ في الحفظ: {ex.Message}");
             }
         }
-
-        // Load
         public void Load()
         {
             try
@@ -56,20 +62,97 @@ namespace kliniek.Data
                 string json = File.ReadAllText("data.json");
                 var obj = JsonConvert.DeserializeObject<SaveData>(json);
                 if (obj == null) return;
-                if (obj.patients != null) patient = obj.patients;
-                if (obj.doctors != null) doctor = obj.doctors;
-                if (obj.appointments != null) appointments = obj.appointments;
+                if (obj.Patients != null) patient = obj.Patients;
+                if (obj.Doctors != null) doctor = obj.Doctors;
+                if (obj.Appointments != null) appointments = obj.Appointments;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"خطأ في التحميل: {ex.Message}");
+            }
+        }*/
+
+
+        private static readonly HttpClient client = new();
+        public DataStore()
+        {
+            client.DefaultRequestHeaders.Clear();
+            client.DefaultRequestHeaders.Add("apikey", SupabaseConfig.Key);
+            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {SupabaseConfig.Key}");
+        }
+        // ==================
+        // التحمييييييييييييل
+        // ==================
+        public async Task Load()
+        {
+            try
+            {
+                
+                var patientsJson = await client.GetStringAsync(
+                    $"{SupabaseConfig.Url}/rest/v1/patients?select=*"
+                );
+                patient = JsonConvert.DeserializeObject<List<Patient>>(patientsJson) ?? [];
+
+                
+                var doctorsJson = await client.GetStringAsync(
+                    $"{SupabaseConfig.Url}/rest/v1/doctors?select=*"
+                );
+                doctor = JsonConvert.DeserializeObject<List<Doctor>>(doctorsJson) ?? [];
+
+               
+                var apptsJson = await client.GetStringAsync(
+                    $"{SupabaseConfig.Url}/rest/v1/appointments?select=*"
+                );
+                appointments = JsonConvert.DeserializeObject<List<Appointment>>(apptsJson) ?? [];
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"خطأ في التحميل: {ex.Message}");
             }
         }
+        // ==================
+        // الحففففففففففففففظ
+        // ==================
+        public async Task Save()
+        {
+            try
+            {
+                var request = new HttpRequestMessage(HttpMethod.Post,
+                    $"{SupabaseConfig.Url}/rest/v1/doctors");
+                request.Headers.Add("Prefer", "resolution=merge-duplicates");
+                request.Content = new StringContent(
+                    JsonConvert.SerializeObject(doctor),
+                    Encoding.UTF8, "application/json");
+
+                var response = await client.SendAsync(request);
+                string responseBody = await response.Content.ReadAsStringAsync();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"خطأ: {ex.Message}");
+            }
+        }
+
+        public async Task DeleteDoctor(string username)
+        {
+            try
+            {
+                await client.DeleteAsync(
+                    $"{SupabaseConfig.Url}/rest/v1/doctors?username=eq.{username}"
+                );
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"خطأ في الحذف: {ex.Message}");
+            }
+        }
+
     }
     public class SaveData
     {
-        public List<Patient>? patients { get; set; }
-        public List<Doctor>? doctors { get; set; }
-        public List<Appointment>? appointments { get; set; }
+        public List<Patient>? Patients { get; set; }
+        public List<Doctor>? Doctors { get; set; }
+        public List<Appointment>? Appointments { get; set; }
     }
 }
