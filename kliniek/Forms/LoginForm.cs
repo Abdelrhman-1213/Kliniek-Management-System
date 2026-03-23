@@ -58,7 +58,7 @@ namespace kliniek.Forms
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Register register = new Register();
+            Register register = new();
             this.Hide();
             register.Show();
         }
@@ -68,7 +68,7 @@ namespace kliniek.Forms
             Application.Exit();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             Data.DataStore data = Program.SharedData;
             
@@ -97,14 +97,14 @@ namespace kliniek.Forms
                     data.LoggedInPatient = foundPatient;
                         
                     MessageBox.Show($"{foundPatient.FullName} أهلا بك");
-                    new PatientForm(data).Show();
-                    //this.Hide();
+                    new PatientForm().Show();
+                    this.Hide();
                 }
             }
              
             else if (radioButton2.Checked) // Doctor
             {
-                
+                Program.SharedData.LogedInDoc = null;
                 foreach (var d in data.doctor)
                 {
                     if (d.UserName == textBox1.Text)
@@ -117,11 +117,13 @@ namespace kliniek.Forms
                 if (Program.SharedData.LogedInDoc == null)
                     MessageBox.Show("اسم المستخدم غير موجود.");
                 else if (Program.SharedData.LogedInDoc.Password != textBox2.Text)
+                {
+                    Program.SharedData.LogedInDoc = null;
                     MessageBox.Show("كلمة المرور خاطئة.");
+                }
                 else
                 {
                     new DoctorForm().Show();
-                    MessageBox.Show($"د. {Program.SharedData.LogedInDoc.FullName} أهلا بك");
                     this.Hide();
                 }
 

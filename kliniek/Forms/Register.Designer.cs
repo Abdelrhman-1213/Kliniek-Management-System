@@ -65,7 +65,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(35, 35, 40);
+            panel1.BackColor = Color.FromArgb(15, 23, 42);
             panel1.Controls.Add(label14);
             panel1.Controls.Add(comboBox2);
             panel1.Controls.Add(Age);
@@ -93,6 +93,7 @@
             // label14
             // 
             label14.AutoSize = true;
+            label14.BackColor = Color.FromArgb(21, 32, 43);
             label14.ForeColor = Color.White;
             label14.Location = new Point(171, 274);
             label14.Name = "label14";
@@ -103,7 +104,7 @@
             // 
             // comboBox2
             // 
-            comboBox2.BackColor = Color.FromArgb(35, 35, 40);
+            comboBox2.BackColor = Color.FromArgb(21, 32, 43);
             comboBox2.FlatStyle = FlatStyle.Flat;
             comboBox2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             comboBox2.ForeColor = Color.White;
@@ -117,7 +118,7 @@
             // 
             // Age
             // 
-            Age.BackColor = Color.FromArgb(35, 35, 40);
+            Age.BackColor = Color.FromArgb(21, 32, 43);
             Age.Font = new Font("Segoe UI", 13.2000008F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Age.ForeColor = Color.White;
             Age.Location = new Point(90, 216);
@@ -139,7 +140,7 @@
             // 
             // FullName
             // 
-            FullName.BackColor = Color.FromArgb(35, 35, 40);
+            FullName.BackColor = Color.FromArgb(21, 32, 43);
             FullName.Font = new Font("Segoe UI", 13.2000008F, FontStyle.Bold, GraphicsUnit.Point, 0);
             FullName.ForeColor = Color.White;
             FullName.Location = new Point(231, 216);
@@ -173,7 +174,7 @@
             // 
             // comboBox1
             // 
-            comboBox1.BackColor = Color.FromArgb(35, 35, 40);
+            comboBox1.BackColor = Color.FromArgb(21, 32, 43);
             comboBox1.FlatStyle = FlatStyle.Flat;
             comboBox1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             comboBox1.ForeColor = Color.White;
@@ -215,7 +216,7 @@
             // 
             // button1
             // 
-            button1.BackColor = Color.FromArgb(33, 100, 180);
+            button1.BackColor = Color.FromArgb(37, 99, 235);
             button1.Cursor = Cursors.Hand;
             button1.FlatAppearance.BorderColor = Color.FromArgb(33, 100, 180);
             button1.FlatAppearance.BorderSize = 0;
@@ -232,7 +233,7 @@
             // 
             // PassWord
             // 
-            PassWord.BackColor = Color.FromArgb(35, 35, 40);
+            PassWord.BackColor = Color.FromArgb(21, 32, 43);
             PassWord.Font = new Font("Segoe UI", 13.2000008F, FontStyle.Bold, GraphicsUnit.Point, 0);
             PassWord.ForeColor = Color.White;
             PassWord.Location = new Point(90, 378);
@@ -255,7 +256,7 @@
             // 
             // UserName
             // 
-            UserName.BackColor = Color.FromArgb(35, 35, 40);
+            UserName.BackColor = Color.FromArgb(21, 32, 43);
             UserName.Font = new Font("Segoe UI", 13.2000008F, FontStyle.Bold, GraphicsUnit.Point, 0);
             UserName.ForeColor = Color.White;
             UserName.Location = new Point(231, 297);
@@ -292,8 +293,9 @@
             patient.Appearance = Appearance.Button;
             patient.Cursor = Cursors.Hand;
             patient.FlatAppearance.BorderSize = 0;
-            patient.FlatAppearance.CheckedBackColor = Color.FromArgb(33, 100, 180);
+            patient.FlatAppearance.CheckedBackColor = Color.FromArgb(37, 99, 235);
             patient.FlatStyle = FlatStyle.Flat;
+            patient.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             patient.ForeColor = Color.White;
             patient.Location = new Point(179, 18);
             patient.Name = "patient";
@@ -310,8 +312,9 @@
             Doctor.Appearance = Appearance.Button;
             Doctor.Cursor = Cursors.Hand;
             Doctor.FlatAppearance.BorderSize = 0;
-            Doctor.FlatAppearance.CheckedBackColor = Color.FromArgb(33, 100, 180);
+            Doctor.FlatAppearance.CheckedBackColor = Color.FromArgb(37, 99, 235);
             Doctor.FlatStyle = FlatStyle.Flat;
+            Doctor.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             Doctor.ForeColor = Color.White;
             Doctor.Location = new Point(6, 18);
             Doctor.Name = "Doctor";
@@ -349,7 +352,7 @@
             // 
             // panel2
             // 
-            panel2.BackColor = Color.FromArgb(33, 100, 180);
+            panel2.BackColor = Color.FromArgb(21, 32, 43);
             panel2.Controls.Add(pictureBox1);
             panel2.Controls.Add(label5);
             panel2.Controls.Add(label4);

@@ -57,7 +57,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(33, 100, 180);
+            panel1.BackColor = Color.FromArgb(21, 32, 43);
             panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(label4);
@@ -142,7 +142,7 @@
             // 
             // panel2
             // 
-            panel2.BackColor = Color.FromArgb(35, 35, 40);
+            panel2.BackColor = Color.FromArgb(13, 17, 23);
             panel2.Controls.Add(linkLabel1);
             panel2.Controls.Add(label10);
             panel2.Controls.Add(button1);
@@ -187,24 +187,24 @@
             // 
             // button1
             // 
-            button1.BackColor = Color.FromArgb(33, 100, 180);
+            button1.BackColor = Color.FromArgb(37, 99, 235);
             button1.Cursor = Cursors.Hand;
             button1.FlatAppearance.BorderColor = Color.FromArgb(33, 100, 180);
             button1.FlatAppearance.BorderSize = 0;
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.White;
-            button1.Location = new Point(210, 368);
+            button1.Location = new Point(199, 368);
             button1.Name = "button1";
             button1.Size = new Size(111, 40);
             button1.TabIndex = 15;
             button1.Text = "دخول";
             button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            button1.Click += Button1_Click;
             // 
             // textBox2
             // 
-            textBox2.BackColor = Color.FromArgb(35, 35, 40);
+            textBox2.BackColor = Color.FromArgb(21, 32, 43);
             textBox2.Font = new Font("Segoe UI", 13.2000008F, FontStyle.Bold, GraphicsUnit.Point, 0);
             textBox2.ForeColor = Color.White;
             textBox2.Location = new Point(89, 316);
@@ -226,7 +226,7 @@
             // 
             // textBox1
             // 
-            textBox1.BackColor = Color.FromArgb(35, 35, 40);
+            textBox1.BackColor = Color.FromArgb(21, 32, 43);
             textBox1.Font = new Font("Segoe UI", 13.2000008F, FontStyle.Bold, GraphicsUnit.Point, 0);
             textBox1.ForeColor = Color.White;
             textBox1.Location = new Point(89, 237);
@@ -249,6 +249,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.BackColor = Color.FromArgb(13, 17, 23);
             groupBox1.Controls.Add(radioButton1);
             groupBox1.Controls.Add(radioButton2);
             groupBox1.FlatStyle = FlatStyle.Flat;
@@ -263,7 +264,7 @@
             radioButton1.Appearance = Appearance.Button;
             radioButton1.Cursor = Cursors.Hand;
             radioButton1.FlatAppearance.BorderSize = 0;
-            radioButton1.FlatAppearance.CheckedBackColor = Color.FromArgb(33, 100, 180);
+            radioButton1.FlatAppearance.CheckedBackColor = Color.FromArgb(37, 99, 235);
             radioButton1.FlatStyle = FlatStyle.Flat;
             radioButton1.ForeColor = Color.White;
             radioButton1.Location = new Point(179, 18);
@@ -281,7 +282,7 @@
             radioButton2.Appearance = Appearance.Button;
             radioButton2.Cursor = Cursors.Hand;
             radioButton2.FlatAppearance.BorderSize = 0;
-            radioButton2.FlatAppearance.CheckedBackColor = Color.FromArgb(33, 100, 180);
+            radioButton2.FlatAppearance.CheckedBackColor = Color.FromArgb(37, 99, 235);
             radioButton2.FlatStyle = FlatStyle.Flat;
             radioButton2.ForeColor = Color.White;
             radioButton2.Location = new Point(6, 18);
