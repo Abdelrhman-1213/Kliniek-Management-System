@@ -213,6 +213,7 @@
             textBox2.Size = new Size(347, 37);
             textBox2.TabIndex = 14;
             textBox2.TextAlign = HorizontalAlignment.Center;
+            textBox2.UseSystemPasswordChar = true;
             // 
             // label9
             // 
@@ -332,7 +333,7 @@
             MinimumSize = new Size(888, 587);
             Name = "LoginForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "2";
+            Text = "تسجيل الدخول";
             FormClosed += LoginForm_FormClosed;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

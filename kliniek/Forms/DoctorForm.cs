@@ -34,13 +34,15 @@ namespace kliniek.Forms
                 a.date.Date == DateTime.Today
             );
 
-
-            //int weekPresc = 0; // عند إضافة ميزة الروشتة للبرنامج
+            int weekPresc = data.prescriptions.Count(p =>
+                p.doctorusername == data.LogedInDoc?.username &&
+                p.date >= DateTime.Today.AddDays(-7)
+            );
 
 
             lblPatientsCount.Text = myPatientsCount.ToString();
             lblTodayAppts.Text = todayAppts.ToString();
-            //lblWeekPresc.Text = weekPresc.ToString(); // عند إضافة ميزة الروشتة للبرنامج
+            lblWeekPresc.Text = weekPresc.ToString();
 
             LoadPatients();
             LoadTodayAppointments();
@@ -266,12 +268,100 @@ namespace kliniek.Forms
         {
             panel4.Visible = false;
             panel10.Visible = true;
+            panelPrescriptions.Visible = false;
         }
 
         private void RadioButton1_CheckedChanged(object sender, EventArgs e)
         {
             panel4.Visible = true;
             panel10.Visible = false;
+            panelPrescriptions.Visible = false;
+        }
+
+        private void RadioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            panel4.Visible = false;
+            panel10.Visible = false;
+            panelPrescriptions.Visible = true;
+            LoadPrescriptions();
+        }
+
+        private void LoadPrescriptions()
+        {
+            flowLayoutPanelPrescriptions.Controls.Clear();
+            Data.DataStore data = Program.SharedData;
+
+            var myPrescriptions = data.prescriptions
+                .Where(p => p.doctorusername == data.LogedInDoc?.username)
+                .OrderByDescending(p => p.date)
+                .ToList();
+
+            if (myPrescriptions.Count == 0)
+            {
+                Label lblEmpty = new()
+                {
+                    Text = "لا توجد روشتات بعد",
+                    ForeColor = Color.Gray,
+                    Font = new Font("Segoe UI", 12, FontStyle.Bold),
+                    AutoSize = true,
+                    Margin = new Padding(20)
+                };
+                flowLayoutPanelPrescriptions.Controls.Add(lblEmpty);
+                return;
+            }
+
+            foreach (var presc in myPrescriptions)
+            {
+                var patient = data.patient.FirstOrDefault(p => p.username == presc.patientusername);
+
+                Panel card = new()
+                {
+                    Width = flowLayoutPanelPrescriptions.Width - 40,
+                    Height = 120,
+                    BackColor = Color.FromArgb(21, 32, 43),
+                    Margin = new Padding(10, 5, 10, 5),
+                    Padding = new Padding(15)
+                };
+
+                Label lblName = new()
+                {
+                    Text = "👤 " + (patient?.fullname ?? "غير معروف"),
+                    ForeColor = Color.White,
+                    Font = new Font("Segoe UI", 11, FontStyle.Bold),
+                    AutoSize = true,
+                    Location = new Point(15, 10)
+                };
+
+                Label lblDate = new()
+                {
+                    Text = presc.date.ToString("dd/MM/yyyy hh:mm tt"),
+                    ForeColor = Color.FromArgb(148, 163, 184),
+                    Font = new Font("Segoe UI", 9),
+                    AutoSize = true,
+                    Location = new Point(15, 38)
+                };
+
+                Label lblDiag = new()
+                {
+                    Text = "التشخيص: " + (presc.diagnosis.Length > 60 ? presc.diagnosis[..60] + "..." : presc.diagnosis),
+                    ForeColor = Color.FromArgb(200, 200, 200),
+                    Font = new Font("Segoe UI", 9),
+                    AutoSize = true,
+                    Location = new Point(15, 62)
+                };
+
+                Label lblMeds = new()
+                {
+                    Text = "الأدوية: " + (presc.medications.Length > 60 ? presc.medications[..60] + "..." : presc.medications),
+                    ForeColor = Color.FromArgb(106, 191, 106),
+                    Font = new Font("Segoe UI", 9),
+                    AutoSize = true,
+                    Location = new Point(15, 86)
+                };
+
+                card.Controls.AddRange([lblName, lblDate, lblDiag, lblMeds]);
+                flowLayoutPanelPrescriptions.Controls.Add(card);
+            }
         }
 
         private void DoctorForm_FormClosed(object sender, FormClosedEventArgs e)

@@ -7,8 +7,8 @@ namespace kliniek.Forms
         public LoginForm()
         {
             InitializeComponent();
-
-
+            radioButton1.Checked = true;
+            this.AcceptButton = button1;
         }
 
         private void Label7_Click(object sender, EventArgs e)
@@ -31,6 +31,7 @@ namespace kliniek.Forms
             if (e.KeyCode == Keys.Enter)
             {
                 e.SuppressKeyPress = true;
+                Button1_Click(sender, e);
             }
         }
 
@@ -47,6 +48,14 @@ namespace kliniek.Forms
         private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Register register = new();
+            register.FormClosed += async (s, args) =>
+            {
+                // إعادة تحميل البيانات عشان لو المستخدم سجل حساب جديد
+                await Program.SharedData.Load();
+                textBox1.Text = "";
+                textBox2.Text = "";
+                this.Show();
+            };
             this.Hide();
             register.Show();
         }
@@ -60,9 +69,15 @@ namespace kliniek.Forms
         {
             Data.DataStore data = Program.SharedData;
 
-            if (string.IsNullOrEmpty(textBox1.Text) || string.IsNullOrEmpty(textBox2.Text))
+            if (string.IsNullOrWhiteSpace(textBox1.Text) || string.IsNullOrWhiteSpace(textBox2.Text))
             {
                 MessageBox.Show("البيانات ناقصة.");
+                return;
+            }
+
+            if (!radioButton1.Checked && !radioButton2.Checked)
+            {
+                MessageBox.Show("برجاء اختيار نوع الحساب (مريض / طبيب)");
                 return;
             }
 
@@ -87,7 +102,24 @@ namespace kliniek.Forms
                 else
                 {
                     data.LoggedInPatient = foundPatient;
-                    new PatientForm().Show();
+                    var patientForm = new PatientForm();
+                    patientForm.FormClosed += async (s, args) =>
+                    {
+                        if (data.LoggedInPatient == null)
+                        {
+                            // المستخدم عمل تسجيل خروج - نرجع لصفحة تسجيل الدخول
+                            await Program.SharedData.Load();
+                            textBox1.Text = "";
+                            textBox2.Text = "";
+                            this.Show();
+                        }
+                        else
+                        {
+                            // المستخدم قفل الفورم من زرار X - نقفل التطبيق
+                            this.Close();
+                        }
+                    };
+                    patientForm.Show();
                     this.Hide();
                 }
             }
@@ -113,8 +145,24 @@ namespace kliniek.Forms
                 }
                 else
                 {
-
-                    new DoctorForm().Show();
+                    var doctorForm = new DoctorForm();
+                    doctorForm.FormClosed += async (s, args) =>
+                    {
+                        if (data.LogedInDoc == null)
+                        {
+                            // المستخدم عمل تسجيل خروج - نرجع لصفحة تسجيل الدخول
+                            await Program.SharedData.Load();
+                            textBox1.Text = "";
+                            textBox2.Text = "";
+                            this.Show();
+                        }
+                        else
+                        {
+                            // المستخدم قفل الفورم من زرار X - نقفل التطبيق
+                            this.Close();
+                        }
+                    };
+                    doctorForm.Show();
                     this.Hide();
                 }
 

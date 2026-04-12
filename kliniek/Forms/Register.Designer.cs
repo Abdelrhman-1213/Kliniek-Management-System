@@ -269,6 +269,7 @@
             PassWord.Size = new Size(435, 37);
             PassWord.TabIndex = 24;
             PassWord.TextAlign = HorizontalAlignment.Center;
+            PassWord.UseSystemPasswordChar = true;
             // 
             // label9
             // 
@@ -474,7 +475,7 @@
             MinimumSize = new Size(976, 689);
             Name = "Register";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Register";
+            Text = "إنشاء حساب";
             FormClosed += Register_FormClosed;
             Load += Register_Load;
             Leave += Register_Leave;

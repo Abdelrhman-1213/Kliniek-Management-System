@@ -13,6 +13,7 @@ namespace kliniek.Data
         public List<Patient> patient = [];
         public List<Doctor> doctor = [];
         public List<Appointment> appointments = [];
+        public List<Prescription> prescriptions = [];
 
         public List<string> bloodtybe =
         [
@@ -106,6 +107,11 @@ namespace kliniek.Data
                     $"{SupabaseConfig.Url}/rest/v1/appointments?select=*"
                 );
                 appointments = JsonConvert.DeserializeObject<List<Appointment>>(apptsJson) ?? [];
+
+                var prescJson = await client.GetStringAsync(
+                    $"{SupabaseConfig.Url}/rest/v1/prescriptions?select=*"
+                );
+                prescriptions = JsonConvert.DeserializeObject<List<Prescription>>(prescJson) ?? [];
             }
             catch (Exception ex)
             {
@@ -207,11 +213,48 @@ namespace kliniek.Data
             }
         }
 
+        public async Task SavePrescription(Prescription p)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Post,
+                $"{SupabaseConfig.Url}/rest/v1/prescriptions");
+            request.Headers.Add("Prefer", "return=minimal");
+
+            var obj = new
+            {
+                doctorusername = p.doctorusername,
+                patientusername = p.patientusername,
+                diagnosis = p.diagnosis,
+                medications = p.medications,
+                notes = p.notes,
+                date = p.date
+            };
+
+            request.Content = new StringContent(
+                JsonConvert.SerializeObject(obj),
+                Encoding.UTF8, "application/json");
+            await client.SendAsync(request);
+        }
+
+        public async Task DeletePrescription(int id)
+        {
+            try
+            {
+                await client.DeleteAsync(
+                    $"{SupabaseConfig.Url}/rest/v1/prescriptions?id=eq.{id}"
+                );
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"خطأ في الحذف: {ex.Message}");
+            }
+        }
+
     }
     public class SaveData
     {
         public List<Patient>? Patients { get; set; }
         public List<Doctor>? Doctors { get; set; }
         public List<Appointment>? Appointments { get; set; }
+        public List<Prescription>? Prescriptions { get; set; }
     }
 }

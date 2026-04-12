@@ -34,6 +34,7 @@
             button1 = new Button();
             radioButton1 = new RadioButton();
             radioButton2 = new RadioButton();
+            radioButton3 = new RadioButton();
             label2 = new Label();
             label1 = new Label();
             pictureBox1 = new PictureBox();
@@ -50,19 +51,27 @@
             panel6 = new Panel();
             label11 = new Label();
             lblPatientsCount = new Label();
+            panelWeekPresc = new Panel();
+            lblWeekPrescTitle = new Label();
+            lblWeekPresc = new Label();
             panel10 = new Panel();
             flowLayoutPanel1 = new FlowLayoutPanel();
             panel15 = new Panel();
             textBox1 = new TextBox();
             label20 = new Label();
+            panelPrescriptions = new Panel();
+            flowLayoutPanelPrescriptions = new FlowLayoutPanel();
+            lblPrescTitle = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel4.SuspendLayout();
             flowLayoutPanel2.SuspendLayout();
             panel8.SuspendLayout();
             panel6.SuspendLayout();
+            panelWeekPresc.SuspendLayout();
             panel10.SuspendLayout();
             panel15.SuspendLayout();
+            panelPrescriptions.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -72,6 +81,7 @@
             panel1.Controls.Add(button1);
             panel1.Controls.Add(radioButton1);
             panel1.Controls.Add(radioButton2);
+            panel1.Controls.Add(radioButton3);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(pictureBox1);
@@ -158,6 +168,25 @@
             radioButton2.UseVisualStyleBackColor = true;
             radioButton2.CheckedChanged += RadioButton2_CheckedChanged;
             // 
+            // radioButton3
+            // 
+            radioButton3.Appearance = Appearance.Button;
+            radioButton3.FlatAppearance.BorderColor = Color.Gray;
+            radioButton3.FlatAppearance.BorderSize = 0;
+            radioButton3.FlatAppearance.CheckedBackColor = Color.FromArgb(37, 99, 235);
+            radioButton3.FlatStyle = FlatStyle.Flat;
+            radioButton3.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold);
+            radioButton3.ForeColor = Color.White;
+            radioButton3.ImageAlign = ContentAlignment.MiddleLeft;
+            radioButton3.Location = new Point(19, 287);
+            radioButton3.Name = "radioButton3";
+            radioButton3.Size = new Size(233, 45);
+            radioButton3.TabIndex = 11;
+            radioButton3.TabStop = true;
+            radioButton3.Text = "📝    الروشتات";
+            radioButton3.UseVisualStyleBackColor = true;
+            radioButton3.CheckedChanged += RadioButton3_CheckedChanged;
+            // 
             // label2
             // 
             label2.AutoSize = true;
@@ -217,6 +246,7 @@
             panel4.Controls.Add(label3);
             panel4.Controls.Add(panel8);
             panel4.Controls.Add(panel6);
+            panel4.Controls.Add(panelWeekPresc);
             panel4.Location = new Point(251, -1);
             panel4.Name = "panel4";
             panel4.Size = new Size(1179, 780);
@@ -226,10 +256,10 @@
             // 
             flowLayoutPanel2.BackColor = Color.FromArgb(21, 32, 43);
             flowLayoutPanel2.Controls.Add(label10);
-            flowLayoutPanel2.Location = new Point(109, 322);
+            flowLayoutPanel2.Location = new Point(109, 412);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
             flowLayoutPanel2.Padding = new Padding(0, 10, 0, 0);
-            flowLayoutPanel2.Size = new Size(982, 406);
+            flowLayoutPanel2.Size = new Size(982, 316);
             flowLayoutPanel2.TabIndex = 4;
             // 
             // label10
@@ -331,6 +361,38 @@
             lblPatientsCount.Text = "-";
             lblPatientsCount.Click += Label6_Click;
             // 
+            // panelWeekPresc
+            // 
+            panelWeekPresc.BackColor = Color.FromArgb(21, 32, 43);
+            panelWeekPresc.Controls.Add(lblWeekPrescTitle);
+            panelWeekPresc.Controls.Add(lblWeekPresc);
+            panelWeekPresc.Location = new Point(109, 322);
+            panelWeekPresc.Name = "panelWeekPresc";
+            panelWeekPresc.Size = new Size(982, 80);
+            panelWeekPresc.TabIndex = 8;
+            // 
+            // lblWeekPrescTitle
+            // 
+            lblWeekPrescTitle.AutoSize = true;
+            lblWeekPrescTitle.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblWeekPrescTitle.ForeColor = Color.Gray;
+            lblWeekPrescTitle.Location = new Point(0, 0);
+            lblWeekPrescTitle.Name = "lblWeekPrescTitle";
+            lblWeekPrescTitle.Size = new Size(130, 23);
+            lblWeekPrescTitle.TabIndex = 0;
+            lblWeekPrescTitle.Text = "روشتات هذا الأسبوع";
+            // 
+            // lblWeekPresc
+            // 
+            lblWeekPresc.AutoSize = true;
+            lblWeekPresc.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblWeekPresc.ForeColor = Color.FromArgb(106, 191, 106);
+            lblWeekPresc.Location = new Point(440, 20);
+            lblWeekPresc.Name = "lblWeekPresc";
+            lblWeekPresc.Size = new Size(34, 46);
+            lblWeekPresc.TabIndex = 1;
+            lblWeekPresc.Text = "-";
+            // 
             // panel10
             // 
             panel10.BackColor = Color.FromArgb(13, 17, 23);
@@ -386,6 +448,39 @@
             label20.TabIndex = 0;
             label20.Text = "قائمة المرضى";
             // 
+            // panelPrescriptions
+            // 
+            panelPrescriptions.BackColor = Color.FromArgb(13, 17, 23);
+            panelPrescriptions.Controls.Add(flowLayoutPanelPrescriptions);
+            panelPrescriptions.Controls.Add(lblPrescTitle);
+            panelPrescriptions.Location = new Point(251, -1);
+            panelPrescriptions.Name = "panelPrescriptions";
+            panelPrescriptions.Size = new Size(1189, 787);
+            panelPrescriptions.TabIndex = 5;
+            panelPrescriptions.Visible = false;
+            // 
+            // flowLayoutPanelPrescriptions
+            // 
+            flowLayoutPanelPrescriptions.AutoScroll = true;
+            flowLayoutPanelPrescriptions.BackColor = Color.FromArgb(13, 17, 23);
+            flowLayoutPanelPrescriptions.FlowDirection = FlowDirection.TopDown;
+            flowLayoutPanelPrescriptions.WrapContents = false;
+            flowLayoutPanelPrescriptions.Location = new Point(86, 80);
+            flowLayoutPanelPrescriptions.Name = "flowLayoutPanelPrescriptions";
+            flowLayoutPanelPrescriptions.Size = new Size(1005, 620);
+            flowLayoutPanelPrescriptions.TabIndex = 1;
+            // 
+            // lblPrescTitle
+            // 
+            lblPrescTitle.AutoSize = true;
+            lblPrescTitle.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblPrescTitle.ForeColor = Color.FromArgb(241, 245, 249);
+            lblPrescTitle.Location = new Point(48, 22);
+            lblPrescTitle.Name = "lblPrescTitle";
+            lblPrescTitle.Size = new Size(142, 31);
+            lblPrescTitle.TabIndex = 0;
+            lblPrescTitle.Text = "قائمة الروشتات";
+            // 
             // DoctorForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -394,12 +489,13 @@
             Controls.Add(panel1);
             Controls.Add(panel4);
             Controls.Add(panel10);
+            Controls.Add(panelPrescriptions);
             MaximizeBox = false;
             MaximumSize = new Size(1445, 814);
             MinimumSize = new Size(1445, 814);
             Name = "DoctorForm";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "333";
+            Text = "لوحة تحكم الطبيب";
             FormClosed += DoctorForm_FormClosed;
             Load += DoctorForm_Load;
             SizeChanged += DoctorForm_SizeChanged;
@@ -418,6 +514,10 @@
             panel10.PerformLayout();
             panel15.ResumeLayout(false);
             panel15.PerformLayout();
+            panelWeekPresc.ResumeLayout(false);
+            panelWeekPresc.PerformLayout();
+            panelPrescriptions.ResumeLayout(false);
+            panelPrescriptions.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -449,5 +549,12 @@
         private FlowLayoutPanel flowLayoutPanel1;
         private FlowLayoutPanel flowLayoutPanel2;
         private Button button2;
+        private RadioButton radioButton3;
+        private Panel panelWeekPresc;
+        private Label lblWeekPrescTitle;
+        private Label lblWeekPresc;
+        private Panel panelPrescriptions;
+        private FlowLayoutPanel flowLayoutPanelPrescriptions;
+        private Label lblPrescTitle;
     }
 }

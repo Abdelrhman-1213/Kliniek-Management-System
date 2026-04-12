@@ -57,6 +57,10 @@
             panel5.SuspendLayout();
             panel6.SuspendLayout();
             panel3.SuspendLayout();
+            panelLastPresc = new Panel();
+            lblLastPresc = new Label();
+            btnPrescription = new Button();
+            panelLastPresc.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -109,6 +113,8 @@
             // 
             panel2.BackColor = Color.FromArgb(13, 17, 23);
             panel2.Controls.Add(button1);
+            panel2.Controls.Add(btnPrescription);
+            panel2.Controls.Add(panelLastPresc);
             panel2.Controls.Add(panel7);
             panel2.Controls.Add(panel4);
             panel2.Controls.Add(panel5);
@@ -116,7 +122,7 @@
             panel2.Controls.Add(panel3);
             panel2.Location = new Point(-8, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(583, 692);
+            panel2.Size = new Size(583, 732);
             panel2.TabIndex = 1;
             // 
             // button1
@@ -126,9 +132,9 @@
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.White;
-            button1.Location = new Point(32, 591);
+            button1.Location = new Point(32, 631);
             button1.Name = "button1";
-            button1.Size = new Size(515, 58);
+            button1.Size = new Size(515, 50);
             button1.TabIndex = 3;
             button1.Text = "خروج";
             button1.UseVisualStyleBackColor = false;
@@ -138,9 +144,9 @@
             // 
             panel7.BackColor = Color.FromArgb(21, 32, 43);
             panel7.Controls.Add(lblLastAppt);
-            panel7.Location = new Point(32, 445);
+            panel7.Location = new Point(311, 302);
             panel7.Name = "panel7";
-            panel7.Size = new Size(515, 105);
+            panel7.Size = new Size(236, 105);
             panel7.TabIndex = 2;
             panel7.Paint += Panel7_Paint;
             // 
@@ -288,15 +294,50 @@
             lblBlood.TabIndex = 5;
             lblBlood.Text = "........";
             // 
+            // btnPrescription
+            // 
+            btnPrescription.BackColor = Color.FromArgb(37, 99, 235);
+            btnPrescription.FlatAppearance.BorderSize = 0;
+            btnPrescription.FlatStyle = FlatStyle.Flat;
+            btnPrescription.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnPrescription.ForeColor = Color.White;
+            btnPrescription.Location = new Point(32, 560);
+            btnPrescription.Name = "btnPrescription";
+            btnPrescription.Size = new Size(515, 50);
+            btnPrescription.TabIndex = 4;
+            btnPrescription.Text = "📝 كتابة روشتة";
+            btnPrescription.UseVisualStyleBackColor = false;
+            btnPrescription.Click += btnPrescription_Click;
+            // 
+            // panelLastPresc
+            // 
+            panelLastPresc.BackColor = Color.FromArgb(21, 32, 43);
+            panelLastPresc.Controls.Add(lblLastPresc);
+            panelLastPresc.Location = new Point(32, 445);
+            panelLastPresc.Name = "panelLastPresc";
+            panelLastPresc.Size = new Size(515, 105);
+            panelLastPresc.TabIndex = 5;
+            // 
+            // lblLastPresc
+            // 
+            lblLastPresc.AutoSize = true;
+            lblLastPresc.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblLastPresc.ForeColor = Color.FromArgb(106, 191, 106);
+            lblLastPresc.Location = new Point(80, 36);
+            lblLastPresc.Name = "lblLastPresc";
+            lblLastPresc.Size = new Size(62, 25);
+            lblLastPresc.TabIndex = 0;
+            lblLastPresc.Text = "........";
+            // 
             // PatientDetailsForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(566, 678);
+            ClientSize = new Size(566, 720);
             Controls.Add(panel1);
             Controls.Add(panel2);
-            MaximumSize = new Size(584, 725);
-            MinimumSize = new Size(584, 725);
+            MaximumSize = new Size(584, 767);
+            MinimumSize = new Size(584, 767);
             Name = "PatientDetailsForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "PatientDetailsForm";
@@ -315,6 +356,8 @@
             panel6.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            panelLastPresc.ResumeLayout(false);
+            panelLastPresc.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -340,5 +383,8 @@
         private Label label5;
         private Label lblUser;
         private Label lblLastAppt;
+        private Button btnPrescription;
+        private Panel panelLastPresc;
+        private Label lblLastPresc;
     }
 }

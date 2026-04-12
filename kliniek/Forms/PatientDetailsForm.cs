@@ -25,6 +25,15 @@ namespace kliniek.Forms
             this.Close();
         }
 
+        private void btnPrescription_Click(object sender, EventArgs e)
+        {
+            var form = new PrescriptionForm(_patient);
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                LoadLastPrescription();
+            }
+        }
+
         private void Panel7_Paint(object sender, PaintEventArgs e)
         {
 
@@ -43,6 +52,23 @@ namespace kliniek.Forms
             lblLastAppt.Text = lastAppt != null
             ? $" اخر ميعاد:{lastAppt.date:dd/MM/yyyy hh:mm tt}"
             : "لا يوجد مواعيد";
+
+            LoadLastPrescription();
+        }
+
+        private void LoadLastPrescription()
+        {
+            Data.DataStore data = Program.SharedData;
+
+            var lastPresc = data.prescriptions
+                .Where(p => p.patientusername == _patient.username &&
+                            p.doctorusername == data.LogedInDoc?.username)
+                .OrderByDescending(p => p.date)
+                .FirstOrDefault();
+
+            lblLastPresc.Text = lastPresc != null
+                ? $"آخر روشتة: {lastPresc.date:dd/MM/yyyy} - {lastPresc.diagnosis}"
+                : "لا توجد روشتات";
         }
     }
 }

@@ -14,7 +14,18 @@ namespace kliniek.Forms
         private void Register_Load(object sender, EventArgs e)
         {
             Data.DataStore data = Program.SharedData;
-            comboBox1.DataSource = data.specializations;
+            patient.Checked = true;
+            comboBox1.DataSource = data.bloodtybe;
+
+            // تأكد ان الحقول المبدئية ظاهرة صح لنوع "مريض"
+            Age.Visible = true;
+            label13.Visible = true;
+            DoctorCode.Visible = false;
+            label15.Visible = false;
+            comboBox2.Visible = true;
+            label14.Visible = true;
+            label11.Visible = true;
+            label11.Text = "فصيلة الدم";
         }
 
         private void Panel1_Paint(object sender, PaintEventArgs e)
@@ -55,6 +66,7 @@ namespace kliniek.Forms
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
             Data.DataStore data = Program.SharedData;
+            label11.Visible = true;
             label11.Text = "التخصص";
             comboBox1.DataSource = data.specializations;
 
@@ -73,6 +85,7 @@ namespace kliniek.Forms
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             Data.DataStore data = Program.SharedData;
+            label11.Visible = true;
             label11.Text = "فصيلة الدم";
             comboBox1.DataSource = data.bloodtybe;
 
@@ -93,9 +106,14 @@ namespace kliniek.Forms
         {
             Data.DataStore data = Program.SharedData;
             string TypeOfUser = patient.Checked ? "Patient" : "Doctor";
-            bool PassIsWe;
-            if (PassWord.Text.Length < 6) PassIsWe = true;
-            else PassIsWe = false;
+            bool PassIsWe = PassWord.Text.Length < 6;
+
+            // التحقق من العمر لو مريض
+            if (patient.Checked && !int.TryParse(Age.Text, out _))
+            {
+                MessageBox.Show("برجاء إدخال عمر صحيح (أرقام فقط)");
+                return;
+            }
 
             bool userExists = false;
             foreach (var p in data.patient)
@@ -112,7 +130,7 @@ namespace kliniek.Forms
 
             if (TypeOfUser == "Patient")
             {
-                if (!(UserName.Text.Length < 1) && !(PassWord.Text.Length < 1) && !(FullName.Text.Length < 1) && !(Age.Text.Length < 1) && !(comboBox1.SelectedIndex == 0) && !(comboBox2.SelectedItem == null))
+                if (!(UserName.Text.Length < 1) && !(PassWord.Text.Length < 1) && !(FullName.Text.Length < 1) && !(Age.Text.Length < 1) && !(comboBox1.SelectedIndex == 0) && comboBox2.SelectedItem != null && comboBox2.SelectedItem.ToString() != "")
                 {
                     if (PassIsWe) MessageBox.Show("يجب أن تكون كلمة المرور 6 أحرف على الأقل");
                     else
