@@ -17,7 +17,7 @@ namespace kliniek.Forms
             patient.Checked = true;
             comboBox1.DataSource = data.bloodtybe;
 
-            // تأكد ان الحقول المبدئية ظاهرة صح لنوع "مريض"
+           
             Age.Visible = true;
             label13.Visible = true;
             DoctorCode.Visible = false;
@@ -217,7 +217,17 @@ namespace kliniek.Forms
 
         private void FullName_TextChanged(object sender, EventArgs e)
         {
-            
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void DoctorCode_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

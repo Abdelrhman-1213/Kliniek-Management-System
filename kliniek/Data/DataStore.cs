@@ -9,7 +9,8 @@ namespace kliniek.Data
         public Doctor? LogedInDoc = null;
         public Patient? LoggedInPatient = null;
         
-        public const string SecretCode = "#3107ML";
+        
+        public const string SecretCode = "#3107ML";//code only the doctors know to prevent the patient  form signing up as a doctor
         public List<Patient> patient = [];
         public List<Doctor> doctor = [];
         public List<Appointment> appointments = [];
@@ -43,38 +44,6 @@ namespace kliniek.Data
             "05:00 PM"
         ];
 
-        /*
-        public void Save()
-        {
-            try
-            {
-                var obj = new { Patients = patient, Doctors = doctor, Appointments = appointments};
-                string json = JsonConvert.SerializeObject(obj, Formatting.Indented);
-                File.WriteAllText("data.json", json);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"خطأ في الحفظ: {ex.Message}");
-            }
-        }
-        public void Load()
-        {
-            try
-            {
-                if (!File.Exists("data.json")) return;
-                string json = File.ReadAllText("data.json");
-                var obj = JsonConvert.DeserializeObject<SaveData>(json);
-                if (obj == null) return;
-                if (obj.Patients != null) patient = obj.Patients;
-                if (obj.Doctors != null) doctor = obj.Doctors;
-                if (obj.Appointments != null) appointments = obj.Appointments;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"خطأ في التحميل: {ex.Message}");
-            }
-        }*/
-
 
         private static readonly HttpClient client = new();
         public DataStore()
@@ -83,30 +52,41 @@ namespace kliniek.Data
             client.DefaultRequestHeaders.Add("apikey", SupabaseConfig.Key);
             client.DefaultRequestHeaders.Add("Authorization", $"Bearer {SupabaseConfig.Key}");
         }
-        // ==================
-        // التحمييييييييييييل
-        // ==================
+      
+
+
+
+
+        //Loading the data from the database
         public async Task Load()
         {
             try
             {
-                
+
                 var patientsJson = await client.GetStringAsync(
                     $"{SupabaseConfig.Url}/rest/v1/patients?select=*"
                 );
                 patient = JsonConvert.DeserializeObject<List<Patient>>(patientsJson) ?? [];
-
-                
                 var doctorsJson = await client.GetStringAsync(
                     $"{SupabaseConfig.Url}/rest/v1/doctors?select=*"
                 );
                 doctor = JsonConvert.DeserializeObject<List<Doctor>>(doctorsJson) ?? [];
 
-               
+
                 var apptsJson = await client.GetStringAsync(
                     $"{SupabaseConfig.Url}/rest/v1/appointments?select=*"
                 );
                 appointments = JsonConvert.DeserializeObject<List<Appointment>>(apptsJson) ?? [];
+                //appointments.RemoveAll(app => app.date < DateTime.Now);
+                foreach (var app in appointments)
+                {
+                    if (app.date < DateTime.Now)
+                    {
+                        appointments.Remove(app);
+                        await DeleteApp(app.id);
+                    }
+                }
+
 
                 var prescJson = await client.GetStringAsync(
                     $"{SupabaseConfig.Url}/rest/v1/prescriptions?select=*"
@@ -118,9 +98,13 @@ namespace kliniek.Data
                 MessageBox.Show($"خطأ في التحميل: {ex.Message}");
             }
         }
-        // ==================
-        // الحففففففففففففففظ
-        // ==================
+
+
+
+        //saving new data to the database
+
+
+        //saving new patients
         public async Task SavePatient(Patient p)
         {
             var request = new HttpRequestMessage(HttpMethod.Post,
@@ -132,6 +116,8 @@ namespace kliniek.Data
             await client.SendAsync(request);
         }
 
+
+        //saving new Doctors
         public async Task SaveDoctor(Doctor d)
         {
             var request = new HttpRequestMessage(HttpMethod.Post,
@@ -143,12 +129,13 @@ namespace kliniek.Data
             await client.SendAsync(request);
         }
 
+
+        //saving new appointments
         public async Task SaveAppointment(Appointment a)
         {
             var request = new HttpRequestMessage(HttpMethod.Post,
        $"{SupabaseConfig.Url}/rest/v1/appointments");
 
-            // مش "resolution=merge-duplicates" عشان دايماً يضيف جديد
             request.Headers.Add("Prefer", "return=minimal");
 
             var obj = new
@@ -165,53 +152,6 @@ namespace kliniek.Data
             await client.SendAsync(request);
         }
 
-        public async Task DeleteDoctor(string username)
-        {
-            try
-            {
-                await client.DeleteAsync(
-                    $"{SupabaseConfig.Url}/rest/v1/appointments?doctorusername=eq.{username}"
-                );
-
-                await client.DeleteAsync(
-                    $"{SupabaseConfig.Url}/rest/v1/doctors?username=eq.{username}"
-                );
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"خطأ في الحذف: {ex.Message}");
-            }
-        }
-        public async Task DeletePatient(string username)
-        {
-            try
-            {
-                await client.DeleteAsync(
-                    $"{SupabaseConfig.Url}/rest/v1/appointments?patientusername=eq.{username}"
-                );
-
-                await client.DeleteAsync(
-                    $"{SupabaseConfig.Url}/rest/v1/patients?username=eq.{username}"
-                );
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"خطأ في الحذف: {ex.Message}");
-            }
-        }
-        public async Task DeleteApp(int id)
-        {
-            try
-            {
-                await client.DeleteAsync(
-                    $"{SupabaseConfig.Url}/rest/v1/appointments?id=eq.{id}"
-                );
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"خطأ في الحذف: {ex.Message}");
-            }
-        }
 
         public async Task SavePrescription(Prescription p)
         {
@@ -235,6 +175,66 @@ namespace kliniek.Data
             await client.SendAsync(request);
         }
 
+
+        //deleting doctor
+        public async Task DeleteDoctor(string username)
+        {
+            try
+            {
+                await client.DeleteAsync(
+                    $"{SupabaseConfig.Url}/rest/v1/appointments?doctorusername=eq.{username}"
+                );
+
+                await client.DeleteAsync(
+                    $"{SupabaseConfig.Url}/rest/v1/doctors?username=eq.{username}"
+                );
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"خطأ في الحذف: {ex.Message}");
+            }
+        }
+
+
+        //deleting patient 
+        public async Task DeletePatient(string username)
+        {
+            try
+            {
+                await client.DeleteAsync(
+                    $"{SupabaseConfig.Url}/rest/v1/appointments?patientusername=eq.{username}"
+                );
+
+                await client.DeleteAsync(
+                    $"{SupabaseConfig.Url}/rest/v1/patients?username=eq.{username}"
+                );
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"خطأ في الحذف: {ex.Message}");
+            }
+        }
+
+
+        //deleting appointment
+        public async Task DeleteApp(int id)
+        {
+            try
+            {
+                await client.DeleteAsync(
+                    $"{SupabaseConfig.Url}/rest/v1/appointments?id=eq.{id}"
+                );
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"خطأ في الحذف: {ex.Message}");
+            }
+        }
+
+
+
+        
+
         public async Task DeletePrescription(int id)
         {
             try
@@ -250,6 +250,9 @@ namespace kliniek.Data
         }
 
     }
+
+
+
     public class SaveData
     {
         public List<Patient>? Patients { get; set; }
