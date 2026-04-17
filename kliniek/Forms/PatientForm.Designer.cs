@@ -52,6 +52,7 @@
             dateTimePicker1 = new DateTimePicker();
             comboBox2 = new ComboBox();
             comboBox1 = new ComboBox();
+            richTextBox1 = new RichTextBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel10.SuspendLayout();
@@ -70,12 +71,12 @@
             panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(panel3);
             panel1.Controls.Add(panel2);
-            panel1.Location = new Point(-6, -1);
-            panel1.Margin = new Padding(3, 2, 3, 2);
-            panel1.MaximumSize = new Size(235, 585);
-            panel1.MinimumSize = new Size(235, 585);
+            panel1.Location = new Point(-11, -2);
+            panel1.Margin = new Padding(6, 4, 6, 4);
+            panel1.MaximumSize = new Size(436, 1248);
+            panel1.MinimumSize = new Size(436, 1248);
             panel1.Name = "panel1";
-            panel1.Size = new Size(235, 585);
+            panel1.Size = new Size(436, 1248);
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
             // 
@@ -88,11 +89,11 @@
             button2.FlatStyle = FlatStyle.Flat;
             button2.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button2.ForeColor = Color.FromArgb(192, 0, 0);
-            button2.Location = new Point(17, 528);
-            button2.Margin = new Padding(3, 2, 3, 2);
+            button2.Location = new Point(32, 1096);
+            button2.Margin = new Padding(6, 4, 6, 4);
             button2.Name = "button2";
             button2.RightToLeft = RightToLeft.Yes;
-            button2.Size = new Size(204, 32);
+            button2.Size = new Size(470, 107);
             button2.TabIndex = 10;
             button2.Text = "حذف الحساب   🗑️";
             button2.TextAlign = ContentAlignment.MiddleRight;
@@ -108,10 +109,10 @@
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.White;
-            button1.Location = new Point(17, 492);
-            button1.Margin = new Padding(3, 2, 3, 2);
+            button1.Location = new Point(32, 1017);
+            button1.Margin = new Padding(6, 4, 6, 4);
             button1.Name = "button1";
-            button1.Size = new Size(204, 32);
+            button1.Size = new Size(494, 107);
             button1.TabIndex = 9;
             button1.Text = "🚪    تسجيل الخروج";
             button1.TextAlign = ContentAlignment.MiddleLeft;
@@ -128,10 +129,10 @@
             radioButton1.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold);
             radioButton1.ForeColor = Color.White;
             radioButton1.ImageAlign = ContentAlignment.MiddleLeft;
-            radioButton1.Location = new Point(17, 112);
-            radioButton1.Margin = new Padding(3, 2, 3, 2);
+            radioButton1.Location = new Point(32, 239);
+            radioButton1.Margin = new Padding(6, 4, 6, 4);
             radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(204, 34);
+            radioButton1.Size = new Size(379, 73);
             radioButton1.TabIndex = 5;
             radioButton1.Text = "🏠    الرئيسية\n";
             radioButton1.UseVisualStyleBackColor = true;
@@ -147,10 +148,10 @@
             radioButton3.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold);
             radioButton3.ForeColor = Color.White;
             radioButton3.ImageAlign = ContentAlignment.MiddleLeft;
-            radioButton3.Location = new Point(17, 150);
-            radioButton3.Margin = new Padding(3, 2, 3, 2);
+            radioButton3.Location = new Point(32, 320);
+            radioButton3.Margin = new Padding(6, 4, 6, 4);
             radioButton3.Name = "radioButton3";
-            radioButton3.Size = new Size(204, 34);
+            radioButton3.Size = new Size(379, 73);
             radioButton3.TabIndex = 7;
             radioButton3.Text = "📅  حجز موعد";
             radioButton3.UseVisualStyleBackColor = true;
@@ -161,9 +162,10 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(124, 65);
+            label1.Location = new Point(230, 139);
+            label1.Margin = new Padding(6, 0, 6, 0);
             label1.Name = "label1";
-            label1.Size = new Size(89, 20);
+            label1.Size = new Size(170, 40);
             label1.TabIndex = 1;
             label1.Text = "اسم المريض";
             // 
@@ -171,10 +173,10 @@
             // 
             pictureBox1.BackColor = Color.FromArgb(21, 32, 43);
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(17, 10);
-            pictureBox1.Margin = new Padding(3, 2, 3, 2);
+            pictureBox1.Location = new Point(32, 21);
+            pictureBox1.Margin = new Padding(6, 4, 6, 4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(60, 52);
+            pictureBox1.Size = new Size(111, 111);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 3;
             pictureBox1.TabStop = false;
@@ -182,19 +184,19 @@
             // panel3
             // 
             panel3.BackColor = Color.Gray;
-            panel3.Location = new Point(0, 473);
+            panel3.Location = new Point(0, 1009);
             panel3.Margin = new Padding(0);
             panel3.Name = "panel3";
-            panel3.Size = new Size(235, 2);
+            panel3.Size = new Size(436, 4);
             panel3.TabIndex = 2;
             // 
             // panel2
             // 
             panel2.BackColor = Color.Gray;
-            panel2.Location = new Point(0, 100);
+            panel2.Location = new Point(0, 213);
             panel2.Margin = new Padding(0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(235, 2);
+            panel2.Size = new Size(436, 4);
             panel2.TabIndex = 1;
             // 
             // label20
@@ -202,19 +204,20 @@
             label20.AutoSize = true;
             label20.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label20.ForeColor = Color.White;
-            label20.Location = new Point(75, 16);
+            label20.Location = new Point(139, 34);
+            label20.Margin = new Padding(6, 0, 6, 0);
             label20.Name = "label20";
-            label20.Size = new Size(73, 25);
+            label20.Size = new Size(141, 50);
             label20.TabIndex = 0;
             label20.Text = "الرئيسية\n";
             // 
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.BackColor = Color.FromArgb(21, 32, 43);
-            flowLayoutPanel1.Location = new Point(95, 150);
-            flowLayoutPanel1.Margin = new Padding(215, 4, 0, 4);
+            flowLayoutPanel1.Location = new Point(176, 320);
+            flowLayoutPanel1.Margin = new Padding(399, 9, 0, 9);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(859, 396);
+            flowLayoutPanel1.Size = new Size(1595, 845);
             flowLayoutPanel1.TabIndex = 12;
             flowLayoutPanel1.WrapContents = false;
             // 
@@ -224,12 +227,12 @@
             panel10.Controls.Add(label2);
             panel10.Controls.Add(label20);
             panel10.Controls.Add(flowLayoutPanel1);
-            panel10.Location = new Point(220, -1);
-            panel10.Margin = new Padding(3, 2, 3, 2);
-            panel10.MaximumSize = new Size(1032, 585);
-            panel10.MinimumSize = new Size(1032, 585);
+            panel10.Location = new Point(409, -2);
+            panel10.Margin = new Padding(6, 4, 6, 4);
+            panel10.MaximumSize = new Size(1917, 1248);
+            panel10.MinimumSize = new Size(1917, 1248);
             panel10.Name = "panel10";
-            panel10.Size = new Size(1032, 585);
+            panel10.Size = new Size(1917, 1248);
             panel10.TabIndex = 5;
             // 
             // label2
@@ -237,10 +240,10 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(886, 16);
-            label2.Margin = new Padding(2, 0, 2, 0);
+            label2.Location = new Point(1645, 34);
+            label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(61, 25);
+            label2.Size = new Size(116, 50);
             label2.TabIndex = 14;
             label2.Text = "التاريخ";
             // 
@@ -249,10 +252,10 @@
             panel4.BackColor = Color.FromArgb(13, 17, 23);
             panel4.Controls.Add(label3);
             panel4.Controls.Add(panel5);
-            panel4.Location = new Point(220, -1);
-            panel4.Margin = new Padding(3, 2, 3, 2);
+            panel4.Location = new Point(409, -2);
+            panel4.Margin = new Padding(6, 4, 6, 4);
             panel4.Name = "panel4";
-            panel4.Size = new Size(1040, 590);
+            panel4.Size = new Size(1931, 1259);
             panel4.TabIndex = 6;
             // 
             // label3
@@ -260,24 +263,26 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.FromArgb(241, 245, 249);
-            label3.Location = new Point(75, 16);
+            label3.Location = new Point(139, 34);
+            label3.Margin = new Padding(6, 0, 6, 0);
             label3.Name = "label3";
-            label3.Size = new Size(89, 25);
+            label3.Size = new Size(173, 50);
             label3.TabIndex = 0;
             label3.Text = "حجز موعد";
             // 
             // panel5
             // 
             panel5.BackColor = Color.FromArgb(21, 32, 43);
+            panel5.Controls.Add(richTextBox1);
             panel5.Controls.Add(Ok);
             panel5.Controls.Add(comboBox3);
             panel5.Controls.Add(dateTimePicker1);
             panel5.Controls.Add(comboBox2);
             panel5.Controls.Add(comboBox1);
-            panel5.Location = new Point(75, 121);
-            panel5.Margin = new Padding(3, 2, 3, 2);
+            panel5.Location = new Point(139, 258);
+            panel5.Margin = new Padding(6, 4, 6, 4);
             panel5.Name = "panel5";
-            panel5.Size = new Size(879, 406);
+            panel5.Size = new Size(1632, 866);
             panel5.TabIndex = 13;
             // 
             // Ok
@@ -287,10 +292,10 @@
             Ok.FlatStyle = FlatStyle.Flat;
             Ok.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Ok.ForeColor = Color.White;
-            Ok.Location = new Point(360, 304);
-            Ok.Margin = new Padding(3, 2, 3, 2);
+            Ok.Location = new Point(660, 759);
+            Ok.Margin = new Padding(6, 4, 6, 4);
             Ok.Name = "Ok";
-            Ok.Size = new Size(204, 32);
+            Ok.Size = new Size(379, 68);
             Ok.TabIndex = 4;
             Ok.Text = "حجز";
             Ok.UseVisualStyleBackColor = false;
@@ -303,10 +308,10 @@
             comboBox3.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             comboBox3.ForeColor = Color.White;
             comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(332, 227);
-            comboBox3.Margin = new Padding(3, 2, 3, 2);
+            comboBox3.Location = new Point(617, 671);
+            comboBox3.Margin = new Padding(6, 4, 6, 4);
             comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(252, 27);
+            comboBox3.Size = new Size(465, 48);
             comboBox3.TabIndex = 3;
             comboBox3.SelectedIndexChanged += comboBox3_SelectedIndexChanged;
             // 
@@ -317,10 +322,10 @@
             dateTimePicker1.CalendarTitleBackColor = Color.FromArgb(13, 17, 23);
             dateTimePicker1.CalendarTitleForeColor = Color.White;
             dateTimePicker1.CalendarTrailingForeColor = Color.FromArgb(13, 17, 23);
-            dateTimePicker1.Location = new Point(332, 182);
-            dateTimePicker1.Margin = new Padding(3, 2, 3, 2);
+            dateTimePicker1.Location = new Point(617, 593);
+            dateTimePicker1.Margin = new Padding(6, 4, 6, 4);
             dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(252, 23);
+            dateTimePicker1.Size = new Size(465, 39);
             dateTimePicker1.TabIndex = 2;
             dateTimePicker1.ValueChanged += dateTimePicker1_ValueChanged;
             // 
@@ -331,10 +336,10 @@
             comboBox2.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             comboBox2.ForeColor = Color.White;
             comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(332, 125);
-            comboBox2.Margin = new Padding(3, 2, 3, 2);
+            comboBox2.Location = new Point(617, 267);
+            comboBox2.Margin = new Padding(6, 4, 6, 4);
             comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(252, 27);
+            comboBox2.Size = new Size(465, 48);
             comboBox2.TabIndex = 1;
             comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
             // 
@@ -345,24 +350,33 @@
             comboBox1.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             comboBox1.ForeColor = Color.White;
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(332, 64);
-            comboBox1.Margin = new Padding(3, 2, 3, 2);
+            comboBox1.Location = new Point(617, 137);
+            comboBox1.Margin = new Padding(6, 4, 6, 4);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(252, 27);
+            comboBox1.Size = new Size(465, 48);
             comboBox1.TabIndex = 0;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged_1;
             // 
+            // richTextBox1
+            // 
+            richTextBox1.BackColor = Color.FromArgb(13, 17, 23);
+            richTextBox1.Location = new Point(617, 350);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.Size = new Size(463, 208);
+            richTextBox1.TabIndex = 5;
+            richTextBox1.Text = "";
+            // 
             // PatientForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1250, 581);
+            ClientSize = new Size(2303, 1171);
             Controls.Add(panel1);
             Controls.Add(panel4);
             Controls.Add(panel10);
-            Margin = new Padding(2);
-            MaximumSize = new Size(1266, 620);
-            MinimumSize = new Size(1266, 620);
+            Margin = new Padding(4);
+            MaximumSize = new Size(2329, 1242);
+            MinimumSize = new Size(2329, 1242);
             Name = "PatientForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "PatientForm";
@@ -403,5 +417,6 @@
         private DateTimePicker dateTimePicker1;
         private ComboBox comboBox3;
         private Button Ok;
+        private RichTextBox richTextBox1;
     }
 }

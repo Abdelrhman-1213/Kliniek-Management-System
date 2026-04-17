@@ -6,15 +6,21 @@ namespace kliniek.Data
 {
     public class DataStore
     {
+
+        // variables to save the current logged in user
         public Doctor? LogedInDoc = null;
         public Patient? LoggedInPatient = null;
-        
-        
+
+
         public const string SecretCode = "#3107ML";//code only the doctors know to prevent the patient  form signing up as a doctor
+
+        //lists of objects
         public List<Patient> patient = [];
         public List<Doctor> doctor = [];
         public List<Appointment> appointments = [];
         public List<Prescription> prescriptions = [];
+
+
 
         public List<string> bloodtybe =
         [
@@ -24,7 +30,7 @@ namespace kliniek.Data
 
         public List<string> specializations = [
 
-            "اختر التخصص...", // هتجاهلها يا دكتور في الكود
+            "اختر التخصص...",
             "طب الباطنة","طب الأطفال",
             "أمراض القلب","الجراحة العامة",
             "طب العظام","الجلدية والتجميل",
@@ -32,27 +38,34 @@ namespace kliniek.Data
             "أنف وأذن وحنجرة","المخ والأعصاب",
             "الطب النفسي", "المسالك البولية",
         ];
-      
+
 
         public List<string> time = [
 
          "اختر الوقت ...", // نص إرشادي في البداية
             "09:00 AM",
             "11:00 AM",
+            "11:00 AM",
             "01:00 PM",
-            "3:00 PM",
+            "03:00 PM",
             "05:00 PM"
         ];
 
 
-        private static readonly HttpClient client = new();
+
+        // Data handling 
+
+
+        private static readonly HttpClient client = new();//connect to the internet
+
+
         public DataStore()
         {
             client.DefaultRequestHeaders.Clear();
             client.DefaultRequestHeaders.Add("apikey", SupabaseConfig.Key);
             client.DefaultRequestHeaders.Add("Authorization", $"Bearer {SupabaseConfig.Key}");
         }
-      
+
 
 
 
@@ -63,10 +76,13 @@ namespace kliniek.Data
             try
             {
 
+                //api call -- returns the data in Json format
                 var patientsJson = await client.GetStringAsync(
                     $"{SupabaseConfig.Url}/rest/v1/patients?select=*"
                 );
+                //convert the data to C# format
                 patient = JsonConvert.DeserializeObject<List<Patient>>(patientsJson) ?? [];
+
                 var doctorsJson = await client.GetStringAsync(
                     $"{SupabaseConfig.Url}/rest/v1/doctors?select=*"
                 );
@@ -78,14 +94,10 @@ namespace kliniek.Data
                 );
                 appointments = JsonConvert.DeserializeObject<List<Appointment>>(apptsJson) ?? [];
                 //appointments.RemoveAll(app => app.date < DateTime.Now);
-                foreach (var app in appointments)
-                {
-                    if (app.date < DateTime.Now)
-                    {
-                        appointments.Remove(app);
-                        await DeleteApp(app.id);
-                    }
-                }
+              var expired = appointments.Where(a => a.date < DateTime.Now).ToList();
+              appointments.RemoveAll(a => a.date < DateTime.Now);
+               foreach (var app in expired)
+                await DeleteApp(app.id);
 
 
                 var prescJson = await client.GetStringAsync(
@@ -95,7 +107,7 @@ namespace kliniek.Data
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"خطأ في التحميل: {ex.Message}");
+                MessageBox.Show($"خطأ في التحميل\n {ex.Message}");
             }
         }
 
@@ -133,9 +145,10 @@ namespace kliniek.Data
         //saving new appointments
         public async Task SaveAppointment(Appointment a)
         {
+            //sending the data table 
             var request = new HttpRequestMessage(HttpMethod.Post,
        $"{SupabaseConfig.Url}/rest/v1/appointments");
-
+            //prevent crashing if it is duplicated 
             request.Headers.Add("Prefer", "return=minimal");
 
             var obj = new
@@ -146,13 +159,15 @@ namespace kliniek.Data
                 status = a.status
             };
 
+
+            //converting the C# data to json
             request.Content = new StringContent(
                 JsonConvert.SerializeObject(obj),
                 Encoding.UTF8, "application/json");
             await client.SendAsync(request);
         }
 
-
+        //saving new prescription
         public async Task SavePrescription(Prescription p)
         {
             var request = new HttpRequestMessage(HttpMethod.Post,
@@ -181,10 +196,11 @@ namespace kliniek.Data
         {
             try
             {
+                //deleting all the app of the doctor 
                 await client.DeleteAsync(
                     $"{SupabaseConfig.Url}/rest/v1/appointments?doctorusername=eq.{username}"
                 );
-
+                //deleting all the doctor  
                 await client.DeleteAsync(
                     $"{SupabaseConfig.Url}/rest/v1/doctors?username=eq.{username}"
                 );
@@ -204,6 +220,9 @@ namespace kliniek.Data
                 await client.DeleteAsync(
                     $"{SupabaseConfig.Url}/rest/v1/appointments?patientusername=eq.{username}"
                 );
+                await client.DeleteAsync(
+                   $"{SupabaseConfig.Url}/rest/v1/prescriptions?patientusername=eq.{username}"
+               );
 
                 await client.DeleteAsync(
                     $"{SupabaseConfig.Url}/rest/v1/patients?username=eq.{username}"
@@ -233,7 +252,7 @@ namespace kliniek.Data
 
 
 
-        
+
 
         public async Task DeletePrescription(int id)
         {
@@ -250,14 +269,15 @@ namespace kliniek.Data
         }
 
     }
-
-
-
-    public class SaveData
-    {
-        public List<Patient>? Patients { get; set; }
-        public List<Doctor>? Doctors { get; set; }
-        public List<Appointment>? Appointments { get; set; }
-        public List<Prescription>? Prescriptions { get; set; }
-    }
 }
+
+
+
+//    public class SaveData
+//    {
+//        public List<Patient>? Patients { get; set; }
+//        public List<Doctor>? Doctors { get; set; }
+//        public List<Appointment>? Appointments { get; set; }
+//        public List<Prescription>? Prescriptions { get; set; }
+//    }
+//}

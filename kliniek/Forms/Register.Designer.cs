@@ -142,7 +142,7 @@
             comboBox2.FormattingEnabled = true;
             comboBox2.ItemHeight = 37;
             comboBox2.Items.AddRange(new object[] { "ذكر", "أنثى" });
-            comboBox2.Location = new Point(146, 485);
+            comboBox2.Location = new Point(143, 484);
             comboBox2.Margin = new Padding(5);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(210, 45);
@@ -304,7 +304,7 @@
             UserName.BackColor = Color.FromArgb(21, 32, 43);
             UserName.Font = new Font("Segoe UI", 13.2000008F, FontStyle.Bold, GraphicsUnit.Point, 0);
             UserName.ForeColor = Color.White;
-            UserName.Location = new Point(375, 475);
+            UserName.Location = new Point(391, 475);
             UserName.Margin = new Padding(5);
             UserName.Name = "UserName";
             UserName.PlaceholderText = "اسم المستخدم";

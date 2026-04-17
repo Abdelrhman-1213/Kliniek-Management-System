@@ -70,7 +70,7 @@
             panel1.Controls.Add(lblName);
             panel1.Controls.Add(pictureBox1);
             panel1.Location = new Point(-18, 0);
-            panel1.Margin = new Padding(5, 5, 5, 5);
+            panel1.Margin = new Padding(5);
             panel1.Name = "panel1";
             panel1.Size = new Size(947, 163);
             panel1.TabIndex = 0;
@@ -106,7 +106,7 @@
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(37, 19);
-            pictureBox1.Margin = new Padding(5, 5, 5, 5);
+            pictureBox1.Margin = new Padding(5);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(127, 114);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -125,7 +125,7 @@
             panel2.Controls.Add(panel6);
             panel2.Controls.Add(panel3);
             panel2.Location = new Point(-13, 0);
-            panel2.Margin = new Padding(5, 5, 5, 5);
+            panel2.Margin = new Padding(5);
             panel2.Name = "panel2";
             panel2.Size = new Size(947, 1171);
             panel2.TabIndex = 1;
@@ -138,7 +138,7 @@
             button1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.White;
             button1.Location = new Point(52, 1010);
-            button1.Margin = new Padding(5, 5, 5, 5);
+            button1.Margin = new Padding(5);
             button1.Name = "button1";
             button1.Size = new Size(837, 80);
             button1.TabIndex = 3;
@@ -154,7 +154,7 @@
             btnPrescription.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnPrescription.ForeColor = Color.White;
             btnPrescription.Location = new Point(52, 896);
-            btnPrescription.Margin = new Padding(5, 5, 5, 5);
+            btnPrescription.Margin = new Padding(5);
             btnPrescription.Name = "btnPrescription";
             btnPrescription.Size = new Size(837, 80);
             btnPrescription.TabIndex = 4;
@@ -167,7 +167,7 @@
             panelLastPresc.BackColor = Color.FromArgb(21, 32, 43);
             panelLastPresc.Controls.Add(lblLastPresc);
             panelLastPresc.Location = new Point(52, 712);
-            panelLastPresc.Margin = new Padding(5, 5, 5, 5);
+            panelLastPresc.Margin = new Padding(5);
             panelLastPresc.Name = "panelLastPresc";
             panelLastPresc.Size = new Size(837, 168);
             panelLastPresc.TabIndex = 5;
@@ -177,7 +177,7 @@
             lblLastPresc.AutoSize = true;
             lblLastPresc.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblLastPresc.ForeColor = Color.FromArgb(106, 191, 106);
-            lblLastPresc.Location = new Point(130, 58);
+            lblLastPresc.Location = new Point(357, 76);
             lblLastPresc.Margin = new Padding(5, 0, 5, 0);
             lblLastPresc.Name = "lblLastPresc";
             lblLastPresc.Size = new Size(82, 41);
@@ -189,7 +189,7 @@
             panel7.BackColor = Color.FromArgb(21, 32, 43);
             panel7.Controls.Add(lblLastAppt);
             panel7.Location = new Point(505, 483);
-            panel7.Margin = new Padding(5, 5, 5, 5);
+            panel7.Margin = new Padding(5);
             panel7.Name = "panel7";
             panel7.Size = new Size(384, 168);
             panel7.TabIndex = 2;
@@ -200,7 +200,7 @@
             lblLastAppt.AutoSize = true;
             lblLastAppt.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblLastAppt.ForeColor = Color.White;
-            lblLastAppt.Location = new Point(130, 73);
+            lblLastAppt.Location = new Point(115, 64);
             lblLastAppt.Margin = new Padding(5, 0, 5, 0);
             lblLastAppt.Name = "lblLastAppt";
             lblLastAppt.Size = new Size(102, 50);
@@ -213,7 +213,7 @@
             panel4.Controls.Add(label5);
             panel4.Controls.Add(lblUser);
             panel4.Location = new Point(505, 483);
-            panel4.Margin = new Padding(5, 5, 5, 5);
+            panel4.Margin = new Padding(5);
             panel4.Name = "panel4";
             panel4.Size = new Size(384, 168);
             panel4.TabIndex = 1;
@@ -249,7 +249,7 @@
             panel5.Controls.Add(label3);
             panel5.Controls.Add(lblAge);
             panel5.Location = new Point(52, 254);
-            panel5.Margin = new Padding(5, 5, 5, 5);
+            panel5.Margin = new Padding(5);
             panel5.Name = "panel5";
             panel5.Size = new Size(384, 168);
             panel5.TabIndex = 1;
@@ -285,7 +285,7 @@
             panel6.Controls.Add(label4);
             panel6.Controls.Add(lblGender);
             panel6.Location = new Point(505, 254);
-            panel6.Margin = new Padding(5, 5, 5, 5);
+            panel6.Margin = new Padding(5);
             panel6.Name = "panel6";
             panel6.Size = new Size(384, 168);
             panel6.TabIndex = 1;
@@ -308,7 +308,7 @@
             lblGender.AutoSize = true;
             lblGender.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblGender.ForeColor = Color.White;
-            lblGender.Location = new Point(130, 58);
+            lblGender.Location = new Point(155, 58);
             lblGender.Margin = new Padding(5, 0, 5, 0);
             lblGender.Name = "lblGender";
             lblGender.RightToLeft = RightToLeft.Yes;
@@ -322,7 +322,7 @@
             panel3.Controls.Add(label1);
             panel3.Controls.Add(lblBlood);
             panel3.Location = new Point(52, 483);
-            panel3.Margin = new Padding(5, 5, 5, 5);
+            panel3.Margin = new Padding(5);
             panel3.Name = "panel3";
             panel3.Size = new Size(384, 168);
             panel3.TabIndex = 1;
@@ -359,7 +359,7 @@
             ClientSize = new Size(907, 1114);
             Controls.Add(panel1);
             Controls.Add(panel2);
-            Margin = new Padding(5, 5, 5, 5);
+            Margin = new Padding(5);
             MaximumSize = new Size(933, 1185);
             MinimumSize = new Size(933, 1185);
             Name = "PatientDetailsForm";

@@ -9,6 +9,7 @@ namespace kliniek.Forms
         public Register()
         {
             InitializeComponent();
+            
         }
 
         private void Register_Load(object sender, EventArgs e)
@@ -49,8 +50,8 @@ namespace kliniek.Forms
 
         private void Register_FormClosed(object sender, FormClosedEventArgs e)
         {
-            LoginForm loginform = new LoginForm();
-            loginform.Show();
+            //LoginForm loginform = new LoginForm();
+            //loginform.Show();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -78,8 +79,8 @@ namespace kliniek.Forms
 
             comboBox2.Visible = false;
             label14.Visible = false;
-            UserName.Width = 435;
-            UserName.Location = new Point(90, 297);
+            
+            
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
@@ -93,13 +94,13 @@ namespace kliniek.Forms
             label13.Visible = true;
             DoctorCode.Visible = false;
             label15.Visible = false;
-            FullName.Width = 294;
-            FullName.Location = new Point(231, 216);
+            
+            
 
             comboBox2.Visible = true;
             label14.Visible = true;
-            UserName.Width = 294;
-            UserName.Location = new Point(231, 297);
+            
+           
         }
 
         private async void button1_Click(object sender, EventArgs e)

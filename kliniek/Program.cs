@@ -16,9 +16,7 @@ namespace kliniek
 
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
-            Application.SetHighDpiMode(HighDpiMode.PerMonitorV2);
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+          
             ApplicationConfiguration.Initialize();
             await SharedData.Load();
             Application.Run(new LoginForm());

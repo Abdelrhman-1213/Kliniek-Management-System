@@ -14,28 +14,33 @@ namespace kliniek.Forms
         private void DoctorForm_Load(object sender, EventArgs e)
         {
 
-            Data.DataStore data = Program.SharedData;
 
-            label1.Text = $"د. {data.LogedInDoc?.fullname}";
-            label2.Text = data.LogedInDoc?.specialization;
+            // getting the name of current doctor
+            label1.Text = $"د. {Program.SharedData.LogedInDoc?.fullname}";
+            label2.Text = Program.SharedData.LogedInDoc?.specialization;
             panel1.Dock = DockStyle.Left;
+
+            //the current date label 
             label4.Text = DateTime.Now.ToString("d");
 
-            int myPatientsCount = data.patient.Count(p =>
-                data.appointments.Any(a =>
-                    a.doctorusername == data.LogedInDoc?.username &&
+            //getting the number of the all the patient of the doctor
+            int myPatientsCount = Program.SharedData.patient.Count(p =>
+                Program.SharedData.appointments.Any(a =>
+                    a.doctorusername == Program.SharedData.LogedInDoc?.username &&
                     a.patientusername == p.username
                 )
             );
 
-
-            int todayAppts = data.appointments.Count(a =>
-                a.doctorusername == data.LogedInDoc?.username &&
+            //getting the number of the today appointments
+            int todayAppts = Program.SharedData.appointments.Count(a =>
+                a.doctorusername == Program.SharedData.LogedInDoc?.username &&
                 a.date.Date == DateTime.Today
             );
 
-            int weekPresc = data.prescriptions.Count(p =>
-                p.doctorusername == data.LogedInDoc?.username &&
+
+            //the prescriptions of the week
+            int weekPresc = Program.SharedData.prescriptions.Count(p =>
+                p.doctorusername == Program.SharedData.LogedInDoc?.username &&
                 p.date >= DateTime.Today.AddDays(-7)
             );
 
@@ -44,23 +49,25 @@ namespace kliniek.Forms
             lblTodayAppts.Text = todayAppts.ToString();
             lblWeekPresc.Text = weekPresc.ToString();
 
-            LoadPatients();
-            LoadTodayAppointments();
+
+
 
             flowLayoutPanel1.AutoScroll = true;
             flowLayoutPanel1.FlowDirection = FlowDirection.LeftToRight;
+            LoadTodayAppointments();
 
         }
 
-        private void Panel1_Paint(object sender, PaintEventArgs e)
-        {
 
 
-        }
+
+        //bool for logout
         bool logO;
+        //logout button
         private void Button1_Click(object sender, EventArgs e)
         {
             logO = true;
+            Program.SharedData.LogedInDoc = null;
             new LoginForm().Show();
             this.Close();
         }
@@ -70,15 +77,8 @@ namespace kliniek.Forms
             panel1.Height = this.Height;
         }
 
-        private void Label5_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void Panel9_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+        //making a card in the flow panel foreach patient that have an appointment today
         private void LoadTodayAppointments()
         {
             flowLayoutPanel2.Controls.Clear();
@@ -100,7 +100,7 @@ namespace kliniek.Forms
                 {
                     Width = flowLayoutPanel2.Width - 40,
                     Margin = new Padding(20, 5, 20, 5),
-                    Height = 60,
+                    Height = 80,
                     BackColor = Color.FromArgb(38, 48, 68)
                 };
 
@@ -110,7 +110,7 @@ namespace kliniek.Forms
                     ForeColor = Color.White,
                     Font = new Font("Segoe UI", 10, FontStyle.Bold),
                     AutoSize = true,
-                    Location = new Point(10, 8)
+                    Location = new Point(10, 0)
                 };
 
                 Label lblTime = new()
@@ -145,17 +145,27 @@ namespace kliniek.Forms
                     lblStatus.ForeColor = Color.FromArgb(255, 107, 107);
                     lblStatus.BackColor = Color.FromArgb(74, 26, 26);
                 }
-
-                card.Controls.AddRange([lblName, lblTime, lblStatus]);
+                Button del_app = new()
+                {
+                    Text = "الغاء",
+                    AutoSize = true,
+                    Font = new Font("Segoe UI", 9),
+                    BackColor = Color.FromArgb(24, 95, 165),
+                    ForeColor = Color.White,
+                    FlatStyle = FlatStyle.Flat,
+                    Location = new Point(1350, 20)
+                };
+                card.Controls.AddRange([lblName, lblTime, lblStatus, del_app]);
                 flowLayoutPanel2.Controls.Add(card);
             }
         }
-        // زهجججججججججججججججججججججت
+
         private void Label6_Click(object sender, EventArgs e)
         {
 
         }
 
+        //search text box
         private void TextBox1_TextChanged(object sender, EventArgs e)
         {
             string search = textBox1.Text.ToLower(); // بياخد الحرف بحرفه
@@ -171,16 +181,9 @@ namespace kliniek.Forms
             LoadPatients(filtered);
         }
 
-        private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
 
-        }
 
-        private void ListView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        //loading the searched patient
         private void LoadPatients(List<Patient>? list = null)
         {
             flowLayoutPanel1.Controls.Clear();
@@ -199,7 +202,7 @@ namespace kliniek.Forms
                 Panel card = new()
                 {
                     Width = 220,
-                    Height = 130,
+                    Height = 132,
                     BackColor = Color.FromArgb(13, 17, 23),
                     Margin = new Padding(12)
                 };
@@ -226,8 +229,8 @@ namespace kliniek.Forms
                 {
                     Text = "عرض",
                     Width = 80,
-                    Height = 28,
-                    Location = new Point(10, 85),
+                    Height = 40,
+                    Location = new Point(10, 90),
                     BackColor = Color.FromArgb(24, 95, 165),
                     ForeColor = Color.White,
                     FlatStyle = FlatStyle.Flat,
@@ -235,49 +238,61 @@ namespace kliniek.Forms
                 };
                 btnView.FlatAppearance.BorderSize = 0;
 
-                //Button btnDelete = new()
-                //{
-                //    Text = "حذف",
-                //    Width = 80,
-                //    Height = 28,
-                //    Location = new Point(100, 85),
-                //    BackColor = Color.FromArgb(74, 26, 26),
-                //    ForeColor = Color.FromArgb(255, 107, 107),
-                //    FlatStyle = FlatStyle.Flat,
-                //    Font = new Font("Segoe UI", 9)
-                //};
-                //btnDelete.FlatAppearance.BorderSize = 0;
-                var patient = p;
-                //btnDelete.Click += async (s, e) =>
-                //{
-                //    data.patient.Remove(patient);
-                //    await data.DeleteApp();
-                //    LoadPatients();
-                //};
                 btnView.Click += (s, e) =>
                 {
-                    new PatientDetailsForm(patient).ShowDialog();
+                    new PatientDetailsForm(p).ShowDialog();
                 };
 
-                card.Controls.AddRange([lblName, lblInfo, btnView]);
+
+
+                
+
+                Button btnAddPrec = new()
+                {
+                    Text = "كتابه روشته",
+                    Width = 80,
+                    Height = 40,
+                    Location = new Point(130, 90),
+                    BackColor = Color.FromArgb(24, 95, 165),
+                    ForeColor = Color.White,
+                    FlatStyle = FlatStyle.Flat,
+                    Font = new Font("Segoe UI", 9)
+                };
+
+                btnAddPrec.Click += async (s, e) =>
+                {
+                    var form = new PrescriptionForm(p);
+                    form.ShowDialog();
+               
+            
+                };
+                card.Controls.AddRange([lblName, lblInfo, btnView, btnAddPrec]);
                 flowLayoutPanel1.Controls.Add(card);
             }
         }
 
+        // patients menu
         private void RadioButton2_CheckedChanged(object sender, EventArgs e)
         {
             panel4.Visible = false;
-            panel10.Visible = true;
             panelPrescriptions.Visible = false;
+            panel10.Visible = true;
+            LoadPatients();
         }
 
+        // main menu 
         private void RadioButton1_CheckedChanged(object sender, EventArgs e)
         {
+
             panel4.Visible = true;
             panel10.Visible = false;
             panelPrescriptions.Visible = false;
+
+
         }
 
+
+        //Prescriptions menu
         private void RadioButton3_CheckedChanged(object sender, EventArgs e)
         {
             panel4.Visible = false;
@@ -290,7 +305,6 @@ namespace kliniek.Forms
         {
             flowLayoutPanelPrescriptions.Controls.Clear();
             Data.DataStore data = Program.SharedData;
-
             var myPrescriptions = data.prescriptions
                 .Where(p => p.doctorusername == data.LogedInDoc?.username)
                 .OrderByDescending(p => p.date)
@@ -391,5 +405,7 @@ namespace kliniek.Forms
                 }
             }
         }
+
+       
     }
 }

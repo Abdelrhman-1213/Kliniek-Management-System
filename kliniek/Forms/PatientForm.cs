@@ -3,6 +3,7 @@ using kliniek.Models;
 using Microsoft.VisualBasic.Logging;
 using System.Data;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace kliniek.Forms
 {
@@ -15,13 +16,14 @@ namespace kliniek.Forms
             //load patient data
 
             //remove the appointment passed
-            Program.SharedData.appointments.RemoveAll(app => app.date < DateTime.Now);
+            //Program.SharedData.appointments.RemoveAll(app => app.date < DateTime.Now);
         }
 
 
 
         private void PatientForm_Load(object sender, EventArgs e)
         {
+           
             timer2.Start();
             label1.Text = Program.SharedData.LoggedInPatient?.fullname;
             radioButton1.Checked = true;
