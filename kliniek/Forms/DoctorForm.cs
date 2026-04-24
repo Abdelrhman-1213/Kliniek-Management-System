@@ -56,6 +56,15 @@ namespace kliniek.Forms
             flowLayoutPanel1.FlowDirection = FlowDirection.LeftToRight;
             LoadTodayAppointments();
 
+            var doc = Program.SharedData.LogedInDoc;
+
+            if (doc != null)
+            {
+                if (doc.Number == 0)
+                    lblRatingDisplay.Text = "⭐ لا يوجد تقييم بعد";
+                else
+                    lblRatingDisplay.Text = $"⭐ {doc.Rating:F1} / 10  ({doc.Number} تقييم)";
+            }
         }
 
 
@@ -245,7 +254,7 @@ namespace kliniek.Forms
 
 
 
-                
+
 
                 Button btnAddPrec = new()
                 {
@@ -263,8 +272,8 @@ namespace kliniek.Forms
                 {
                     var form = new PrescriptionForm(p);
                     form.ShowDialog();
-               
-            
+
+
                 };
                 card.Controls.AddRange([lblName, lblInfo, btnView, btnAddPrec]);
                 flowLayoutPanel1.Controls.Add(card);
@@ -406,6 +415,14 @@ namespace kliniek.Forms
             }
         }
 
-       
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

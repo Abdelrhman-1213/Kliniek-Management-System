@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Register));
             panel1 = new Panel();
+            txtDescription = new TextBox();
             DoctorCode = new TextBox();
             label15 = new Label();
             label14 = new Label();
@@ -59,6 +61,7 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
+            toolTip1 = new ToolTip(components);
             panel1.SuspendLayout();
             groupBox1.SuspendLayout();
             panel2.SuspendLayout();
@@ -68,6 +71,7 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(13, 17, 23);
+            panel1.Controls.Add(txtDescription);
             panel1.Controls.Add(DoctorCode);
             panel1.Controls.Add(label15);
             panel1.Controls.Add(label14);
@@ -88,23 +92,38 @@
             panel1.Controls.Add(groupBox1);
             panel1.Controls.Add(label7);
             panel1.Controls.Add(label6);
-            panel1.Location = new Point(601, 1);
-            panel1.Margin = new Padding(5);
+            panel1.Location = new Point(370, -8);
             panel1.Name = "panel1";
-            panel1.Size = new Size(942, 992);
+            panel1.Size = new Size(590, 595);
             panel1.TabIndex = 0;
             panel1.Paint += Panel1_Paint;
+            // 
+            // txtDescription
+            // 
+            txtDescription.BackColor = Color.FromArgb(21, 32, 43);
+            txtDescription.Font = new Font("Segoe UI", 13.2000008F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtDescription.ForeColor = Color.White;
+            txtDescription.Location = new Point(127, 415);
+            txtDescription.Multiline = true;
+            txtDescription.Name = "txtDescription";
+            txtDescription.PlaceholderText = "...اكتب نبذة عنك";
+            txtDescription.ScrollBars = ScrollBars.Vertical;
+            txtDescription.Size = new Size(347, 88);
+            txtDescription.TabIndex = 38;
+            txtDescription.TextAlign = HorizontalAlignment.Center;
+            txtDescription.UseSystemPasswordChar = true;
+            txtDescription.Visible = false;
+            txtDescription.TextChanged += txtDescription_TextChanged;
             // 
             // DoctorCode
             // 
             DoctorCode.BackColor = Color.FromArgb(21, 32, 43);
             DoctorCode.Font = new Font("Segoe UI", 13.2000008F, FontStyle.Bold, GraphicsUnit.Point, 0);
             DoctorCode.ForeColor = Color.White;
-            DoctorCode.Location = new Point(146, 346);
-            DoctorCode.Margin = new Padding(5);
+            DoctorCode.Location = new Point(88, 150);
             DoctorCode.Name = "DoctorCode";
             DoctorCode.PlaceholderText = "الكود";
-            DoctorCode.Size = new Size(210, 54);
+            DoctorCode.Size = new Size(131, 37);
             DoctorCode.TabIndex = 37;
             DoctorCode.TextAlign = HorizontalAlignment.Center;
             DoctorCode.TextChanged += DoctorCode_TextChanged;
@@ -113,10 +132,9 @@
             // 
             label15.AutoSize = true;
             label15.ForeColor = Color.White;
-            label15.Location = new Point(224, 309);
-            label15.Margin = new Padding(5, 0, 5, 0);
+            label15.Location = new Point(150, 130);
             label15.Name = "label15";
-            label15.Size = new Size(129, 32);
+            label15.Size = new Size(77, 18);
             label15.TabIndex = 36;
             label15.Text = "كود الطبيب";
             // 
@@ -125,10 +143,9 @@
             label14.AutoSize = true;
             label14.BackColor = Color.FromArgb(21, 32, 43);
             label14.ForeColor = Color.White;
-            label14.Location = new Point(278, 438);
-            label14.Margin = new Padding(5, 0, 5, 0);
+            label14.Location = new Point(171, 203);
             label14.Name = "label14";
-            label14.Size = new Size(78, 32);
+            label14.Size = new Size(50, 18);
             label14.TabIndex = 35;
             label14.Text = "الجنس";
             label14.Visible = false;
@@ -140,12 +157,11 @@
             comboBox2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             comboBox2.ForeColor = Color.White;
             comboBox2.FormattingEnabled = true;
-            comboBox2.ItemHeight = 37;
+            comboBox2.ItemHeight = 21;
             comboBox2.Items.AddRange(new object[] { "ذكر", "أنثى" });
-            comboBox2.Location = new Point(143, 484);
-            comboBox2.Margin = new Padding(5);
+            comboBox2.Location = new Point(88, 229);
             comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(210, 45);
+            comboBox2.Size = new Size(131, 29);
             comboBox2.TabIndex = 34;
             // 
             // Age
@@ -153,11 +169,10 @@
             Age.BackColor = Color.FromArgb(21, 32, 43);
             Age.Font = new Font("Segoe UI", 13.2000008F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Age.ForeColor = Color.White;
-            Age.Location = new Point(146, 346);
-            Age.Margin = new Padding(5);
+            Age.Location = new Point(88, 152);
             Age.Name = "Age";
             Age.PlaceholderText = "العمر";
-            Age.Size = new Size(210, 54);
+            Age.Size = new Size(131, 37);
             Age.TabIndex = 33;
             Age.TextAlign = HorizontalAlignment.Center;
             // 
@@ -165,23 +180,22 @@
             // 
             label13.AutoSize = true;
             label13.ForeColor = Color.White;
-            label13.Location = new Point(291, 309);
-            label13.Margin = new Padding(5, 0, 5, 0);
+            label13.Location = new Point(182, 131);
             label13.Name = "label13";
-            label13.Size = new Size(66, 32);
+            label13.Size = new Size(38, 18);
             label13.TabIndex = 32;
             label13.Text = "العمر";
+            label13.Click += label13_Click;
             // 
             // FullName
             // 
             FullName.BackColor = Color.FromArgb(21, 32, 43);
             FullName.Font = new Font("Segoe UI", 13.2000008F, FontStyle.Bold, GraphicsUnit.Point, 0);
             FullName.ForeColor = Color.White;
-            FullName.Location = new Point(391, 346);
-            FullName.Margin = new Padding(5);
+            FullName.Location = new Point(241, 150);
             FullName.Name = "FullName";
             FullName.PlaceholderText = "الإسم الثلاثي";
-            FullName.Size = new Size(475, 54);
+            FullName.Size = new Size(294, 37);
             FullName.TabIndex = 31;
             FullName.TextAlign = HorizontalAlignment.Center;
             FullName.TextChanged += FullName_TextChanged;
@@ -190,10 +204,9 @@
             // 
             label12.AutoSize = true;
             label12.ForeColor = Color.White;
-            label12.Location = new Point(708, 309);
-            label12.Margin = new Padding(5, 0, 5, 0);
+            label12.Location = new Point(435, 130);
             label12.Name = "label12";
-            label12.Size = new Size(139, 32);
+            label12.Size = new Size(94, 18);
             label12.TabIndex = 30;
             label12.Text = "الإسم الثلاثي";
             // 
@@ -201,10 +214,9 @@
             // 
             label11.AutoSize = true;
             label11.ForeColor = Color.White;
-            label11.Location = new Point(574, 691);
-            label11.Margin = new Padding(5, 0, 5, 0);
+            label11.Location = new Point(353, 345);
             label11.Name = "label11";
-            label11.Size = new Size(106, 32);
+            label11.Size = new Size(61, 18);
             label11.TabIndex = 29;
             label11.Text = "التخصص";
             label11.Visible = false;
@@ -217,12 +229,11 @@
             comboBox1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             comboBox1.ForeColor = Color.White;
             comboBox1.FormattingEnabled = true;
-            comboBox1.ItemHeight = 37;
+            comboBox1.ItemHeight = 21;
             comboBox1.Items.AddRange(new object[] { "GeneralPractice,", "    Cardiology,", "    Pediatrics,", "    Dermatology,", "    Orthopedics,", "    Neurology,", "    Psychiatry,", "    Ophthalmology,", "    GeneralSurgery," });
-            comboBox1.Location = new Point(283, 734);
-            comboBox1.Margin = new Padding(5);
+            comboBox1.Location = new Point(174, 369);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(407, 45);
+            comboBox1.Size = new Size(252, 29);
             comboBox1.TabIndex = 28;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
@@ -233,10 +244,9 @@
             linkLabel1.DisabledLinkColor = Color.FromArgb(33, 100, 180);
             linkLabel1.LinkBehavior = LinkBehavior.HoverUnderline;
             linkLabel1.LinkColor = Color.FromArgb(33, 100, 180);
-            linkLabel1.Location = new Point(314, 984);
-            linkLabel1.Margin = new Padding(5, 0, 5, 0);
+            linkLabel1.Location = new Point(193, 553);
             linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(44, 32);
+            linkLabel1.Size = new Size(27, 18);
             linkLabel1.TabIndex = 27;
             linkLabel1.TabStop = true;
             linkLabel1.Text = "هنا";
@@ -248,10 +258,9 @@
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI Semibold", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.White;
-            label10.Location = new Point(359, 989);
-            label10.Margin = new Padding(5, 0, 5, 0);
+            label10.Location = new Point(221, 557);
             label10.Name = "label10";
-            label10.Size = new Size(343, 30);
+            label10.Size = new Size(215, 17);
             label10.TabIndex = 26;
             label10.Text = "لديك حساب بالفعل؟ سجل الدخول من ";
             // 
@@ -264,10 +273,9 @@
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.White;
-            button1.Location = new Point(375, 814);
-            button1.Margin = new Padding(5);
+            button1.Location = new Point(231, 513);
             button1.Name = "button1";
-            button1.Size = new Size(224, 64);
+            button1.Size = new Size(138, 36);
             button1.TabIndex = 25;
             button1.Text = "إنشاء حساب";
             button1.UseVisualStyleBackColor = false;
@@ -278,11 +286,10 @@
             PassWord.BackColor = Color.FromArgb(21, 32, 43);
             PassWord.Font = new Font("Segoe UI", 13.2000008F, FontStyle.Bold, GraphicsUnit.Point, 0);
             PassWord.ForeColor = Color.White;
-            PassWord.Location = new Point(146, 605);
-            PassWord.Margin = new Padding(5);
+            PassWord.Location = new Point(90, 297);
             PassWord.Name = "PassWord";
             PassWord.PlaceholderText = "كلمة المرور";
-            PassWord.Size = new Size(704, 54);
+            PassWord.Size = new Size(435, 37);
             PassWord.TabIndex = 24;
             PassWord.TextAlign = HorizontalAlignment.Center;
             PassWord.UseSystemPasswordChar = true;
@@ -291,10 +298,9 @@
             // 
             label9.AutoSize = true;
             label9.ForeColor = Color.White;
-            label9.Location = new Point(723, 568);
-            label9.Margin = new Padding(5, 0, 5, 0);
+            label9.Location = new Point(445, 275);
             label9.Name = "label9";
-            label9.Size = new Size(125, 32);
+            label9.Size = new Size(77, 18);
             label9.TabIndex = 23;
             label9.Text = "كلمة المرور";
             label9.Click += label9_Click;
@@ -304,22 +310,21 @@
             UserName.BackColor = Color.FromArgb(21, 32, 43);
             UserName.Font = new Font("Segoe UI", 13.2000008F, FontStyle.Bold, GraphicsUnit.Point, 0);
             UserName.ForeColor = Color.White;
-            UserName.Location = new Point(391, 475);
-            UserName.Margin = new Padding(5);
+            UserName.Location = new Point(241, 224);
             UserName.Name = "UserName";
             UserName.PlaceholderText = "اسم المستخدم";
-            UserName.Size = new Size(475, 54);
+            UserName.Size = new Size(294, 37);
             UserName.TabIndex = 22;
             UserName.TextAlign = HorizontalAlignment.Center;
+            UserName.TextChanged += UserName_TextChanged;
             // 
             // label8
             // 
             label8.AutoSize = true;
             label8.ForeColor = Color.White;
-            label8.Location = new Point(689, 438);
-            label8.Margin = new Padding(5, 0, 5, 0);
+            label8.Location = new Point(424, 203);
             label8.Name = "label8";
-            label8.Size = new Size(157, 32);
+            label8.Size = new Size(107, 18);
             label8.TabIndex = 21;
             label8.Text = "اسم المستخدم";
             label8.Click += label8_Click;
@@ -329,11 +334,9 @@
             groupBox1.Controls.Add(patient);
             groupBox1.Controls.Add(Doctor);
             groupBox1.FlatStyle = FlatStyle.Flat;
-            groupBox1.Location = new Point(206, 146);
-            groupBox1.Margin = new Padding(5);
+            groupBox1.Location = new Point(127, 57);
             groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new Padding(5);
-            groupBox1.Size = new Size(564, 120);
+            groupBox1.Size = new Size(347, 67);
             groupBox1.TabIndex = 20;
             groupBox1.TabStop = false;
             // 
@@ -346,10 +349,9 @@
             patient.FlatStyle = FlatStyle.Flat;
             patient.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             patient.ForeColor = Color.White;
-            patient.Location = new Point(291, 29);
-            patient.Margin = new Padding(5);
+            patient.Location = new Point(179, 17);
             patient.Name = "patient";
-            patient.Size = new Size(263, 74);
+            patient.Size = new Size(162, 41);
             patient.TabIndex = 7;
             patient.TabStop = true;
             patient.Text = "مريض";
@@ -366,10 +368,9 @@
             Doctor.FlatStyle = FlatStyle.Flat;
             Doctor.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             Doctor.ForeColor = Color.White;
-            Doctor.Location = new Point(10, 29);
-            Doctor.Margin = new Padding(5);
+            Doctor.Location = new Point(6, 17);
             Doctor.Name = "Doctor";
-            Doctor.Size = new Size(271, 72);
+            Doctor.Size = new Size(167, 41);
             Doctor.TabIndex = 8;
             Doctor.TabStop = true;
             Doctor.Text = "طبيب";
@@ -382,11 +383,10 @@
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.White;
-            label7.Location = new Point(655, 62);
-            label7.Margin = new Padding(5, 0, 5, 0);
+            label7.Location = new Point(403, 35);
             label7.Name = "label7";
             label7.RightToLeft = RightToLeft.Yes;
-            label7.Size = new Size(252, 40);
+            label7.Size = new Size(145, 25);
             label7.TabIndex = 19;
             label7.Text = "أنشئ حسابا للمتابعة";
             // 
@@ -395,11 +395,10 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.White;
-            label6.Location = new Point(780, 18);
-            label6.Margin = new Padding(5, 0, 5, 0);
+            label6.Location = new Point(480, 10);
             label6.Name = "label6";
             label6.RightToLeft = RightToLeft.Yes;
-            label6.Size = new Size(155, 45);
+            label6.Size = new Size(105, 24);
             label6.TabIndex = 18;
             label6.Text = "مرحبا بك..";
             // 
@@ -412,10 +411,9 @@
             panel2.Controls.Add(label3);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(label1);
-            panel2.Location = new Point(-11, 1);
-            panel2.Margin = new Padding(5);
+            panel2.Location = new Point(-7, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(618, 1062);
+            panel2.Size = new Size(381, 598);
             panel2.TabIndex = 1;
             panel2.Paint += panel2_Paint;
             // 
@@ -424,10 +422,9 @@
             pictureBox1.ErrorImage = (Image)resources.GetObject("pictureBox1.ErrorImage");
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.InitialImage = (Image)resources.GetObject("pictureBox1.InitialImage");
-            pictureBox1.Location = new Point(214, 200);
-            pictureBox1.Margin = new Padding(5);
+            pictureBox1.Location = new Point(131, 113);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(174, 186);
+            pictureBox1.Size = new Size(107, 104);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 11;
             pictureBox1.TabStop = false;
@@ -438,10 +435,9 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.White;
-            label5.Location = new Point(190, 451);
-            label5.Margin = new Padding(5, 0, 5, 0);
+            label5.Location = new Point(117, 253);
             label5.Name = "label5";
-            label5.Size = new Size(210, 40);
+            label5.Size = new Size(150, 22);
             label5.TabIndex = 10;
             label5.Text = "نظام إداري كامل";
             // 
@@ -450,11 +446,10 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold);
             label4.ForeColor = Color.White;
-            label4.Location = new Point(136, 814);
-            label4.Margin = new Padding(5, 0, 5, 0);
+            label4.Location = new Point(83, 458);
             label4.Name = "label4";
             label4.RightToLeft = RightToLeft.Yes;
-            label4.Size = new Size(301, 40);
+            label4.Size = new Size(198, 22);
             label4.TabIndex = 9;
             label4.Text = "وصفات طبية رقمية ✅";
             label4.Visible = false;
@@ -464,11 +459,10 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(136, 744);
-            label3.Margin = new Padding(5, 0, 5, 0);
+            label3.Location = new Point(83, 419);
             label3.Name = "label3";
             label3.RightToLeft = RightToLeft.Yes;
-            label3.Size = new Size(306, 40);
+            label3.Size = new Size(218, 22);
             label3.TabIndex = 8;
             label3.Text = "سجلات المرضى آمنة ✅";
             // 
@@ -477,11 +471,10 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(136, 666);
-            label2.Margin = new Padding(5, 0, 5, 0);
+            label2.Location = new Point(83, 374);
             label2.Name = "label2";
             label2.RightToLeft = RightToLeft.Yes;
-            label2.Size = new Size(323, 40);
+            label2.Size = new Size(222, 22);
             label2.TabIndex = 7;
             label2.Text = "إدارة المواعيد بسهولة ✅";
             // 
@@ -490,23 +483,21 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(214, 390);
-            label1.Margin = new Padding(5, 0, 5, 0);
+            label1.Location = new Point(131, 220);
             label1.Name = "label1";
-            label1.Size = new Size(169, 60);
+            label1.Size = new Size(111, 34);
             label1.TabIndex = 6;
             label1.Text = "Kliniek";
             // 
             // Register
             // 
-            AutoScaleDimensions = new SizeF(13F, 32F);
+            AutoScaleDimensions = new SizeF(8F, 18F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1544, 989);
+            ClientSize = new Size(954, 564);
             Controls.Add(panel1);
             Controls.Add(panel2);
-            Margin = new Padding(5);
-            MaximumSize = new Size(1570, 1060);
-            MinimumSize = new Size(1570, 1060);
+            MaximumSize = new Size(972, 611);
+            MinimumSize = new Size(972, 611);
             Name = "Register";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "إنشاء حساب";
@@ -554,5 +545,7 @@
         private ComboBox comboBox2;
         private TextBox DoctorCode;
         private Label label15;
+        private TextBox txtDescription;
+        private ToolTip toolTip1;
     }
 }

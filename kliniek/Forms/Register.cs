@@ -1,6 +1,7 @@
 ﻿using kliniek.Data;
 using kliniek.Models;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace kliniek.Forms
 {
@@ -9,7 +10,7 @@ namespace kliniek.Forms
         public Register()
         {
             InitializeComponent();
-            
+
         }
 
         private void Register_Load(object sender, EventArgs e)
@@ -18,7 +19,7 @@ namespace kliniek.Forms
             patient.Checked = true;
             comboBox1.DataSource = data.bloodtybe;
 
-           
+
             Age.Visible = true;
             label13.Visible = true;
             DoctorCode.Visible = false;
@@ -79,8 +80,8 @@ namespace kliniek.Forms
 
             comboBox2.Visible = false;
             label14.Visible = false;
-            
-            
+            txtDescription.Visible = true;
+
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
@@ -94,13 +95,13 @@ namespace kliniek.Forms
             label13.Visible = true;
             DoctorCode.Visible = false;
             label15.Visible = false;
-            
-            
+
+
 
             comboBox2.Visible = true;
             label14.Visible = true;
-            
-           
+            txtDescription.Visible = false;
+
         }
 
         private async void button1_Click(object sender, EventArgs e)
@@ -116,18 +117,9 @@ namespace kliniek.Forms
                 return;
             }
 
-            bool userExists = false;
-            foreach (var p in data.patient)
-            {
-                if (p.username == UserName.Text) { userExists = true; break; }
-            }
-            if (!userExists)
-            {
-                foreach (var d in data.doctor)
-                {
-                    if (d.username == UserName.Text) { userExists = true; break; }
-                }
-            }
+            bool userExists = TypeOfUser == "Patient"
+            ? data.patient.Any(p => p.username == UserName.Text)
+            : data.doctor.Any(d => d.username == UserName.Text);
 
             if (TypeOfUser == "Patient")
             {
@@ -184,7 +176,9 @@ namespace kliniek.Forms
                                     FullName.Text,
                                     comboBox1.SelectedItem?.ToString() ?? ""
                                 );
+                                doctor1.Description = txtDescription.Text.Trim();
                                 data.doctor.Add(doctor1);
+                                MessageBox.Show($"بيتحفظ: {doctor1.username} | {doctor1.Description}");
                                 await data.SaveDoctor(doctor1);
                                 MessageBox.Show("تم التسجيل بنجاح!");
                                 this.Close();
@@ -228,6 +222,39 @@ namespace kliniek.Forms
 
         private void DoctorCode_TextChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDescription_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolTip1_Popup(object sender, PopupEventArgs e)
+        {
+
+        }
+
+        private void UserName_TextChanged(object sender, EventArgs e)
+        {
+            var data = Program.SharedData;
+            string typed = UserName.Text;
+
+            bool exists = patient.Checked
+                ? data.patient.Any(p => p.username == typed)
+                : data.doctor.Any(d => d.username == typed);
+
+            if (exists)
+                toolTip1.SetToolTip(UserName, "⚠️ اسم المستخدم موجود بالفعل");
+            else if (typed.Length >= 3)
+                toolTip1.SetToolTip(UserName, "✅ اسم المستخدم متاح");
+            else
+                toolTip1.SetToolTip(UserName, "");
 
         }
     }

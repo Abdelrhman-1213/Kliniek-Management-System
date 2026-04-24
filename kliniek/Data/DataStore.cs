@@ -132,13 +132,38 @@ namespace kliniek.Data
         //saving new Doctors
         public async Task SaveDoctor(Doctor d)
         {
-            var request = new HttpRequestMessage(HttpMethod.Post,
-                $"{SupabaseConfig.Url}/rest/v1/doctors");
-            request.Headers.Add("Prefer", "resolution=merge-duplicates");
-            request.Content = new StringContent(
-                JsonConvert.SerializeObject(new List<Doctor> { d }),
-                Encoding.UTF8, "application/json");
-            await client.SendAsync(request);
+
+            try
+            {
+                var request = new HttpRequestMessage(HttpMethod.Post,
+                    $"{SupabaseConfig.Url}/rest/v1/doctors");
+                request.Headers.Add("Prefer", "return=minimal");
+
+                var obj = new
+                {
+                    username = d.username,
+                    password = d.password,
+                    fullname = d.fullname,
+                    specialization = d.specialization,
+                    Rating = d.Rating,
+                    Number = d.Number,
+                    description = d.Description
+                };
+
+                request.Content = new StringContent(
+                    JsonConvert.SerializeObject(obj),
+                    Encoding.UTF8, "application/json");
+
+                var response = await client.SendAsync(request);
+                var body = await response.Content.ReadAsStringAsync();
+
+                if (!response.IsSuccessStatusCode)
+                    MessageBox.Show($"خطأ من Supabase: {body}");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"خطأ: {ex.Message}");
+            }
         }
 
 
@@ -267,7 +292,35 @@ namespace kliniek.Data
                 MessageBox.Show($"خطأ في الحذف: {ex.Message}");
             }
         }
+        public async Task UpdateDoctorRating(string username, float newScore)
+        {
+            try
+            {
+                // جيب الدكتور من الليست
+                var doctor = this.doctor.FirstOrDefault(d => d.username == username);
+                if (doctor == null) return;
 
+                // احسب التقييم الجديد
+                doctor.Number += 1;
+                doctor.Rating = ((doctor.Rating * (doctor.Number - 1)) + newScore) / doctor.Number;
+
+                // ابعت التحديث لـ Supabase
+                var request = new HttpRequestMessage(new HttpMethod("PATCH"),
+                    $"{SupabaseConfig.Url}/rest/v1/doctors?username=eq.{username}");
+                request.Headers.Add("Prefer", "return=minimal");
+
+                var obj = new { Rating = doctor.Rating, Number = doctor.Number };
+                request.Content = new StringContent(
+                    JsonConvert.SerializeObject(obj),
+                    Encoding.UTF8, "application/json");
+
+                await client.SendAsync(request);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"خطأ في التقييم: {ex.Message}");
+            }
+        }
     }
 }
 

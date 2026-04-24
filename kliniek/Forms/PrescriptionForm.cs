@@ -12,6 +12,18 @@ namespace kliniek.Forms
             _patient = patient;
             lblPatientName.Text = $"المريض: {patient.fullname}";
         }
+        public PrescriptionForm(Prescription prescription)
+        {
+            InitializeComponent();
+            lblPatientName.Text = $"المريض: {prescription.patientusername}";
+            txtDiagnosis.Text = prescription.diagnosis;
+            txtDiagnosis.ReadOnly = true;
+            txtMedications.Text = prescription.medications;
+            txtMedications.ReadOnly = true;
+            txtNotes.Text = prescription.notes;
+            txtNotes.ReadOnly = true;
+            btnSave.Visible = false;
+        }
 
         private async void BtnSave_Click(object sender, EventArgs e)
         {

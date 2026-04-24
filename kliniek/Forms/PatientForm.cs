@@ -23,7 +23,7 @@ namespace kliniek.Forms
 
         private void PatientForm_Load(object sender, EventArgs e)
         {
-           
+
             timer2.Start();
             label1.Text = Program.SharedData.LoggedInPatient?.fullname;
             radioButton1.Checked = true;
@@ -51,6 +51,8 @@ namespace kliniek.Forms
 
             panel10.Visible = true;
             panel4.Visible = false;
+            panelPatientPresc.Visible = false;
+            panelRating.Visible = false;
         }
 
 
@@ -148,6 +150,8 @@ namespace kliniek.Forms
             panel4.Visible = true;
             panel10.Visible = false;
             comboBox1.DataSource = Program.SharedData.specializations;
+            panelPatientPresc.Visible = false;
+            panelRating.Visible = false;
         }
 
 
@@ -296,7 +300,24 @@ namespace kliniek.Forms
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var selected = comboBox2.SelectedItem as Doctor;
 
+            if (selected == null || selected.username == "none")
+            {
+                lblDoctorInfo.Visible = false;
+                return;
+            }
+
+            string ratingText = selected.Number == 0
+                ? "لا يوجد تقييم بعد"
+                : $"💎 {selected.Rating:F1} / 10";
+
+            string descText = string.IsNullOrWhiteSpace(selected.Description)
+                ? "لا يوجد وصف"
+                : selected.Description;
+
+            lblDoctorInfo.Text = $"{ratingText}\n{descText}";
+            lblDoctorInfo.Visible = true;
         }
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
@@ -308,6 +329,191 @@ namespace kliniek.Forms
         {
             if (logOFP) this.Hide();
             else Application.Exit();
+        }
+
+        private void radioButton3_CheckedChanged_1(object sender, EventArgs e)
+        {
+            panel10.Visible = false;
+            panel4.Visible = false;
+            panelPatientPresc.Visible = true;
+            LoadPatientPrescriptions();
+        }
+        private void LoadPatientPrescriptions()
+        {
+            flowPrescriptions.Controls.Clear();
+            var data = Program.SharedData;
+
+            var myPrescriptions = data.prescriptions
+                .Where(p => p.patientusername == data.LoggedInPatient?.username)
+                .OrderByDescending(p => p.date)
+                .ToList();
+
+            if (myPrescriptions.Count == 0)
+            {
+                flowPrescriptions.Controls.Add(new Label
+                {
+                    Text = "لا توجد روشتات بعد",
+                    ForeColor = Color.Gray,
+                    Font = new Font("Segoe UI", 12, FontStyle.Bold),
+                    AutoSize = true,
+                    Margin = new Padding(20)
+                });
+                return;
+            }
+
+            foreach (var presc in myPrescriptions)
+            {
+                var doctor = data.doctor.FirstOrDefault(d => d.username == presc.doctorusername);
+
+                Panel card = new()
+                {
+                    Width = 300,
+                    Height = 175,
+                    BackColor = Color.FromArgb(21, 32, 43),
+                    Margin = new Padding(10)
+                };
+
+                Label lblDoctor = new()
+                {
+                    Text = "👨‍⚕️ د. " + (doctor?.fullname ?? "غير معروف"),
+                    ForeColor = Color.White,
+                    Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                    AutoSize = true,
+                    Location = new Point(12, 10)
+                };
+
+                Label lblSpec = new()
+                {
+                    Text = doctor?.specialization ?? "",
+                    ForeColor = Color.FromArgb(100, 160, 220),
+                    Font = new Font("Segoe UI", 9),
+                    AutoSize = true,
+                    Location = new Point(12, 33)
+                };
+
+                Label lblDate = new()
+                {
+                    Text = "📅 " + presc.date.ToString("dd/MM/yyyy"),
+                    ForeColor = Color.FromArgb(148, 163, 184),
+                    Font = new Font("Segoe UI", 9),
+                    AutoSize = true,
+                    Location = new Point(12, 55)
+                };
+
+                Label lblDiag = new()
+                {
+                    Text = "🔍 " + (presc.diagnosis.Length > 35
+                                  ? presc.diagnosis[..35] + "..."
+                                  : presc.diagnosis),
+                    ForeColor = Color.FromArgb(200, 200, 200),
+                    Font = new Font("Segoe UI", 9),
+                    AutoSize = true,
+                    Location = new Point(12, 78)
+                };
+
+                Label lblMeds = new()
+                {
+                    Text = "💊 " + (presc.medications.Length > 35
+                                  ? presc.medications[..35] + "..."
+                                  : presc.medications),
+                    ForeColor = Color.FromArgb(106, 191, 106),
+                    Font = new Font("Segoe UI", 9),
+                    AutoSize = true,
+                    Location = new Point(12, 100)
+                };
+
+                Button btnView = new()
+                {
+                    Text = "عرض",
+                    Width = 120,
+                    Height = 32,
+                    Location = new Point(12, 130),
+                    BackColor = Color.FromArgb(24, 95, 165),
+                    ForeColor = Color.White,
+                    FlatStyle = FlatStyle.Flat,
+                    Font = new Font("Segoe UI", 9)
+                };
+                btnView.FlatAppearance.BorderSize = 0;
+
+                var currentPresc = presc;
+                btnView.Click += (s, e) =>
+                {
+                    new PrescriptionForm(currentPresc).ShowDialog();
+                };
+
+                card.Controls.AddRange([lblDoctor, lblSpec, lblDate, lblDiag, lblMeds, btnView]);
+                flowPrescriptions.Controls.Add(card);
+            }
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxRatingDoctors_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numRating_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            panel10.Visible = false;
+            panel4.Visible = false;
+            panelPatientPresc.Visible = false;
+            panelRating.Visible = true;
+
+            // جيب الدكاترة اللي المريض عنده مواعيد معاهم بس
+            var data = Program.SharedData;
+            var myDoctors = data.doctor
+                .Where(d => data.appointments.Any(a =>
+                    a.patientusername == data.LoggedInPatient?.username &&
+                    a.doctorusername == d.username))
+                .ToList();
+
+            comboBoxRatingDoctors.DataSource = myDoctors;
+            comboBoxRatingDoctors.DisplayMember = "fullname";
+            comboBoxRatingDoctors.ValueMember = "username";
+        }
+
+        private async void btnSubmitRating_Click(object sender, EventArgs e)
+        {
+            var selected = comboBoxRatingDoctors.SelectedItem as Doctor;
+
+            if (selected == null)
+            {
+                MessageBox.Show("من فضلك اختر دكتور");
+                return;
+            }
+
+            float score = (float)numRating.Value;
+
+            var result = MessageBox.Show(
+                $"هتقيم د. {selected.fullname} بـ {score} من 10 ؟",
+                "تأكيد",
+                MessageBoxButtons.YesNo
+            );
+
+            if (result == DialogResult.Yes)
+            {
+                await Program.SharedData.UpdateDoctorRating(selected.username, score);
+                MessageBox.Show("تم التقييم بنجاح ⭐");
+            }
+        }
+
+        private void panelRating_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
