@@ -503,6 +503,7 @@
             Controls.Add(panel1);
             Controls.Add(panel4);
             Controls.Add(panel10);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(2, 3, 2, 3);
             MaximumSize = new Size(1439, 713);
             MinimumSize = new Size(1186, 662);

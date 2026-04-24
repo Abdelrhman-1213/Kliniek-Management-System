@@ -8,8 +8,13 @@
 	  <UseWindowsForms>true</UseWindowsForms>
 	  <ImplicitUsings>enable</ImplicitUsings>
 	  <ApplicationManifest>app.manifest</ApplicationManifest>
+	  <ApplicationIcon>hospital_health_clinic_urban_buildings_medical_icon_134527.ico</ApplicationIcon>
 	 
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="hospital_health_clinic_urban_buildings_medical_icon_134527.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MaterialSkin2DotNet" Version="1.1.2" />

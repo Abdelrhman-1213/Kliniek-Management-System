@@ -17,6 +17,7 @@ namespace kliniek.Forms
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PrescriptionForm));
             panelHeader = new Panel();
             lblPatientName = new Label();
             lblTitle = new Label();
@@ -40,30 +41,30 @@ namespace kliniek.Forms
             panelHeader.Dock = DockStyle.Top;
             panelHeader.Location = new Point(0, 0);
             panelHeader.Name = "panelHeader";
-            panelHeader.Size = new Size(550, 80);
+            panelHeader.Size = new Size(550, 72);
             panelHeader.TabIndex = 0;
-            // 
-            // lblTitle
-            // 
-            lblTitle.AutoSize = true;
-            lblTitle.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTitle.ForeColor = Color.White;
-            lblTitle.Location = new Point(20, 12);
-            lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(150, 32);
-            lblTitle.TabIndex = 0;
-            lblTitle.Text = "📝 كتابة روشتة";
             // 
             // lblPatientName
             // 
             lblPatientName.AutoSize = true;
             lblPatientName.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblPatientName.ForeColor = Color.FromArgb(148, 163, 184);
-            lblPatientName.Location = new Point(20, 48);
+            lblPatientName.Location = new Point(20, 43);
             lblPatientName.Name = "lblPatientName";
-            lblPatientName.Size = new Size(100, 23);
+            lblPatientName.Size = new Size(87, 21);
             lblPatientName.TabIndex = 1;
             lblPatientName.Text = "المريض: ...";
+            // 
+            // lblTitle
+            // 
+            lblTitle.AutoSize = true;
+            lblTitle.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTitle.ForeColor = Color.White;
+            lblTitle.Location = new Point(20, 11);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(186, 29);
+            lblTitle.TabIndex = 0;
+            lblTitle.Text = "📝 كتابة روشتة";
             // 
             // panelBody
             // 
@@ -76,17 +77,84 @@ namespace kliniek.Forms
             panelBody.Controls.Add(lblDiagLabel);
             panelBody.Controls.Add(txtDiagnosis);
             panelBody.Dock = DockStyle.Fill;
-            panelBody.Location = new Point(0, 80);
+            panelBody.Location = new Point(0, 72);
             panelBody.Name = "panelBody";
-            panelBody.Size = new Size(550, 520);
+            panelBody.Size = new Size(550, 468);
             panelBody.TabIndex = 1;
+            // 
+            // btnSave
+            // 
+            btnSave.BackColor = Color.FromArgb(37, 99, 235);
+            btnSave.FlatAppearance.BorderSize = 0;
+            btnSave.FlatStyle = FlatStyle.Flat;
+            btnSave.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSave.ForeColor = Color.White;
+            btnSave.Location = new Point(20, 396);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(510, 45);
+            btnSave.TabIndex = 6;
+            btnSave.Text = "💾 حفظ الروشتة";
+            btnSave.UseVisualStyleBackColor = false;
+            btnSave.Click += BtnSave_Click;
+            // 
+            // lblNotesLabel
+            // 
+            lblNotesLabel.AutoSize = true;
+            lblNotesLabel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblNotesLabel.ForeColor = Color.FromArgb(148, 163, 184);
+            lblNotesLabel.Location = new Point(20, 279);
+            lblNotesLabel.Name = "lblNotesLabel";
+            lblNotesLabel.Size = new Size(68, 23);
+            lblNotesLabel.TabIndex = 4;
+            lblNotesLabel.Text = "ملاحظات";
+            // 
+            // txtNotes
+            // 
+            txtNotes.BackColor = Color.FromArgb(21, 32, 43);
+            txtNotes.BorderStyle = BorderStyle.None;
+            txtNotes.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtNotes.ForeColor = Color.White;
+            txtNotes.Location = new Point(20, 304);
+            txtNotes.Multiline = true;
+            txtNotes.Name = "txtNotes";
+            txtNotes.PlaceholderText = "ملاحظات إضافية (اختياري)...";
+            txtNotes.RightToLeft = RightToLeft.Yes;
+            txtNotes.ScrollBars = ScrollBars.Vertical;
+            txtNotes.Size = new Size(510, 72);
+            txtNotes.TabIndex = 5;
+            // 
+            // lblMedsLabel
+            // 
+            lblMedsLabel.AutoSize = true;
+            lblMedsLabel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblMedsLabel.ForeColor = Color.FromArgb(148, 163, 184);
+            lblMedsLabel.Location = new Point(20, 140);
+            lblMedsLabel.Name = "lblMedsLabel";
+            lblMedsLabel.Size = new Size(52, 23);
+            lblMedsLabel.TabIndex = 2;
+            lblMedsLabel.Text = "الأدوية";
+            // 
+            // txtMedications
+            // 
+            txtMedications.BackColor = Color.FromArgb(21, 32, 43);
+            txtMedications.BorderStyle = BorderStyle.None;
+            txtMedications.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtMedications.ForeColor = Color.White;
+            txtMedications.Location = new Point(20, 165);
+            txtMedications.Multiline = true;
+            txtMedications.Name = "txtMedications";
+            txtMedications.PlaceholderText = "اكتب الأدوية هنا (دواء في كل سطر)...";
+            txtMedications.RightToLeft = RightToLeft.Yes;
+            txtMedications.ScrollBars = ScrollBars.Vertical;
+            txtMedications.Size = new Size(510, 99);
+            txtMedications.TabIndex = 3;
             // 
             // lblDiagLabel
             // 
             lblDiagLabel.AutoSize = true;
             lblDiagLabel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblDiagLabel.ForeColor = Color.FromArgb(148, 163, 184);
-            lblDiagLabel.Location = new Point(20, 20);
+            lblDiagLabel.Location = new Point(20, 18);
             lblDiagLabel.Name = "lblDiagLabel";
             lblDiagLabel.Size = new Size(70, 23);
             lblDiagLabel.TabIndex = 0;
@@ -98,93 +166,27 @@ namespace kliniek.Forms
             txtDiagnosis.BorderStyle = BorderStyle.None;
             txtDiagnosis.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtDiagnosis.ForeColor = Color.White;
-            txtDiagnosis.Location = new Point(20, 48);
+            txtDiagnosis.Location = new Point(20, 43);
             txtDiagnosis.Multiline = true;
             txtDiagnosis.Name = "txtDiagnosis";
+            txtDiagnosis.PlaceholderText = "اكتب التشخيص هنا...";
             txtDiagnosis.RightToLeft = RightToLeft.Yes;
             txtDiagnosis.ScrollBars = ScrollBars.Vertical;
-            txtDiagnosis.Size = new Size(510, 90);
+            txtDiagnosis.Size = new Size(510, 81);
             txtDiagnosis.TabIndex = 1;
-            txtDiagnosis.PlaceholderText = "اكتب التشخيص هنا...";
-            // 
-            // lblMedsLabel
-            // 
-            lblMedsLabel.AutoSize = true;
-            lblMedsLabel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblMedsLabel.ForeColor = Color.FromArgb(148, 163, 184);
-            lblMedsLabel.Location = new Point(20, 155);
-            lblMedsLabel.Name = "lblMedsLabel";
-            lblMedsLabel.Size = new Size(60, 23);
-            lblMedsLabel.TabIndex = 2;
-            lblMedsLabel.Text = "الأدوية";
-            // 
-            // txtMedications
-            // 
-            txtMedications.BackColor = Color.FromArgb(21, 32, 43);
-            txtMedications.BorderStyle = BorderStyle.None;
-            txtMedications.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtMedications.ForeColor = Color.White;
-            txtMedications.Location = new Point(20, 183);
-            txtMedications.Multiline = true;
-            txtMedications.Name = "txtMedications";
-            txtMedications.RightToLeft = RightToLeft.Yes;
-            txtMedications.ScrollBars = ScrollBars.Vertical;
-            txtMedications.Size = new Size(510, 110);
-            txtMedications.TabIndex = 3;
-            txtMedications.PlaceholderText = "اكتب الأدوية هنا (دواء في كل سطر)...";
-            // 
-            // lblNotesLabel
-            // 
-            lblNotesLabel.AutoSize = true;
-            lblNotesLabel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblNotesLabel.ForeColor = Color.FromArgb(148, 163, 184);
-            lblNotesLabel.Location = new Point(20, 310);
-            lblNotesLabel.Name = "lblNotesLabel";
-            lblNotesLabel.Size = new Size(70, 23);
-            lblNotesLabel.TabIndex = 4;
-            lblNotesLabel.Text = "ملاحظات";
-            // 
-            // txtNotes
-            // 
-            txtNotes.BackColor = Color.FromArgb(21, 32, 43);
-            txtNotes.BorderStyle = BorderStyle.None;
-            txtNotes.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtNotes.ForeColor = Color.White;
-            txtNotes.Location = new Point(20, 338);
-            txtNotes.Multiline = true;
-            txtNotes.Name = "txtNotes";
-            txtNotes.RightToLeft = RightToLeft.Yes;
-            txtNotes.ScrollBars = ScrollBars.Vertical;
-            txtNotes.Size = new Size(510, 80);
-            txtNotes.TabIndex = 5;
-            txtNotes.PlaceholderText = "ملاحظات إضافية (اختياري)...";
-            // 
-            // btnSave
-            // 
-            btnSave.BackColor = Color.FromArgb(37, 99, 235);
-            btnSave.FlatAppearance.BorderSize = 0;
-            btnSave.FlatStyle = FlatStyle.Flat;
-            btnSave.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSave.ForeColor = Color.White;
-            btnSave.Location = new Point(20, 440);
-            btnSave.Name = "btnSave";
-            btnSave.Size = new Size(510, 50);
-            btnSave.TabIndex = 6;
-            btnSave.Text = "💾 حفظ الروشتة";
-            btnSave.UseVisualStyleBackColor = false;
-            btnSave.Click += BtnSave_Click;
             // 
             // PrescriptionForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(8F, 18F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(13, 17, 23);
-            ClientSize = new Size(550, 600);
+            ClientSize = new Size(550, 540);
             Controls.Add(panelBody);
             Controls.Add(panelHeader);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
-            MaximumSize = new Size(568, 647);
-            MinimumSize = new Size(568, 647);
+            MaximumSize = new Size(568, 587);
+            MinimumSize = new Size(568, 587);
             Name = "PrescriptionForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "كتابة روشتة";

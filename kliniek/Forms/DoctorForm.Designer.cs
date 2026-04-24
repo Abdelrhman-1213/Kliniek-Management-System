@@ -503,6 +503,7 @@
             Controls.Add(panel4);
             Controls.Add(panel10);
             Controls.Add(panelPrescriptions);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MaximumSize = new Size(1441, 723);
             MinimumSize = new Size(1186, 662);

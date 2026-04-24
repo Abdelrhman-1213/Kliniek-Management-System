@@ -496,6 +496,7 @@
             ClientSize = new Size(954, 564);
             Controls.Add(panel1);
             Controls.Add(panel2);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximumSize = new Size(972, 611);
             MinimumSize = new Size(972, 611);
             Name = "Register";
