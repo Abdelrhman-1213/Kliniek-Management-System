@@ -4,8 +4,7 @@ namespace kliniek.Forms
 {
     public partial class PrescriptionForm : Form
     {
-        private readonly Patient _patient;
-
+        private readonly Patient? _patient;
         public PrescriptionForm(Patient patient)
         {
             InitializeComponent();
@@ -53,7 +52,7 @@ namespace kliniek.Forms
             {
                 var prescription = new Prescription(
                     docUsername,
-                    _patient.username,
+                    _patient?.username,
                     txtDiagnosis.Text.Trim(),
                     txtMedications.Text.Trim(),
                     txtNotes.Text.Trim()

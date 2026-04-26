@@ -61,9 +61,9 @@ namespace kliniek.Forms
             if (doc != null)
             {
                 if (doc.Number == 0)
-                    lblRatingDisplay.Text = "⭐ لا يوجد تقييم بعد";
+                    lblRatingDisplay.Text = " لا يوجد تقييم بعد";
                 else
-                    lblRatingDisplay.Text = $"⭐ {doc.Rating:F1} / 10  ({doc.Number} تقييم)";
+                    lblRatingDisplay.Text = $" {doc.Rating:F1} / 10  ({doc.Number} العدد)";
             }
         }
 
@@ -421,6 +421,11 @@ namespace kliniek.Forms
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
         {
 
         }

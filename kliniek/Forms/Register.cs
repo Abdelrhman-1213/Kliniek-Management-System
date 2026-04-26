@@ -178,7 +178,6 @@ namespace kliniek.Forms
                                 );
                                 doctor1.Description = txtDescription.Text.Trim();
                                 data.doctor.Add(doctor1);
-                                MessageBox.Show($"بيتحفظ: {doctor1.username} | {doctor1.Description}");
                                 await data.SaveDoctor(doctor1);
                                 MessageBox.Show("تم التسجيل بنجاح!");
                                 this.Close();

@@ -41,6 +41,7 @@
             pictureBox1 = new PictureBox();
             panel3 = new Panel();
             panel2 = new Panel();
+            flowPrescriptions = new FlowLayoutPanel();
             label20 = new Label();
             flowLayoutPanel1 = new FlowLayoutPanel();
             panel10 = new Panel();
@@ -55,22 +56,21 @@
             dateTimePicker1 = new DateTimePicker();
             comboBox2 = new ComboBox();
             comboBox1 = new ComboBox();
+            panelPatientPresc = new Panel();
             panelRating = new Panel();
             btnSubmitRating = new Button();
             numRating = new NumericUpDown();
             comboBoxRatingDoctors = new ComboBox();
             lblRatingTitle = new Label();
-            panelPatientPresc = new Panel();
-            flowPrescriptions = new FlowLayoutPanel();
             toolTip1 = new ToolTip(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel10.SuspendLayout();
             panel4.SuspendLayout();
             panel5.SuspendLayout();
+            panelPatientPresc.SuspendLayout();
             panelRating.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numRating).BeginInit();
-            panelPatientPresc.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -86,11 +86,12 @@
             panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(panel3);
             panel1.Controls.Add(panel2);
-            panel1.Location = new Point(-7, -8);
-            panel1.MaximumSize = new Size(269, 702);
-            panel1.MinimumSize = new Size(269, 702);
+            panel1.Location = new Point(-6, -8);
+            panel1.Margin = new Padding(3, 2, 3, 2);
+            panel1.MaximumSize = new Size(235, 546);
+            panel1.MinimumSize = new Size(235, 546);
             panel1.Name = "panel1";
-            panel1.Size = new Size(269, 702);
+            panel1.Size = new Size(235, 546);
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
             // 
@@ -104,11 +105,13 @@
             radioButton3.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold);
             radioButton3.ForeColor = Color.White;
             radioButton3.ImageAlign = ContentAlignment.MiddleLeft;
-            radioButton3.Location = new Point(19, 226);
+            radioButton3.Location = new Point(17, 176);
+            radioButton3.Margin = new Padding(3, 2, 3, 2);
             radioButton3.Name = "radioButton3";
-            radioButton3.Size = new Size(233, 41);
+            radioButton3.Size = new Size(204, 32);
             radioButton3.TabIndex = 12;
-            radioButton3.Text = "📑 الروشتات";
+            radioButton3.Text = "الروشتات 📑 ";
+            radioButton3.TextAlign = ContentAlignment.MiddleRight;
             radioButton3.UseVisualStyleBackColor = true;
             radioButton3.CheckedChanged += radioButton3_CheckedChanged_1;
             // 
@@ -122,11 +125,13 @@
             radioButton4.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold);
             radioButton4.ForeColor = Color.White;
             radioButton4.ImageAlign = ContentAlignment.MiddleLeft;
-            radioButton4.Location = new Point(19, 273);
+            radioButton4.Location = new Point(17, 212);
+            radioButton4.Margin = new Padding(3, 2, 3, 2);
             radioButton4.Name = "radioButton4";
-            radioButton4.Size = new Size(233, 41);
+            radioButton4.Size = new Size(204, 32);
             radioButton4.TabIndex = 11;
-            radioButton4.Text = "💎 قيم الدكتور";
+            radioButton4.Text = "قيم الدكتور 💎 ";
+            radioButton4.TextAlign = ContentAlignment.MiddleRight;
             radioButton4.UseVisualStyleBackColor = true;
             radioButton4.CheckedChanged += radioButton4_CheckedChanged;
             // 
@@ -139,10 +144,11 @@
             button2.FlatStyle = FlatStyle.Flat;
             button2.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button2.ForeColor = Color.FromArgb(192, 0, 0);
-            button2.Location = new Point(19, 617);
+            button2.Location = new Point(17, 480);
+            button2.Margin = new Padding(3, 2, 3, 2);
             button2.Name = "button2";
             button2.RightToLeft = RightToLeft.Yes;
-            button2.Size = new Size(289, 60);
+            button2.Size = new Size(253, 47);
             button2.TabIndex = 10;
             button2.Text = "حذف الحساب   🗑️";
             button2.TextAlign = ContentAlignment.MiddleRight;
@@ -158,9 +164,10 @@
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.White;
-            button1.Location = new Point(19, 572);
+            button1.Location = new Point(17, 445);
+            button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
-            button1.Size = new Size(304, 60);
+            button1.Size = new Size(266, 47);
             button1.TabIndex = 9;
             button1.Text = "🚪    تسجيل الخروج";
             button1.TextAlign = ContentAlignment.MiddleLeft;
@@ -177,11 +184,13 @@
             radioButton1.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold);
             radioButton1.ForeColor = Color.White;
             radioButton1.ImageAlign = ContentAlignment.MiddleLeft;
-            radioButton1.Location = new Point(19, 135);
+            radioButton1.Location = new Point(17, 105);
+            radioButton1.Margin = new Padding(3, 2, 3, 2);
             radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(233, 41);
+            radioButton1.Size = new Size(204, 32);
             radioButton1.TabIndex = 5;
-            radioButton1.Text = "🏠    الرئيسية\n";
+            radioButton1.Text = "الصفحة الرئيسية 🏠\r\n";
+            radioButton1.TextAlign = ContentAlignment.MiddleRight;
             radioButton1.UseVisualStyleBackColor = true;
             radioButton1.CheckedChanged += radioButton1_CheckedChanged;
             // 
@@ -192,14 +201,16 @@
             radioButton2.FlatAppearance.BorderSize = 0;
             radioButton2.FlatAppearance.CheckedBackColor = Color.FromArgb(33, 100, 180);
             radioButton2.FlatStyle = FlatStyle.Flat;
-            radioButton2.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold);
+            radioButton2.Font = new Font("Segoe UI Black", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             radioButton2.ForeColor = Color.White;
             radioButton2.ImageAlign = ContentAlignment.MiddleLeft;
-            radioButton2.Location = new Point(19, 180);
+            radioButton2.Location = new Point(17, 140);
+            radioButton2.Margin = new Padding(3, 2, 3, 2);
             radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(233, 41);
+            radioButton2.Size = new Size(204, 32);
             radioButton2.TabIndex = 7;
-            radioButton2.Text = "📅  حجز موعد";
+            radioButton2.Text = "حجز موعد  📅";
+            radioButton2.TextAlign = ContentAlignment.MiddleRight;
             radioButton2.UseVisualStyleBackColor = true;
             radioButton2.CheckedChanged += radioButton3_CheckedChanged;
             // 
@@ -208,9 +219,9 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(142, 78);
+            label1.Location = new Point(49, 63);
             label1.Name = "label1";
-            label1.Size = new Size(120, 22);
+            label1.Size = new Size(97, 18);
             label1.TabIndex = 1;
             label1.Text = "اسم المريض";
             // 
@@ -218,9 +229,10 @@
             // 
             pictureBox1.BackColor = Color.FromArgb(21, 32, 43);
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(19, 12);
+            pictureBox1.Location = new Point(17, 9);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(69, 63);
+            pictureBox1.Size = new Size(60, 49);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 3;
             pictureBox1.TabStop = false;
@@ -228,39 +240,49 @@
             // panel3
             // 
             panel3.BackColor = Color.Gray;
-            panel3.Location = new Point(0, 567);
+            panel3.Location = new Point(0, 441);
             panel3.Margin = new Padding(0);
             panel3.Name = "panel3";
-            panel3.Size = new Size(269, 3);
+            panel3.Size = new Size(235, 2);
             panel3.TabIndex = 2;
             // 
             // panel2
             // 
             panel2.BackColor = Color.Gray;
-            panel2.Location = new Point(0, 120);
+            panel2.Location = new Point(0, 93);
             panel2.Margin = new Padding(0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(269, 3);
+            panel2.Size = new Size(235, 2);
             panel2.TabIndex = 1;
+            // 
+            // flowPrescriptions
+            // 
+            flowPrescriptions.AutoScroll = true;
+            flowPrescriptions.BackColor = Color.FromArgb(13, 17, 23);
+            flowPrescriptions.Location = new Point(0, 0);
+            flowPrescriptions.Name = "flowPrescriptions";
+            flowPrescriptions.Size = new Size(1032, 546);
+            flowPrescriptions.TabIndex = 0;
+            flowPrescriptions.Paint += flowPrescriptions_Paint;
             // 
             // label20
             // 
             label20.AutoSize = true;
             label20.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label20.ForeColor = Color.White;
-            label20.Location = new Point(86, 19);
+            label20.Location = new Point(75, 15);
             label20.Name = "label20";
-            label20.Size = new Size(106, 28);
+            label20.Size = new Size(87, 23);
             label20.TabIndex = 0;
             label20.Text = "الرئيسية\n";
             // 
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.BackColor = Color.FromArgb(21, 32, 43);
-            flowLayoutPanel1.Location = new Point(109, 180);
-            flowLayoutPanel1.Margin = new Padding(246, 5, 0, 5);
+            flowLayoutPanel1.Location = new Point(95, 140);
+            flowLayoutPanel1.Margin = new Padding(215, 4, 0, 4);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(982, 476);
+            flowLayoutPanel1.Size = new Size(859, 370);
             flowLayoutPanel1.TabIndex = 12;
             flowLayoutPanel1.WrapContents = false;
             // 
@@ -270,11 +292,12 @@
             panel10.Controls.Add(label2);
             panel10.Controls.Add(label20);
             panel10.Controls.Add(flowLayoutPanel1);
-            panel10.Location = new Point(251, -1);
-            panel10.MaximumSize = new Size(1179, 702);
-            panel10.MinimumSize = new Size(1179, 702);
+            panel10.Location = new Point(220, -1);
+            panel10.Margin = new Padding(3, 2, 3, 2);
+            panel10.MaximumSize = new Size(1032, 546);
+            panel10.MinimumSize = new Size(1032, 546);
             panel10.Name = "panel10";
-            panel10.Size = new Size(1179, 702);
+            panel10.Size = new Size(1032, 546);
             panel10.TabIndex = 5;
             // 
             // label2
@@ -282,10 +305,10 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(1013, 19);
+            label2.Location = new Point(886, 15);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(81, 28);
+            label2.Size = new Size(65, 23);
             label2.TabIndex = 14;
             label2.Text = "التاريخ";
             // 
@@ -294,19 +317,21 @@
             panel4.BackColor = Color.FromArgb(13, 17, 23);
             panel4.Controls.Add(label3);
             panel4.Controls.Add(panel5);
-            panel4.Location = new Point(251, -1);
+            panel4.Location = new Point(220, -1);
+            panel4.Margin = new Padding(3, 2, 3, 2);
             panel4.Name = "panel4";
-            panel4.Size = new Size(1189, 708);
+            panel4.Size = new Size(1040, 551);
             panel4.TabIndex = 6;
+            panel4.Paint += panel4_Paint;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.FromArgb(241, 245, 249);
-            label3.Location = new Point(86, 19);
+            label3.Location = new Point(75, 15);
             label3.Name = "label3";
-            label3.Size = new Size(121, 28);
+            label3.Size = new Size(100, 23);
             label3.TabIndex = 0;
             label3.Text = "حجز موعد";
             // 
@@ -319,9 +344,10 @@
             panel5.Controls.Add(dateTimePicker1);
             panel5.Controls.Add(comboBox2);
             panel5.Controls.Add(comboBox1);
-            panel5.Location = new Point(86, 145);
+            panel5.Location = new Point(75, 113);
+            panel5.Margin = new Padding(3, 2, 3, 2);
             panel5.Name = "panel5";
-            panel5.Size = new Size(1005, 487);
+            panel5.Size = new Size(879, 379);
             panel5.TabIndex = 13;
             // 
             // lblDoctorInfo
@@ -330,11 +356,11 @@
             lblDoctorInfo.BorderStyle = BorderStyle.None;
             lblDoctorInfo.Font = new Font("Segoe UI Emoji", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblDoctorInfo.ForeColor = Color.Silver;
-            lblDoctorInfo.Location = new Point(379, 197);
+            lblDoctorInfo.Location = new Point(332, 153);
             lblDoctorInfo.Margin = new Padding(2, 1, 2, 1);
             lblDoctorInfo.Name = "lblDoctorInfo";
             lblDoctorInfo.ReadOnly = true;
-            lblDoctorInfo.Size = new Size(287, 120);
+            lblDoctorInfo.Size = new Size(251, 93);
             lblDoctorInfo.TabIndex = 5;
             lblDoctorInfo.Text = "";
             lblDoctorInfo.Visible = false;
@@ -346,9 +372,10 @@
             Ok.FlatStyle = FlatStyle.Flat;
             Ok.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Ok.ForeColor = Color.White;
-            Ok.Location = new Point(406, 427);
+            Ok.Location = new Point(355, 332);
+            Ok.Margin = new Padding(3, 2, 3, 2);
             Ok.Name = "Ok";
-            Ok.Size = new Size(233, 39);
+            Ok.Size = new Size(204, 30);
             Ok.TabIndex = 4;
             Ok.Text = "حجز";
             Ok.UseVisualStyleBackColor = false;
@@ -361,9 +388,10 @@
             comboBox3.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             comboBox3.ForeColor = Color.White;
             comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(379, 378);
+            comboBox3.Location = new Point(332, 294);
+            comboBox3.Margin = new Padding(3, 2, 3, 2);
             comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(287, 30);
+            comboBox3.Size = new Size(252, 25);
             comboBox3.TabIndex = 3;
             comboBox3.SelectedIndexChanged += comboBox3_SelectedIndexChanged;
             // 
@@ -374,9 +402,10 @@
             dateTimePicker1.CalendarTitleBackColor = Color.FromArgb(13, 17, 23);
             dateTimePicker1.CalendarTitleForeColor = Color.White;
             dateTimePicker1.CalendarTrailingForeColor = Color.FromArgb(13, 17, 23);
-            dateTimePicker1.Location = new Point(379, 333);
+            dateTimePicker1.Location = new Point(332, 259);
+            dateTimePicker1.Margin = new Padding(3, 2, 3, 2);
             dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(287, 27);
+            dateTimePicker1.Size = new Size(252, 23);
             dateTimePicker1.TabIndex = 2;
             dateTimePicker1.ValueChanged += dateTimePicker1_ValueChanged;
             // 
@@ -387,9 +416,10 @@
             comboBox2.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             comboBox2.ForeColor = Color.White;
             comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(379, 150);
+            comboBox2.Location = new Point(332, 117);
+            comboBox2.Margin = new Padding(3, 2, 3, 2);
             comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(287, 30);
+            comboBox2.Size = new Size(252, 25);
             comboBox2.TabIndex = 1;
             comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
             // 
@@ -400,23 +430,34 @@
             comboBox1.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             comboBox1.ForeColor = Color.White;
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(379, 77);
+            comboBox1.Location = new Point(332, 60);
+            comboBox1.Margin = new Padding(3, 2, 3, 2);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(287, 30);
+            comboBox1.Size = new Size(252, 25);
             comboBox1.TabIndex = 0;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged_1;
             // 
+            // panelPatientPresc
+            // 
+            panelPatientPresc.BackColor = Color.FromArgb(13, 17, 23);
+            panelPatientPresc.Controls.Add(flowPrescriptions);
+            panelPatientPresc.Location = new Point(220, -1);
+            panelPatientPresc.Name = "panelPatientPresc";
+            panelPatientPresc.Size = new Size(1032, 546);
+            panelPatientPresc.TabIndex = 7;
+            panelPatientPresc.Visible = false;
+            panelPatientPresc.Paint += panelPatientPresc_Paint;
+            // 
             // panelRating
             // 
-            panelRating.BackColor = Color.FromArgb(21, 32, 43);
+            panelRating.BackColor = Color.FromArgb(13, 17, 23);
             panelRating.Controls.Add(btnSubmitRating);
             panelRating.Controls.Add(numRating);
             panelRating.Controls.Add(comboBoxRatingDoctors);
             panelRating.Controls.Add(lblRatingTitle);
-            panelRating.Location = new Point(265, 0);
-            panelRating.Margin = new Padding(3, 4, 3, 4);
+            panelRating.Location = new Point(220, -1);
             panelRating.Name = "panelRating";
-            panelRating.Size = new Size(1179, 702);
+            panelRating.Size = new Size(1032, 546);
             panelRating.TabIndex = 13;
             panelRating.Visible = false;
             panelRating.Paint += panelRating_Paint;
@@ -426,10 +467,9 @@
             btnSubmitRating.BackColor = SystemColors.Highlight;
             btnSubmitRating.Cursor = Cursors.Hand;
             btnSubmitRating.Font = new Font("Showcard Gothic", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSubmitRating.Location = new Point(406, 369);
-            btnSubmitRating.Margin = new Padding(3, 4, 3, 4);
+            btnSubmitRating.Location = new Point(395, 386);
             btnSubmitRating.Name = "btnSubmitRating";
-            btnSubmitRating.Size = new Size(179, 69);
+            btnSubmitRating.Size = new Size(157, 54);
             btnSubmitRating.TabIndex = 8;
             btnSubmitRating.Text = "تأكيد التقييم";
             btnSubmitRating.UseVisualStyleBackColor = false;
@@ -438,12 +478,11 @@
             // numRating
             // 
             numRating.Font = new Font("Showcard Gothic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            numRating.Location = new Point(378, 252);
-            numRating.Margin = new Padding(3, 4, 3, 4);
+            numRating.Location = new Point(377, 321);
             numRating.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
             numRating.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numRating.Name = "numRating";
-            numRating.Size = new Size(232, 45);
+            numRating.Size = new Size(203, 37);
             numRating.TabIndex = 7;
             numRating.TextAlign = HorizontalAlignment.Center;
             numRating.Value = new decimal(new int[] { 1, 0, 0, 0 });
@@ -451,10 +490,9 @@
             // comboBoxRatingDoctors
             // 
             comboBoxRatingDoctors.FormattingEnabled = true;
-            comboBoxRatingDoctors.Location = new Point(352, 152);
-            comboBoxRatingDoctors.Margin = new Padding(3, 4, 3, 4);
+            comboBoxRatingDoctors.Location = new Point(347, 99);
             comboBoxRatingDoctors.Name = "comboBoxRatingDoctors";
-            comboBoxRatingDoctors.Size = new Size(300, 26);
+            comboBoxRatingDoctors.Size = new Size(263, 22);
             comboBoxRatingDoctors.TabIndex = 6;
             toolTip1.SetToolTip(comboBoxRatingDoctors, "قيم من 10");
             // 
@@ -463,31 +501,11 @@
             lblRatingTitle.AutoSize = true;
             lblRatingTitle.Font = new Font("Bauhaus 93", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblRatingTitle.ForeColor = Color.White;
-            lblRatingTitle.Location = new Point(352, 48);
+            lblRatingTitle.Location = new Point(347, 37);
             lblRatingTitle.Name = "lblRatingTitle";
-            lblRatingTitle.Size = new Size(292, 50);
+            lblRatingTitle.Size = new Size(263, 39);
             lblRatingTitle.TabIndex = 5;
             lblRatingTitle.Text = "اختر الدكتور لتقييمه";
-            // 
-            // panelPatientPresc
-            // 
-            panelPatientPresc.BackColor = Color.FromArgb(13, 17, 23);
-            panelPatientPresc.Controls.Add(flowPrescriptions);
-            panelPatientPresc.Location = new Point(265, 0);
-            panelPatientPresc.Margin = new Padding(3, 4, 3, 4);
-            panelPatientPresc.Name = "panelPatientPresc";
-            panelPatientPresc.Size = new Size(1179, 702);
-            panelPatientPresc.TabIndex = 7;
-            panelPatientPresc.Visible = false;
-            // 
-            // flowPrescriptions
-            // 
-            flowPrescriptions.AutoScroll = true;
-            flowPrescriptions.Location = new Point(3, 0);
-            flowPrescriptions.Margin = new Padding(3, 4, 3, 4);
-            flowPrescriptions.Name = "flowPrescriptions";
-            flowPrescriptions.Size = new Size(1005, 487);
-            flowPrescriptions.TabIndex = 0;
             // 
             // toolTip1
             // 
@@ -495,18 +513,18 @@
             // 
             // PatientForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 18F);
+            AutoScaleDimensions = new SizeF(7F, 14F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1417, 658);
-            Controls.Add(panelPatientPresc);
-            Controls.Add(panelRating);
+            ClientSize = new Size(1240, 512);
             Controls.Add(panel1);
-            Controls.Add(panel4);
             Controls.Add(panel10);
+            Controls.Add(panelRating);
+            Controls.Add(panelPatientPresc);
+            Controls.Add(panel4);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(2, 3, 2, 3);
-            MaximumSize = new Size(1439, 713);
-            MinimumSize = new Size(1186, 662);
+            Margin = new Padding(2);
+            MaximumSize = new Size(1261, 563);
+            MinimumSize = new Size(1040, 524);
             Name = "PatientForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "PatientForm";
@@ -520,10 +538,10 @@
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
             panel5.ResumeLayout(false);
+            panelPatientPresc.ResumeLayout(false);
             panelRating.ResumeLayout(false);
             panelRating.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numRating).EndInit();
-            panelPatientPresc.ResumeLayout(false);
             ResumeLayout(false);
         }
 

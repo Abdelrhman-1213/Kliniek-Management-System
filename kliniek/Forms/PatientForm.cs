@@ -52,7 +52,6 @@ namespace kliniek.Forms
             panel10.Visible = true;
             panel4.Visible = false;
             panelPatientPresc.Visible = false;
-            panelRating.Visible = false;
         }
 
 
@@ -151,7 +150,6 @@ namespace kliniek.Forms
             panel10.Visible = false;
             comboBox1.DataSource = Program.SharedData.specializations;
             panelPatientPresc.Visible = false;
-            panelRating.Visible = false;
         }
 
 
@@ -468,22 +466,13 @@ namespace kliniek.Forms
 
         private void radioButton4_CheckedChanged(object sender, EventArgs e)
         {
-            panel10.Visible = false;
-            panel4.Visible = false;
-            panelPatientPresc.Visible = false;
-            panelRating.Visible = true;
+            if (!radioButton4.Checked) return;
 
-            // جيب الدكاترة اللي المريض عنده مواعيد معاهم بس
-            var data = Program.SharedData;
-            var myDoctors = data.doctor
-                .Where(d => data.appointments.Any(a =>
-                    a.patientusername == data.LoggedInPatient?.username &&
-                    a.doctorusername == d.username))
-                .ToList();
+            var ratingForm = new RatingForm();
+            ratingForm.ShowDialog();
 
-            comboBoxRatingDoctors.DataSource = myDoctors;
-            comboBoxRatingDoctors.DisplayMember = "fullname";
-            comboBoxRatingDoctors.ValueMember = "username";
+            // بعد ما يقفل الفورم — مترجعش للرئيسية
+            radioButton4.Checked = false;
         }
 
         private async void btnSubmitRating_Click(object sender, EventArgs e)
@@ -512,6 +501,21 @@ namespace kliniek.Forms
         }
 
         private void panelRating_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void flowPrescriptions_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panelPatientPresc_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
         {
 
         }
