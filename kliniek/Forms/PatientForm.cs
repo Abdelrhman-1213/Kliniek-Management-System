@@ -80,66 +80,68 @@ namespace kliniek.Forms
             //displaing the app
             foreach (var a in myAppointments)
             {
-
-                var doctor = data.doctor.FirstOrDefault(d => d.username == a.doctorusername);
-
-                Panel card = new Panel
+                if (a.date > DateTime.Now)
                 {
-                    Width = 300,
-                    Height = 140,
-                    BackColor = Color.FromArgb(42, 42, 62),
-                    Margin = new Padding(10)
-                };
+                    var doctor = data.doctor.FirstOrDefault(d => d.username == a.doctorusername);
 
-                Label lblDoctor = new Label
-                {
-                    Text = "👨‍⚕️ " + (doctor?.fullname ?? "غير معروف"),
-                    ForeColor = Color.White,
-                    Font = new Font("Segoe UI", 10, FontStyle.Bold),
-                    AutoSize = true,
-                    Location = new Point(10, 10)
-                };
-
-                Label lblDate = new Label
-                {
-                    Text = $"📅 {a.date:yyyy-MM-dd hh:mm tt}",
-                    ForeColor = Color.FromArgb(160, 160, 160),
-                    Font = new Font("Segoe UI", 9),
-                    AutoSize = true,
-                    Location = new Point(10, 40)
-                };
-
-
-
-                Button btnDelete = new()
-                {
-                    Text = "إلغاء",
-                    Width = 150,
-                    Height = 35,
-                    Location = new Point(10, 100),
-                    BackColor = Color.FromArgb(74, 26, 26),
-                    ForeColor = Color.FromArgb(255, 107, 107),
-                    FlatStyle = FlatStyle.Flat,
-                    Font = new Font("Segoe UI", 9)
-                };
-                btnDelete.FlatAppearance.BorderSize = 0;
-
-                var appointment = a;
-
-                btnDelete.Click += async (s, e) =>
-                {
-                    var result = MessageBox.Show("هل تريد إلغاء الموعد؟", "تأكيد", MessageBoxButtons.YesNo);
-
-                    if (result == DialogResult.Yes)
+                    Panel card = new Panel
                     {
-                        await data.DeleteApp(a.id);
-                        data.appointments.Remove(appointment);
-                        LoadAppointments();
-                    }
-                };
+                        Width = 180,
+                        Height = 140,
+                        BackColor = Color.FromArgb(42, 42, 62),
+                        Margin = new Padding(10)
+                    };
 
-                card.Controls.AddRange(new Control[] { lblDoctor, lblDate, btnDelete });
-                flowLayoutPanel1.Controls.Add(card);
+                    Label lblDoctor = new Label
+                    {
+                        Text = "👨‍⚕️ " + (doctor?.fullname ?? "غير معروف"),
+                        ForeColor = Color.White,
+                        Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                        AutoSize = true,
+                        Location = new Point(10, 10)
+                    };
+
+                    Label lblDate = new Label
+                    {
+                        Text = $"📅 {a.date:yyyy-MM-dd hh:mm tt}",
+                        ForeColor = Color.FromArgb(160, 160, 160),
+                        Font = new Font("Segoe UI", 9),
+                        AutoSize = true,
+                        Location = new Point(10, 40)
+                    };
+
+
+
+                    Button btnDelete = new()
+                    {
+                        Text = "إلغاء",
+                        Width = 150,
+                        Height = 35,
+                        Location = new Point(10, 100),
+                        BackColor = Color.FromArgb(74, 26, 26),
+                        ForeColor = Color.FromArgb(255, 107, 107),
+                        FlatStyle = FlatStyle.Flat,
+                        Font = new Font("Segoe UI", 9)
+                    };
+                    btnDelete.FlatAppearance.BorderSize = 0;
+
+                    var appointment = a;
+
+                    btnDelete.Click += async (s, e) =>
+                    {
+                        var result = MessageBox.Show("هل تريد إلغاء الموعد؟", "تأكيد", MessageBoxButtons.YesNo);
+
+                        if (result == DialogResult.Yes)
+                        {
+                            await data.DeleteApp(a.id);
+                            data.appointments.Remove(appointment);
+                            LoadAppointments();
+                        }
+                    };
+
+                    card.Controls.AddRange(new Control[] { lblDoctor, lblDate, btnDelete });
+                    flowLayoutPanel1.Controls.Add(card);
+                }
             }
         }
 
@@ -251,7 +253,7 @@ namespace kliniek.Forms
 
             if (alreadyBooked)
             {
-                MessageBox.Show("هذا الموعد محجوز بالفعل ❌");
+                MessageBox.Show("هذا الموعد محجوز بالفعل ");
                 return;
             }
 
@@ -302,13 +304,13 @@ namespace kliniek.Forms
 
             if (selected == null || selected.username == "none")
             {
-                lblDoctorInfo.Visible = false;
+                //lblDoctorInfo.Visible = false;
                 return;
             }
 
             string ratingText = selected.Number == 0
                 ? "لا يوجد تقييم بعد"
-                : $"💎 {selected.Rating:F1} / 10";
+                : $" التقيم:{selected.Rating:F1} / 10 ({selected.Number})";
 
             string descText = string.IsNullOrWhiteSpace(selected.Description)
                 ? "لا يوجد وصف"
@@ -496,29 +498,11 @@ namespace kliniek.Forms
             if (result == DialogResult.Yes)
             {
                 await Program.SharedData.UpdateDoctorRating(selected.username, score);
-                MessageBox.Show("تم التقييم بنجاح ⭐");
+                MessageBox.Show("تم التقييم بنجاح ");
             }
         }
 
-        private void panelRating_Paint(object sender, PaintEventArgs e)
-        {
 
-        }
-
-        private void flowPrescriptions_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panelPatientPresc_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel4_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }
 

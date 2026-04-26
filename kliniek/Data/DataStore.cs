@@ -67,8 +67,26 @@ namespace kliniek.Data
         }
 
 
+        //method to update the status
+        public async Task update_status(int id, string Status)
+        {
+            try
+            {
+                var request = new HttpRequestMessage(HttpMethod.Patch,
+                     $"{SupabaseConfig.Url}/rest/v1/appointments?id=eq.{id}");
 
+                request.Content = new StringContent(JsonConvert.SerializeObject(new { status = Status }),
+                    Encoding.UTF8, "application/json");
+                var response = await client.SendAsync(request);
+                response.EnsureSuccessStatusCode();
 
+            }
+            catch (Exception)
+            {
+                MessageBox.Show($"خطأ");
+            }
+
+        }
 
         //Loading the data from the database
         public async Task Load()
@@ -93,11 +111,16 @@ namespace kliniek.Data
                     $"{SupabaseConfig.Url}/rest/v1/appointments?select=*"
                 );
                 appointments = JsonConvert.DeserializeObject<List<Appointment>>(apptsJson) ?? [];
-                //appointments.RemoveAll(app => app.date < DateTime.Now);
-              var expired = appointments.Where(a => a.date < DateTime.Now).ToList();
-              appointments.RemoveAll(a => a.date < DateTime.Now);
-               foreach (var app in expired)
-                await DeleteApp(app.id);
+                
+              var confermed = appointments.Where(a => a.date < DateTime.Now &&a.status!= "مؤكد").ToList();
+              
+               foreach (var app in confermed)
+                {
+                    app.status = "مؤكد";
+                    await update_status(app.id, app.status);
+
+                }
+                
 
 
                 var prescJson = await client.GetStringAsync(
