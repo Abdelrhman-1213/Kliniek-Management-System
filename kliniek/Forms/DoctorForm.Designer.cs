@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DoctorForm));
             panel1 = new Panel();
+            radioButton5 = new RadioButton();
+            radioButton4 = new RadioButton();
             button2 = new Button();
             button1 = new Button();
             radioButton1 = new RadioButton();
@@ -77,6 +79,8 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(21, 32, 43);
+            panel1.Controls.Add(radioButton5);
+            panel1.Controls.Add(radioButton4);
             panel1.Controls.Add(button2);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(radioButton1);
@@ -88,11 +92,42 @@
             panel1.Controls.Add(panel3);
             panel1.Controls.Add(panel2);
             panel1.Location = new Point(-11, -2);
-            panel1.Margin = new Padding(5, 5, 5, 5);
+            panel1.Margin = new Padding(5);
             panel1.Name = "panel1";
             panel1.Size = new Size(437, 1248);
             panel1.TabIndex = 0;
             panel1.Paint += Panel1_Paint;
+            // 
+            // radioButton5
+            // 
+            radioButton5.Appearance = Appearance.Button;
+            radioButton5.FlatAppearance.BorderColor = Color.Gray;
+            radioButton5.FlatAppearance.BorderSize = 0;
+            radioButton5.FlatAppearance.CheckedBackColor = Color.FromArgb(37, 99, 235);
+            radioButton5.FlatStyle = FlatStyle.Flat;
+            radioButton5.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold);
+            radioButton5.ForeColor = Color.White;
+            radioButton5.ImageAlign = ContentAlignment.MiddleLeft;
+            radioButton5.Location = new Point(31, 546);
+            radioButton5.Margin = new Padding(5);
+            radioButton5.Name = "radioButton5";
+            radioButton5.Size = new Size(379, 72);
+            radioButton5.TabIndex = 13;
+            radioButton5.TabStop = true;
+            radioButton5.Text = "📝    السجلات";
+            radioButton5.UseVisualStyleBackColor = true;
+            radioButton5.CheckedChanged += radioButton5_CheckedChanged;
+            // 
+            // radioButton4
+            // 
+            radioButton4.AutoSize = true;
+            radioButton4.Location = new Point(0, 0);
+            radioButton4.Name = "radioButton4";
+            radioButton4.Size = new Size(184, 36);
+            radioButton4.TabIndex = 12;
+            radioButton4.TabStop = true;
+            radioButton4.Text = "radioButton4";
+            radioButton4.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
@@ -104,7 +139,7 @@
             button2.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button2.ForeColor = Color.Firebrick;
             button2.Location = new Point(31, 1126);
-            button2.Margin = new Padding(5, 5, 5, 5);
+            button2.Margin = new Padding(5);
             button2.Name = "button2";
             button2.RightToLeft = RightToLeft.Yes;
             button2.Size = new Size(411, 80);
@@ -124,7 +159,7 @@
             button1.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.White;
             button1.Location = new Point(31, 1050);
-            button1.Margin = new Padding(5, 5, 5, 5);
+            button1.Margin = new Padding(5);
             button1.Name = "button1";
             button1.Size = new Size(432, 80);
             button1.TabIndex = 9;
@@ -144,7 +179,7 @@
             radioButton1.ForeColor = Color.White;
             radioButton1.ImageAlign = ContentAlignment.MiddleLeft;
             radioButton1.Location = new Point(31, 296);
-            radioButton1.Margin = new Padding(5, 5, 5, 5);
+            radioButton1.Margin = new Padding(5);
             radioButton1.Name = "radioButton1";
             radioButton1.Size = new Size(379, 72);
             radioButton1.TabIndex = 5;
@@ -164,7 +199,7 @@
             radioButton2.ForeColor = Color.White;
             radioButton2.ImageAlign = ContentAlignment.MiddleLeft;
             radioButton2.Location = new Point(31, 378);
-            radioButton2.Margin = new Padding(5, 5, 5, 5);
+            radioButton2.Margin = new Padding(5);
             radioButton2.Name = "radioButton2";
             radioButton2.Size = new Size(379, 72);
             radioButton2.TabIndex = 6;
@@ -184,7 +219,7 @@
             radioButton3.ForeColor = Color.White;
             radioButton3.ImageAlign = ContentAlignment.MiddleLeft;
             radioButton3.Location = new Point(31, 459);
-            radioButton3.Margin = new Padding(5, 5, 5, 5);
+            radioButton3.Margin = new Padding(5);
             radioButton3.Name = "radioButton3";
             radioButton3.Size = new Size(379, 72);
             radioButton3.TabIndex = 11;
@@ -222,7 +257,7 @@
             pictureBox1.BackColor = Color.FromArgb(21, 32, 43);
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(31, 21);
-            pictureBox1.Margin = new Padding(5, 5, 5, 5);
+            pictureBox1.Margin = new Padding(5);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(112, 112);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -257,7 +292,7 @@
             panel4.Controls.Add(panel6);
             panel4.Controls.Add(panelWeekPresc);
             panel4.Location = new Point(408, -2);
-            panel4.Margin = new Padding(5, 5, 5, 5);
+            panel4.Margin = new Padding(5);
             panel4.Name = "panel4";
             panel4.Size = new Size(1916, 1248);
             panel4.TabIndex = 1;
@@ -267,7 +302,7 @@
             flowLayoutPanel2.BackColor = Color.FromArgb(21, 32, 43);
             flowLayoutPanel2.Controls.Add(label10);
             flowLayoutPanel2.Location = new Point(177, 659);
-            flowLayoutPanel2.Margin = new Padding(5, 5, 5, 5);
+            flowLayoutPanel2.Margin = new Padding(5);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
             flowLayoutPanel2.Padding = new Padding(0, 16, 0, 0);
             flowLayoutPanel2.Size = new Size(1596, 506);
@@ -316,7 +351,7 @@
             panel8.Controls.Add(label5);
             panel8.Controls.Add(lblTodayAppts);
             panel8.Location = new Point(1050, 179);
-            panel8.Margin = new Padding(5, 5, 5, 5);
+            panel8.Margin = new Padding(5);
             panel8.Name = "panel8";
             panel8.Size = new Size(723, 270);
             panel8.TabIndex = 2;
@@ -351,7 +386,7 @@
             panel6.Controls.Add(label11);
             panel6.Controls.Add(lblPatientsCount);
             panel6.Location = new Point(177, 179);
-            panel6.Margin = new Padding(5, 5, 5, 5);
+            panel6.Margin = new Padding(5);
             panel6.Name = "panel6";
             panel6.Size = new Size(723, 270);
             panel6.TabIndex = 1;
@@ -387,7 +422,7 @@
             panelWeekPresc.Controls.Add(lblWeekPrescTitle);
             panelWeekPresc.Controls.Add(lblWeekPresc);
             panelWeekPresc.Location = new Point(177, 515);
-            panelWeekPresc.Margin = new Padding(5, 5, 5, 5);
+            panelWeekPresc.Margin = new Padding(5);
             panelWeekPresc.Name = "panelWeekPresc";
             panelWeekPresc.Size = new Size(1596, 128);
             panelWeekPresc.TabIndex = 8;
@@ -423,7 +458,7 @@
             panel10.Controls.Add(panel15);
             panel10.Controls.Add(label20);
             panel10.Location = new Point(408, -2);
-            panel10.Margin = new Padding(5, 5, 5, 5);
+            panel10.Margin = new Padding(5);
             panel10.Name = "panel10";
             panel10.Size = new Size(1932, 1259);
             panel10.TabIndex = 4;
@@ -432,7 +467,7 @@
             // 
             flowLayoutPanel1.BackColor = Color.FromArgb(21, 32, 43);
             flowLayoutPanel1.Location = new Point(140, 258);
-            flowLayoutPanel1.Margin = new Padding(5, 5, 5, 5);
+            flowLayoutPanel1.Margin = new Padding(5);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Size = new Size(1633, 866);
             flowLayoutPanel1.TabIndex = 12;
@@ -442,9 +477,9 @@
             panel15.BackColor = Color.FromArgb(21, 32, 43);
             panel15.Controls.Add(textBox1);
             panel15.Location = new Point(1295, 138);
-            panel15.Margin = new Padding(5, 5, 5, 5);
+            panel15.Margin = new Padding(5);
             panel15.Name = "panel15";
-            panel15.Padding = new Padding(32, 32, 32, 32);
+            panel15.Padding = new Padding(32);
             panel15.Size = new Size(471, 98);
             panel15.TabIndex = 8;
             // 
@@ -456,7 +491,7 @@
             textBox1.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             textBox1.ForeColor = Color.White;
             textBox1.Location = new Point(32, 32);
-            textBox1.Margin = new Padding(5, 5, 5, 5);
+            textBox1.Margin = new Padding(5);
             textBox1.Name = "textBox1";
             textBox1.PlaceholderText = "بحث عن مريض...";
             textBox1.RightToLeft = RightToLeft.Yes;
@@ -482,7 +517,7 @@
             panelPrescriptions.Controls.Add(flowLayoutPanelPrescriptions);
             panelPrescriptions.Controls.Add(lblPrescTitle);
             panelPrescriptions.Location = new Point(408, -2);
-            panelPrescriptions.Margin = new Padding(5, 5, 5, 5);
+            panelPrescriptions.Margin = new Padding(5);
             panelPrescriptions.Name = "panelPrescriptions";
             panelPrescriptions.Size = new Size(1932, 1259);
             panelPrescriptions.TabIndex = 5;
@@ -494,7 +529,7 @@
             flowLayoutPanelPrescriptions.BackColor = Color.FromArgb(13, 17, 23);
             flowLayoutPanelPrescriptions.FlowDirection = FlowDirection.TopDown;
             flowLayoutPanelPrescriptions.Location = new Point(140, 128);
-            flowLayoutPanelPrescriptions.Margin = new Padding(5, 5, 5, 5);
+            flowLayoutPanelPrescriptions.Margin = new Padding(5);
             flowLayoutPanelPrescriptions.Name = "flowLayoutPanelPrescriptions";
             flowLayoutPanelPrescriptions.Size = new Size(1633, 992);
             flowLayoutPanelPrescriptions.TabIndex = 1;
@@ -521,7 +556,7 @@
             Controls.Add(panel4);
             Controls.Add(panel10);
             Controls.Add(panelPrescriptions);
-            Margin = new Padding(5, 5, 5, 5);
+            Margin = new Padding(5);
             MaximizeBox = false;
             MaximumSize = new Size(2332, 1260);
             MinimumSize = new Size(2332, 1260);
@@ -588,5 +623,7 @@
         private Panel panelPrescriptions;
         private FlowLayoutPanel flowLayoutPanelPrescriptions;
         private Label lblPrescTitle;
+        private RadioButton radioButton4;
+        private RadioButton radioButton5;
     }
 }

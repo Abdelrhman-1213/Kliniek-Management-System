@@ -11,6 +11,9 @@ namespace kliniek.Forms
             InitializeComponent();
         }
 
+        Panel panelHistory = new Panel();
+        FlowLayoutPanel flowHistory = new FlowLayoutPanel();
+
         private void DoctorForm_Load(object sender, EventArgs e)
         {
 
@@ -47,10 +50,33 @@ namespace kliniek.Forms
             LoadPatients();
             LoadTodayAppointments();
 
-            flowLayoutPanel1.AutoScroll = true;
-            flowLayoutPanel1.FlowDirection = FlowDirection.LeftToRight;
+            panelHistory.Location = panelPrescriptions.Location;
+            panelHistory.Size = panelPrescriptions.Size;
+            panelHistory.Anchor = panelPrescriptions.Anchor;
+            panelHistory.BackColor = panelPrescriptions.BackColor;
+            panelHistory.Visible = false;
+
+          
+            flowHistory.Dock = DockStyle.Fill;
+            flowHistory.AutoScroll = true;
+            flowHistory.Padding = new Padding(10);
+            panelHistory.Controls.Add(flowHistory);
+
+           
+            if (panelPrescriptions.Parent != null)
+            {
+                panelPrescriptions.Parent.Controls.Add(panelHistory);
+            }
+            else
+            {
+                this.Controls.Add(panelHistory);
+            }
+
+            panelHistory.BringToFront();
 
         }
+
+
 
         private void Panel1_Paint(object sender, PaintEventArgs e)
         {
@@ -126,10 +152,11 @@ namespace kliniek.Forms
                 {
                     Text = appt.status,
                     AutoSize = true,
-                    Font = new Font("Segoe UI", 9),
+                    Font = new Font("Segoe UI", 9, FontStyle.Bold),
                     Location = new Point(card.Width - 90, 20)
                 };
 
+                // --- تحديد اللون حسب الحالة وإضافة زرار التأكيد ---
                 if (appt.status == "مؤكد")
                 {
                     lblStatus.ForeColor = Color.FromArgb(106, 191, 106);
@@ -139,6 +166,31 @@ namespace kliniek.Forms
                 {
                     lblStatus.ForeColor = Color.FromArgb(220, 180, 50);
                     lblStatus.BackColor = Color.FromArgb(61, 49, 15);
+
+                    // إنشاء زرار التأكيد
+                    Button btnConfirm = new()
+                    {
+                        Text = "تأكيد ✔",
+                        Width = 70,
+                        Height = 28,
+                        Location = new Point(card.Width - 170, 16), // مكانه قبل كلمة انتظار
+                        BackColor = Color.FromArgb(24, 95, 165),
+                        ForeColor = Color.White,
+                        FlatStyle = FlatStyle.Flat,
+                        Font = new Font("Segoe UI", 9, FontStyle.Bold),
+                        Cursor = Cursors.Hand
+                    };
+                    btnConfirm.FlatAppearance.BorderSize = 0;
+
+                    // برمجة الزرار: لما الدكتور يدوس عليه يغير الحالة ويعمل ريفريش
+                    btnConfirm.Click += (s, e) =>
+                    {
+                        appt.status = "مؤكد"; // تغيير الحالة
+                        LoadTodayAppointments(); // إعادة تحميل القائمة عشان اللون يتحدث
+                        if (panelHistory.Visible) LoadHistory(); // لو السجل مفتوح نحدثه كمان
+                    };
+
+                    card.Controls.Add(btnConfirm);
                 }
                 else
                 {
@@ -235,31 +287,44 @@ namespace kliniek.Forms
                 };
                 btnView.FlatAppearance.BorderSize = 0;
 
-                //Button btnDelete = new()
-                //{
-                //    Text = "حذف",
-                //    Width = 80,
-                //    Height = 28,
-                //    Location = new Point(100, 85),
-                //    BackColor = Color.FromArgb(74, 26, 26),
-                //    ForeColor = Color.FromArgb(255, 107, 107),
-                //    FlatStyle = FlatStyle.Flat,
-                //    Font = new Font("Segoe UI", 9)
-                //};
-                //btnDelete.FlatAppearance.BorderSize = 0;
+
+                Button btnDelete = new()
+                {
+                    Text = "حذف",
+                    Width = 90,
+                    Height = 35,
+                    Location = new Point(150, 90),
+                    BackColor = Color.FromArgb(180, 50, 50),
+                    ForeColor = Color.White,
+                    FlatStyle = FlatStyle.Flat,
+                    Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    Padding = new Padding(0)
+                };
+                btnDelete.FlatAppearance.BorderSize = 0;
                 var patient = p;
-                //btnDelete.Click += async (s, e) =>
-                //{
-                //    data.patient.Remove(patient);
-                //    await data.DeleteApp();
-                //    LoadPatients();
-                //};
+
+
+
+
+                btnDelete.Click += async (s, e) =>
+                {
+                    var confirm = MessageBox.Show("هل أنت متأكد من حذف المريض؟ ", "تأكيد", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                    if (confirm == DialogResult.Yes)
+                    {
+                    
+                        data.patient.Remove(patient);                        
+                        LoadPatients();
+                        MessageBox.Show("تم حذف المريض بنجاح مع الاحتفاظ بسجلاته.");
+                    }
+                };
                 btnView.Click += (s, e) =>
                 {
                     new PatientDetailsForm(patient).ShowDialog();
                 };
 
-                card.Controls.AddRange([lblName, lblInfo, btnView]);
+                card.Controls.AddRange([lblName, lblInfo, btnView, btnDelete]);
                 flowLayoutPanel1.Controls.Add(card);
             }
         }
@@ -269,6 +334,7 @@ namespace kliniek.Forms
             panel4.Visible = false;
             panel10.Visible = true;
             panelPrescriptions.Visible = false;
+            panelHistory.Visible = false;
         }
 
         private void RadioButton1_CheckedChanged(object sender, EventArgs e)
@@ -276,6 +342,7 @@ namespace kliniek.Forms
             panel4.Visible = true;
             panel10.Visible = false;
             panelPrescriptions.Visible = false;
+            panelHistory.Visible = false;
         }
 
         private void RadioButton3_CheckedChanged(object sender, EventArgs e)
@@ -283,8 +350,11 @@ namespace kliniek.Forms
             panel4.Visible = false;
             panel10.Visible = false;
             panelPrescriptions.Visible = true;
+            panelHistory.Visible = false;
             LoadPrescriptions();
         }
+
+
 
         private void LoadPrescriptions()
         {
@@ -361,8 +431,16 @@ namespace kliniek.Forms
 
                 card.Controls.AddRange([lblName, lblDate, lblDiag, lblMeds]);
                 flowLayoutPanelPrescriptions.Controls.Add(card);
+
+
+
             }
         }
+
+
+
+
+
 
         private void DoctorForm_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -389,6 +467,128 @@ namespace kliniek.Forms
                     new LoginForm().Show();
                     if (logO) this.Close();
                 }
+            }
+        }
+
+
+
+        private void radioButton5_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton5.Checked)
+            {
+                panel4.Visible = false;
+                panel10.Visible = false;
+                panelPrescriptions.Visible = false;
+                panelHistory.Visible = true;
+
+                panelHistory.BringToFront();
+                LoadHistory();
+
+                panel1.BringToFront(); 
+            }
+
+        }
+
+
+        private void LoadHistory()
+        {
+            flowHistory.Controls.Clear();
+            Data.DataStore data = Program.SharedData;
+
+            // 1. تجميع المواعيد والروشتات بنفس الستايل بتاعك
+            var appts = data.appointments
+                .Where(a => a.doctorusername == data.LogedInDoc?.username)
+                .Select(a => new
+                {
+                    Date = a.date,
+                    Type = "موعد " + (a.status == "مؤكد" ? "✅" : (a.status == "انتظار" ? "⏳" : "❌")),
+                    PatientUsername = a.patientusername,
+                    Details = $"الحالة: {a.status}"
+                });
+
+            var prescs = data.prescriptions
+                .Where(p => p.doctorusername == data.LogedInDoc?.username)
+                .Select(p => new
+                {
+                    Date = p.date,
+                    Type = "روشتة 💊",
+                    PatientUsername = p.patientusername,
+                    Details = $"التشخيص: {p.diagnosis}"
+                });
+
+            // دمج وترتيب (نفس الـ OrderByDescending اللي إنت مستخدمه في الروشتات)
+            var fullHistory = appts.Concat(prescs)
+                                   .OrderByDescending(x => x.Date)
+                                   .ToList();
+
+            if (fullHistory.Count == 0)
+            {
+                Label lblEmpty = new()
+                {
+                    Text = "لا توجد سجلات للطبيب حتى الآن",
+                    ForeColor = Color.White,
+                    Font = new Font("Segoe UI", 16, FontStyle.Bold),
+                    AutoSize = true,
+                    Margin = new Padding(30)
+                };
+                flowHistory.Controls.Add(lblEmpty);
+                return;
+            }
+
+            foreach (var item in fullHistory)
+            {
+                // نفس سطر البحث اللي إنت بتستخدمه دايماً
+                var patient = data.patient.FirstOrDefault(p => p.username == item.PatientUsername);
+
+                Panel card = new()
+                {
+                    Width = flowHistory.Width > 50 ? flowHistory.Width - 40 : 600,
+                    Height = 100,
+                    BackColor = Color.FromArgb(30, 40, 50),
+                    Margin = new Padding(10, 5, 10, 5)
+                };
+
+                Label lblPatient = new()
+                {
+                    // هنا التعديل اللي بيجيب اليوزرنيم لو المريض اتمسح
+                    Text = "👤 " + (patient?.fullname ?? item.PatientUsername),
+                    ForeColor = Color.White,
+                    Font = new Font("Segoe UI", 11, FontStyle.Bold),
+                    AutoSize = true,
+                    Location = new Point(15, 10)
+                };
+
+                Label lblType = new()
+                {
+                    Text = item.Type,
+                    ForeColor = item.Type.Contains("موعد") ? Color.FromArgb(150, 175, 210) : Color.FromArgb(106, 191, 106),
+                    Font = new Font("Segoe UI", 10, FontStyle.Bold),
+                    AutoSize = true,
+                    Location = new Point(card.Width - 120, 10)
+                };
+
+                Label lblDate = new()
+                {
+                    Text = item.Date.ToString("dd/MM/yyyy hh:mm tt"),
+                    ForeColor = Color.FromArgb(148, 163, 184),
+                    Font = new Font("Segoe UI", 9),
+                    AutoSize = true,
+                    Location = new Point(15, 40)
+                };
+
+                Label lblDetails = new()
+                {
+                    // نفس طريقة قص النص اللي إنت عاملها في الروشتات
+                    Text = item.Details.Length > 80 ? item.Details[..80] + "..." : item.Details,
+                    ForeColor = Color.FromArgb(200, 200, 200),
+                    Font = new Font("Segoe UI", 9),
+                    AutoSize = true,
+                    Location = new Point(15, 65)
+                };
+
+                // نفس طريقة إضافة العناصر اللي إنت بتستخدمها
+                card.Controls.AddRange([lblPatient, lblType, lblDate, lblDetails]);
+                flowHistory.Controls.Add(card);
             }
         }
     }
