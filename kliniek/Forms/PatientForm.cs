@@ -43,7 +43,10 @@ namespace kliniek.Forms
         //main menu
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-
+            panelPatientPresc.Visible = false;
+            panel4.Visible = true;
+            panel10.Visible = false;
+            panel6.Visible = false;
             label20.Text = "الرئيسية\r\n";
             //the date label
             label2.Visible = true;
@@ -78,9 +81,10 @@ namespace kliniek.Forms
             flowLayoutPanel1.WrapContents = true;
             flowLayoutPanel1.AutoScroll = true;
             //displaing the app
+
             foreach (var a in myAppointments)
             {
-                if (a.date > DateTime.Now)
+                if (a.status != "مؤكد")
                 {
                     var doctor = data.doctor.FirstOrDefault(d => d.username == a.doctorusername);
 
@@ -145,13 +149,17 @@ namespace kliniek.Forms
             }
         }
 
+
+
         // the reservation tab 
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
-            panel4.Visible = true;
+            
             panel10.Visible = false;
-            comboBox1.DataSource = Program.SharedData.specializations;
+            panel6.Visible = false;
             panelPatientPresc.Visible = false;
+            panel4.Visible = true;
+            comboBox1.DataSource = Program.SharedData.specializations;
         }
 
 
@@ -235,7 +243,6 @@ namespace kliniek.Forms
             {
                 MessageBox.Show("من فضلك اختر توقيت صحيح");
                 return;
-
             }
 
             if (comboBox2.SelectedIndex == 0 || comboBox2.SelectedItem == null)
@@ -256,41 +263,50 @@ namespace kliniek.Forms
                 MessageBox.Show("هذا الموعد محجوز بالفعل ");
                 return;
             }
-
-            string specialization = comboBox1.SelectedItem?.ToString() ?? "";
-
-            if (string.IsNullOrEmpty(specialization) || specialization == "اختر التخصص...")
+            bool patient_app = Program.SharedData.appointments.Any(u => u.patientusername == Program.SharedData.LoggedInPatient?.username
+            && u.date == selectedDateTime);
+            if (patient_app)
             {
-                MessageBox.Show("من فضلك اختر التخصص");
-                return;
+                {
+                    MessageBox.Show("لديك حجز مع دكتور آخر في هذا الموعد");
+                    return;
+                }
             }
+                string specialization = comboBox1.SelectedItem?.ToString() ?? "";
 
-            if (comboBox2.SelectedItem == null)
-            {
-                MessageBox.Show("من فضلك اختر الدكتور");
-                return;
-            }
-            else if (comboBox2.SelectedIndex == 0)
-            {
-                MessageBox.Show("من فضلك اختر الدكتور");
-                return;
-            }
+                if (string.IsNullOrEmpty(specialization) || specialization == "اختر التخصص...")
+                {
+                    MessageBox.Show("من فضلك اختر التخصص");
+                    return;
+                }
 
-
-            //creating the appointment
-            Appointment newApp = new(
-                doctorUserName,
-                Program.SharedData.LoggedInPatient?.username ?? "",
-                selectedDateTime
-            );
-            //saving 
-            Program.SharedData.appointments.Add(newApp);
-            await Program.SharedData.SaveAppointment(newApp);
-
-            MessageBox.Show("تم الحجز بنجاح 🎉");
+                if (comboBox2.SelectedItem == null)
+                {
+                    MessageBox.Show("من فضلك اختر الدكتور");
+                    return;
+                }
+                else if (comboBox2.SelectedIndex == 0)
+                {
+                    MessageBox.Show("من فضلك اختر الدكتور");
+                    return;
+                }
 
 
+                //creating the appointment
+                Appointment newApp = new(
+                    doctorUserName,
+                    Program.SharedData.LoggedInPatient?.username ?? "",
+                    selectedDateTime
+                );
+                //saving 
+                Program.SharedData.appointments.Add(newApp);
+                await Program.SharedData.SaveAppointment(newApp);
 
+                MessageBox.Show("تم الحجز بنجاح 🎉");
+
+
+
+            
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -304,7 +320,7 @@ namespace kliniek.Forms
 
             if (selected == null || selected.username == "none")
             {
-                //lblDoctorInfo.Visible = false;
+     
                 return;
             }
 
@@ -335,7 +351,9 @@ namespace kliniek.Forms
         {
             panel10.Visible = false;
             panel4.Visible = false;
+            panel6.Visible = false;
             panelPatientPresc.Visible = true;
+            
             LoadPatientPrescriptions();
         }
         private void LoadPatientPrescriptions()
@@ -367,8 +385,8 @@ namespace kliniek.Forms
 
                 Panel card = new()
                 {
-                    Width = 300,
-                    Height = 175,
+                    Width = 150,
+                    Height = 160,
                     BackColor = Color.FromArgb(21, 32, 43),
                     Margin = new Padding(10)
                 };
@@ -469,40 +487,23 @@ namespace kliniek.Forms
         private void radioButton4_CheckedChanged(object sender, EventArgs e)
         {
             if (!radioButton4.Checked) return;
-
+            panelPatientPresc.Visible = false;
+            panel4.Visible = false;
+            panel10.Visible = false;
+            panel6.Visible = true;
             var ratingForm = new RatingForm();
             ratingForm.ShowDialog();
 
             // بعد ما يقفل الفورم — مترجعش للرئيسية
-            radioButton4.Checked = false;
+            radioButton1.Checked = true; 
         }
 
-        private async void btnSubmitRating_Click(object sender, EventArgs e)
+        
+
+        private void label4_Click_1(object sender, EventArgs e)
         {
-            var selected = comboBoxRatingDoctors.SelectedItem as Doctor;
 
-            if (selected == null)
-            {
-                MessageBox.Show("من فضلك اختر دكتور");
-                return;
-            }
-
-            float score = (float)numRating.Value;
-
-            var result = MessageBox.Show(
-                $"هتقيم د. {selected.fullname} بـ {score} من 10 ؟",
-                "تأكيد",
-                MessageBoxButtons.YesNo
-            );
-
-            if (result == DialogResult.Yes)
-            {
-                await Program.SharedData.UpdateDoctorRating(selected.username, score);
-                MessageBox.Show("تم التقييم بنجاح ");
-            }
         }
-
-
     }
 }
 

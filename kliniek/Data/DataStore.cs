@@ -45,7 +45,7 @@ namespace kliniek.Data
          "اختر الوقت ...", // نص إرشادي في البداية
             "09:00 AM",
             "11:00 AM",
-            "11:00 AM",
+            "12:00 PM",
             "01:00 PM",
             "03:00 PM",
             "05:00 PM"
@@ -253,9 +253,9 @@ namespace kliniek.Data
                     $"{SupabaseConfig.Url}/rest/v1/doctors?username=eq.{username}"
                 );
             }
-            catch (Exception ex)
+            catch (Exception )
             {
-                MessageBox.Show($"خطأ في الحذف: {ex.Message}");
+                MessageBox.Show($"خطأ في الحذف");
             }
         }
 
@@ -276,9 +276,9 @@ namespace kliniek.Data
                     $"{SupabaseConfig.Url}/rest/v1/patients?username=eq.{username}"
                 );
             }
-            catch (Exception ex)
+            catch (Exception )
             {
-                MessageBox.Show($"خطأ في الحذف: {ex.Message}");
+                MessageBox.Show($"خطأ في الحذف");
             }
         }
 
@@ -292,9 +292,9 @@ namespace kliniek.Data
                     $"{SupabaseConfig.Url}/rest/v1/appointments?id=eq.{id}"
                 );
             }
-            catch (Exception ex)
+            catch (Exception )
             {
-                MessageBox.Show($"خطأ في الحذف: {ex.Message}");
+                MessageBox.Show($"خطأ في الحذف");
             }
         }
 
@@ -339,9 +339,9 @@ namespace kliniek.Data
 
                 await client.SendAsync(request);
             }
-            catch (Exception ex)
+            catch (Exception )
             {
-                MessageBox.Show($"خطأ في التقييم: {ex.Message}");
+                MessageBox.Show($"خطأ في التقييم");
             }
         }
     }

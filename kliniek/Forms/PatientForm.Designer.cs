@@ -57,20 +57,16 @@
             comboBox2 = new ComboBox();
             comboBox1 = new ComboBox();
             panelPatientPresc = new Panel();
-            panelRating = new Panel();
-            btnSubmitRating = new Button();
-            numRating = new NumericUpDown();
-            comboBoxRatingDoctors = new ComboBox();
-            lblRatingTitle = new Label();
+            label5 = new Label();
+            label4 = new Label();
             toolTip1 = new ToolTip(components);
+            panel6 = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel10.SuspendLayout();
             panel4.SuspendLayout();
             panel5.SuspendLayout();
             panelPatientPresc.SuspendLayout();
-            panelRating.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numRating).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -259,7 +255,7 @@
             // 
             flowPrescriptions.AutoScroll = true;
             flowPrescriptions.BackColor = Color.FromArgb(13, 17, 23);
-            flowPrescriptions.Location = new Point(12, 2);
+            flowPrescriptions.Location = new Point(12, 44);
             flowPrescriptions.Name = "flowPrescriptions";
             flowPrescriptions.Size = new Size(1028, 525);
             flowPrescriptions.TabIndex = 0;
@@ -269,7 +265,7 @@
             label20.AutoSize = true;
             label20.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label20.ForeColor = Color.White;
-            label20.Location = new Point(75, 16);
+            label20.Location = new Point(66, 16);
             label20.Name = "label20";
             label20.Size = new Size(73, 25);
             label20.TabIndex = 0;
@@ -278,10 +274,10 @@
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.BackColor = Color.FromArgb(21, 32, 43);
-            flowLayoutPanel1.Location = new Point(95, 106);
+            flowLayoutPanel1.Location = new Point(75, 106);
             flowLayoutPanel1.Margin = new Padding(215, 4, 0, 4);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(859, 461);
+            flowLayoutPanel1.Size = new Size(879, 461);
             flowLayoutPanel1.TabIndex = 12;
             flowLayoutPanel1.WrapContents = false;
             // 
@@ -381,6 +377,7 @@
             // comboBox3
             // 
             comboBox3.BackColor = Color.FromArgb(13, 17, 23);
+            comboBox3.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox3.FlatStyle = FlatStyle.Flat;
             comboBox3.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             comboBox3.ForeColor = Color.White;
@@ -394,10 +391,10 @@
             // 
             // dateTimePicker1
             // 
-            dateTimePicker1.CalendarForeColor = Color.White;
+            dateTimePicker1.CalendarForeColor = Color.Black;
             dateTimePicker1.CalendarMonthBackground = Color.FromArgb(13, 17, 23);
             dateTimePicker1.CalendarTitleBackColor = Color.FromArgb(13, 17, 23);
-            dateTimePicker1.CalendarTitleForeColor = Color.White;
+            dateTimePicker1.CalendarTitleForeColor = Color.Black;
             dateTimePicker1.CalendarTrailingForeColor = Color.FromArgb(13, 17, 23);
             dateTimePicker1.Location = new Point(332, 278);
             dateTimePicker1.Margin = new Padding(3, 2, 3, 2);
@@ -409,6 +406,7 @@
             // comboBox2
             // 
             comboBox2.BackColor = Color.FromArgb(13, 17, 23);
+            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox2.FlatStyle = FlatStyle.Flat;
             comboBox2.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             comboBox2.ForeColor = Color.White;
@@ -423,6 +421,7 @@
             // comboBox1
             // 
             comboBox1.BackColor = Color.FromArgb(13, 17, 23);
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.FlatStyle = FlatStyle.Flat;
             comboBox1.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             comboBox1.ForeColor = Color.White;
@@ -437,6 +436,8 @@
             // panelPatientPresc
             // 
             panelPatientPresc.BackColor = Color.FromArgb(13, 17, 23);
+            panelPatientPresc.Controls.Add(label5);
+            panelPatientPresc.Controls.Add(label4);
             panelPatientPresc.Controls.Add(flowPrescriptions);
             panelPatientPresc.Location = new Point(220, -1);
             panelPatientPresc.Name = "panelPatientPresc";
@@ -444,67 +445,39 @@
             panelPatientPresc.TabIndex = 7;
             panelPatientPresc.Visible = false;
             // 
-            // panelRating
+            // label5
             // 
-            panelRating.BackColor = Color.FromArgb(13, 17, 23);
-            panelRating.Controls.Add(btnSubmitRating);
-            panelRating.Controls.Add(numRating);
-            panelRating.Controls.Add(comboBoxRatingDoctors);
-            panelRating.Controls.Add(lblRatingTitle);
-            panelRating.Location = new Point(232, -1);
-            panelRating.Name = "panelRating";
-            panelRating.Size = new Size(1020, 567);
-            panelRating.TabIndex = 13;
-            panelRating.Visible = false;
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.FromArgb(241, 245, 249);
+            label5.Location = new Point(31, 10);
+            label5.Name = "label5";
+            label5.Size = new Size(88, 25);
+            label5.TabIndex = 2;
+            label5.Text = "الروشتات ";
             // 
-            // btnSubmitRating
+            // label4
             // 
-            btnSubmitRating.BackColor = SystemColors.Highlight;
-            btnSubmitRating.Cursor = Cursors.Hand;
-            btnSubmitRating.Font = new Font("Showcard Gothic", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSubmitRating.Location = new Point(395, 414);
-            btnSubmitRating.Name = "btnSubmitRating";
-            btnSubmitRating.Size = new Size(157, 58);
-            btnSubmitRating.TabIndex = 8;
-            btnSubmitRating.Text = "تأكيد التقييم";
-            btnSubmitRating.UseVisualStyleBackColor = false;
-            btnSubmitRating.Click += btnSubmitRating_Click;
-            // 
-            // numRating
-            // 
-            numRating.Font = new Font("Showcard Gothic", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            numRating.Location = new Point(377, 344);
-            numRating.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
-            numRating.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            numRating.Name = "numRating";
-            numRating.Size = new Size(203, 37);
-            numRating.TabIndex = 7;
-            numRating.TextAlign = HorizontalAlignment.Center;
-            numRating.Value = new decimal(new int[] { 1, 0, 0, 0 });
-            // 
-            // comboBoxRatingDoctors
-            // 
-            comboBoxRatingDoctors.FormattingEnabled = true;
-            comboBoxRatingDoctors.Location = new Point(347, 106);
-            comboBoxRatingDoctors.Name = "comboBoxRatingDoctors";
-            comboBoxRatingDoctors.Size = new Size(263, 23);
-            comboBoxRatingDoctors.TabIndex = 6;
-            toolTip1.SetToolTip(comboBoxRatingDoctors, "قيم من 10");
-            // 
-            // lblRatingTitle
-            // 
-            lblRatingTitle.AutoSize = true;
-            lblRatingTitle.Font = new Font("Bauhaus 93", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblRatingTitle.ForeColor = Color.White;
-            lblRatingTitle.Location = new Point(347, 40);
-            lblRatingTitle.Name = "lblRatingTitle";
-            lblRatingTitle.Size = new Size(263, 39);
-            lblRatingTitle.TabIndex = 5;
-            lblRatingTitle.Text = "اختر الدكتور لتقييمه";
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.FromArgb(241, 245, 249);
+            label4.Location = new Point(15, 10);
+            label4.Name = "label4";
+            label4.Size = new Size(0, 25);
+            label4.TabIndex = 1;
+            label4.Click += label4_Click_1;
             // 
             // toolTip1
             // 
             toolTip1.ToolTipIcon = ToolTipIcon.Info;
+            // 
+            // panel6
+            // 
+            panel6.BackColor = Color.FromArgb(13, 17, 23);
+            panel6.Location = new Point(223, 0);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(1066, 605);
+            panel6.TabIndex = 8;
             // 
             // PatientForm
             // 
@@ -514,7 +487,7 @@
             Controls.Add(panel1);
             Controls.Add(panel4);
             Controls.Add(panel10);
-            Controls.Add(panelRating);
+            Controls.Add(panel6);
             Controls.Add(panelPatientPresc);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(2);
@@ -534,9 +507,7 @@
             panel4.PerformLayout();
             panel5.ResumeLayout(false);
             panelPatientPresc.ResumeLayout(false);
-            panelRating.ResumeLayout(false);
-            panelRating.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numRating).EndInit();
+            panelPatientPresc.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -569,11 +540,9 @@
         private RadioButton radioButton4;
         private Panel panelPatientPresc;
         private FlowLayoutPanel flowPrescriptions;
-        private Panel panelRating;
         private ToolTip toolTip1;
-        private Button btnSubmitRating;
-        private NumericUpDown numRating;
-        private ComboBox comboBoxRatingDoctors;
-        private Label lblRatingTitle;
+        private Label label4;
+        private Label label5;
+        private Panel panel6;
     }
 }

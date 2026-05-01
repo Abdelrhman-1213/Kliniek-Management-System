@@ -19,7 +19,7 @@ namespace kliniek.Forms
             var data = Program.SharedData;
             var myDoctors = data.doctor
                 .Where(d => data.appointments.Any(a =>
-                    a.patientusername == data.LoggedInPatient?.username &&
+                    a.patientusername == data.LoggedInPatient?.username && a.status == "مؤكد"&&
                     a.doctorusername == d.username))
                 .ToList();
 

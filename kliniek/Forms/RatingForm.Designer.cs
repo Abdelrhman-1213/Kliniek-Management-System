@@ -36,7 +36,7 @@ namespace kliniek.Forms
             lblRatingTitle.Size = new Size(196, 34);
             lblRatingTitle.TabIndex = 0;
             lblRatingTitle.Text = "اختر الدكتور لتقييمه";
-            lblRatingTitle.Click += this.lblRatingTitle_Click;
+            lblRatingTitle.Click += lblRatingTitle_Click;
             // 
             // comboBoxRatingDoctors
             // 
@@ -44,9 +44,9 @@ namespace kliniek.Forms
             comboBoxRatingDoctors.Location = new Point(79, 105);
             comboBoxRatingDoctors.Name = "comboBoxRatingDoctors";
             comboBoxRatingDoctors.RightToLeft = RightToLeft.No;
-            comboBoxRatingDoctors.Size = new Size(263, 22);
+            comboBoxRatingDoctors.Size = new Size(263, 23);
             comboBoxRatingDoctors.TabIndex = 0;
-            comboBoxRatingDoctors.SelectedIndexChanged += this.comboBoxRatingDoctors_SelectedIndexChanged;
+            comboBoxRatingDoctors.SelectedIndexChanged += comboBoxRatingDoctors_SelectedIndexChanged;
             // 
             // numRating
             // 
@@ -60,16 +60,16 @@ namespace kliniek.Forms
             numRating.TextAlign = HorizontalAlignment.Center;
             toolTip1.SetToolTip(numRating, "التقييم من 10");
             numRating.Value = new decimal(new int[] { 5, 0, 0, 0 });
-            numRating.ValueChanged += this.numRating_ValueChanged;
+            numRating.ValueChanged += numRating_ValueChanged;
             // 
             // btnSubmitRating
             // 
-            btnSubmitRating.BackColor = Color.Gold;
+            btnSubmitRating.BackColor = Color.FromArgb(33, 100, 180);
             btnSubmitRating.Cursor = Cursors.Hand;
             btnSubmitRating.FlatAppearance.BorderSize = 0;
             btnSubmitRating.FlatStyle = FlatStyle.Flat;
             btnSubmitRating.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnSubmitRating.ForeColor = Color.Black;
+            btnSubmitRating.ForeColor = Color.WhiteSmoke;
             btnSubmitRating.Location = new Point(115, 277);
             btnSubmitRating.Name = "btnSubmitRating";
             btnSubmitRating.Size = new Size(200, 45);
