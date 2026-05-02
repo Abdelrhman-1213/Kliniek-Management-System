@@ -96,7 +96,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(590, 595);
             panel1.TabIndex = 0;
-            panel1.Paint += Panel1_Paint;
+           
             // 
             // txtDescription
             // 
@@ -113,7 +113,7 @@
             txtDescription.TextAlign = HorizontalAlignment.Center;
             txtDescription.UseSystemPasswordChar = true;
             txtDescription.Visible = false;
-            txtDescription.TextChanged += txtDescription_TextChanged;
+  
             // 
             // DoctorCode
             // 
@@ -126,7 +126,7 @@
             DoctorCode.Size = new Size(131, 37);
             DoctorCode.TabIndex = 37;
             DoctorCode.TextAlign = HorizontalAlignment.Center;
-            DoctorCode.TextChanged += DoctorCode_TextChanged;
+         
             // 
             // label15
             // 
@@ -185,7 +185,7 @@
             label13.Size = new Size(38, 18);
             label13.TabIndex = 32;
             label13.Text = "العمر";
-            label13.Click += label13_Click;
+           
             // 
             // FullName
             // 
@@ -198,7 +198,7 @@
             FullName.Size = new Size(294, 37);
             FullName.TabIndex = 31;
             FullName.TextAlign = HorizontalAlignment.Center;
-            FullName.TextChanged += FullName_TextChanged;
+          
             // 
             // label12
             // 
@@ -220,7 +220,7 @@
             label11.TabIndex = 29;
             label11.Text = "التخصص";
             label11.Visible = false;
-            label11.Click += label11_Click;
+        
             // 
             // comboBox1
             // 
@@ -235,7 +235,7 @@
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(252, 29);
             comboBox1.TabIndex = 28;
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+         
             // 
             // linkLabel1
             // 
@@ -303,7 +303,7 @@
             label9.Size = new Size(77, 18);
             label9.TabIndex = 23;
             label9.Text = "كلمة المرور";
-            label9.Click += label9_Click;
+            
             // 
             // UserName
             // 
@@ -327,7 +327,7 @@
             label8.Size = new Size(107, 18);
             label8.TabIndex = 21;
             label8.Text = "اسم المستخدم";
-            label8.Click += label8_Click;
+          
             // 
             // groupBox1
             // 
@@ -415,7 +415,7 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(381, 598);
             panel2.TabIndex = 1;
-            panel2.Paint += panel2_Paint;
+           
             // 
             // pictureBox1
             // 
@@ -428,7 +428,7 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 11;
             pictureBox1.TabStop = false;
-            pictureBox1.Click += pictureBox1_Click;
+            
             // 
             // label5
             // 
@@ -502,9 +502,9 @@
             Name = "Register";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "إنشاء حساب";
-            FormClosed += Register_FormClosed;
+           
             Load += Register_Load;
-            Leave += Register_Leave;
+            
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             groupBox1.ResumeLayout(false);

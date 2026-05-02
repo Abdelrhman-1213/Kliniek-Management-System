@@ -34,10 +34,6 @@ namespace kliniek.Forms
             }
         }
 
-        private void Panel7_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void PatientDetailsForm_Load(object sender, EventArgs e)
         {
@@ -50,7 +46,7 @@ namespace kliniek.Forms
                 .FirstOrDefault();
 
             lblLastAppt.Text = lastAppt != null
-            ? $" اخر ميعاد:{lastAppt.date:dd/MM/yyyy hh:mm tt}"
+            ? $"{lastAppt.date:dd/MM/yyyy hh:mm tt}"
             : "لا يوجد مواعيد";
 
             LoadLastPrescription();
@@ -70,5 +66,6 @@ namespace kliniek.Forms
                 ? $"آخر روشتة: {lastPresc.date:dd/MM/yyyy} - {lastPresc.diagnosis}"
                 : "لا توجد روشتات";
         }
+
     }
 }

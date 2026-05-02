@@ -39,6 +39,7 @@
             panelLastPresc = new Panel();
             lblLastPresc = new Label();
             panel7 = new Panel();
+            label6 = new Label();
             lblLastAppt = new Label();
             panel4 = new Panel();
             label5 = new Label();
@@ -72,7 +73,7 @@
             panel1.Location = new Point(-10, 0);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(510, 72);
+            panel1.Size = new Size(510, 77);
             panel1.TabIndex = 0;
             // 
             // label2
@@ -80,10 +81,10 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.DarkGray;
-            label2.Location = new Point(94, 44);
+            label2.Location = new Point(94, 47);
             label2.Name = "label2";
             label2.RightToLeft = RightToLeft.Yes;
-            label2.Size = new Size(35, 14);
+            label2.Size = new Size(40, 15);
             label2.TabIndex = 2;
             label2.Text = "مريض";
             label2.TextAlign = ContentAlignment.MiddleCenter;
@@ -93,20 +94,20 @@
             lblName.AutoSize = true;
             lblName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblName.ForeColor = Color.White;
-            lblName.Location = new Point(94, 25);
+            lblName.Location = new Point(94, 27);
             lblName.Name = "lblName";
             lblName.RightToLeft = RightToLeft.Yes;
-            lblName.Size = new Size(54, 19);
+            lblName.Size = new Size(45, 21);
             lblName.TabIndex = 1;
             lblName.Text = "الإسم";
             // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(20, 9);
+            pictureBox1.Location = new Point(20, 10);
             pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(68, 50);
+            pictureBox1.Size = new Size(68, 54);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
@@ -125,7 +126,7 @@
             panel2.Location = new Point(-7, 0);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(510, 513);
+            panel2.Size = new Size(510, 550);
             panel2.TabIndex = 1;
             // 
             // button1
@@ -135,10 +136,10 @@
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.White;
-            button1.Location = new Point(28, 442);
+            button1.Location = new Point(28, 474);
             button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
-            button1.Size = new Size(451, 35);
+            button1.Size = new Size(451, 38);
             button1.TabIndex = 3;
             button1.Text = "خروج";
             button1.UseVisualStyleBackColor = false;
@@ -151,10 +152,10 @@
             btnPrescription.FlatStyle = FlatStyle.Flat;
             btnPrescription.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnPrescription.ForeColor = Color.White;
-            btnPrescription.Location = new Point(28, 392);
+            btnPrescription.Location = new Point(28, 420);
             btnPrescription.Margin = new Padding(3, 2, 3, 2);
             btnPrescription.Name = "btnPrescription";
-            btnPrescription.Size = new Size(451, 35);
+            btnPrescription.Size = new Size(451, 38);
             btnPrescription.TabIndex = 4;
             btnPrescription.Text = "📝 كتابة روشتة";
             btnPrescription.UseVisualStyleBackColor = false;
@@ -164,10 +165,10 @@
             // 
             panelLastPresc.BackColor = Color.FromArgb(21, 32, 43);
             panelLastPresc.Controls.Add(lblLastPresc);
-            panelLastPresc.Location = new Point(28, 311);
+            panelLastPresc.Location = new Point(28, 333);
             panelLastPresc.Margin = new Padding(3, 2, 3, 2);
             panelLastPresc.Name = "panelLastPresc";
-            panelLastPresc.Size = new Size(451, 73);
+            panelLastPresc.Size = new Size(451, 78);
             panelLastPresc.TabIndex = 5;
             // 
             // lblLastPresc
@@ -175,31 +176,44 @@
             lblLastPresc.AutoSize = true;
             lblLastPresc.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblLastPresc.ForeColor = Color.FromArgb(106, 191, 106);
-            lblLastPresc.Location = new Point(192, 33);
+            lblLastPresc.Location = new Point(0, 35);
             lblLastPresc.Name = "lblLastPresc";
-            lblLastPresc.Size = new Size(48, 18);
+            lblLastPresc.Size = new Size(41, 20);
             lblLastPresc.TabIndex = 0;
             lblLastPresc.Text = "........";
             // 
             // panel7
             // 
             panel7.BackColor = Color.FromArgb(21, 32, 43);
+            panel7.Controls.Add(label6);
             panel7.Controls.Add(lblLastAppt);
-            panel7.Location = new Point(272, 212);
+            panel7.Location = new Point(272, 227);
             panel7.Margin = new Padding(3, 2, 3, 2);
             panel7.Name = "panel7";
-            panel7.Size = new Size(206, 73);
+            panel7.Size = new Size(206, 78);
             panel7.TabIndex = 2;
-            panel7.Paint += Panel7_Paint;
+
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label6.ForeColor = Color.DarkGray;
+            label6.Location = new Point(141, 9);
+            label6.Name = "label6";
+            label6.Size = new Size(51, 15);
+            label6.TabIndex = 7;
+            label6.Text = "آخر موعد";
+            label6.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblLastAppt
             // 
             lblLastAppt.AutoSize = true;
             lblLastAppt.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblLastAppt.ForeColor = Color.White;
-            lblLastAppt.Location = new Point(62, 28);
+            lblLastAppt.Location = new Point(3, 30);
             lblLastAppt.Name = "lblLastAppt";
-            lblLastAppt.Size = new Size(58, 23);
+            lblLastAppt.Size = new Size(52, 25);
             lblLastAppt.TabIndex = 6;
             lblLastAppt.Text = "........";
             // 
@@ -208,10 +222,10 @@
             panel4.BackColor = Color.FromArgb(21, 32, 43);
             panel4.Controls.Add(label5);
             panel4.Controls.Add(lblUser);
-            panel4.Location = new Point(272, 212);
+            panel4.Location = new Point(272, 227);
             panel4.Margin = new Padding(3, 2, 3, 2);
             panel4.Name = "panel4";
-            panel4.Size = new Size(206, 73);
+            panel4.Size = new Size(206, 78);
             panel4.TabIndex = 1;
             // 
             // label5
@@ -219,9 +233,9 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.DarkGray;
-            label5.Location = new Point(116, 8);
+            label5.Location = new Point(116, 9);
             label5.Name = "label5";
-            label5.Size = new Size(86, 14);
+            label5.Size = new Size(78, 15);
             label5.TabIndex = 12;
             label5.Text = "اسم المستخدم";
             label5.TextAlign = ContentAlignment.MiddleCenter;
@@ -231,9 +245,9 @@
             lblUser.AutoSize = true;
             lblUser.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblUser.ForeColor = Color.White;
-            lblUser.Location = new Point(70, 28);
+            lblUser.Location = new Point(70, 30);
             lblUser.Name = "lblUser";
-            lblUser.Size = new Size(58, 23);
+            lblUser.Size = new Size(52, 25);
             lblUser.TabIndex = 11;
             lblUser.Text = "........";
             // 
@@ -242,10 +256,10 @@
             panel5.BackColor = Color.FromArgb(21, 32, 43);
             panel5.Controls.Add(label3);
             panel5.Controls.Add(lblAge);
-            panel5.Location = new Point(28, 111);
+            panel5.Location = new Point(28, 119);
             panel5.Margin = new Padding(3, 2, 3, 2);
             panel5.Name = "panel5";
-            panel5.Size = new Size(206, 73);
+            panel5.Size = new Size(206, 78);
             panel5.TabIndex = 1;
             // 
             // label3
@@ -255,7 +269,7 @@
             label3.ForeColor = Color.DarkGray;
             label3.Location = new Point(167, 6);
             label3.Name = "label3";
-            label3.Size = new Size(31, 14);
+            label3.Size = new Size(33, 15);
             label3.TabIndex = 10;
             label3.Text = "العمر";
             label3.TextAlign = ContentAlignment.MiddleCenter;
@@ -265,9 +279,9 @@
             lblAge.AutoSize = true;
             lblAge.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblAge.ForeColor = Color.White;
-            lblAge.Location = new Point(68, 26);
+            lblAge.Location = new Point(68, 28);
             lblAge.Name = "lblAge";
-            lblAge.Size = new Size(58, 23);
+            lblAge.Size = new Size(52, 25);
             lblAge.TabIndex = 9;
             lblAge.Text = "........";
             // 
@@ -276,10 +290,10 @@
             panel6.BackColor = Color.FromArgb(21, 32, 43);
             panel6.Controls.Add(label4);
             panel6.Controls.Add(lblGender);
-            panel6.Location = new Point(272, 111);
+            panel6.Location = new Point(272, 119);
             panel6.Margin = new Padding(3, 2, 3, 2);
             panel6.Name = "panel6";
-            panel6.Size = new Size(206, 73);
+            panel6.Size = new Size(206, 78);
             panel6.TabIndex = 1;
             // 
             // label4
@@ -289,7 +303,7 @@
             label4.ForeColor = Color.DarkGray;
             label4.Location = new Point(160, 6);
             label4.Name = "label4";
-            label4.Size = new Size(41, 14);
+            label4.Size = new Size(39, 15);
             label4.TabIndex = 10;
             label4.Text = "الجنس";
             label4.TextAlign = ContentAlignment.MiddleCenter;
@@ -299,10 +313,10 @@
             lblGender.AutoSize = true;
             lblGender.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblGender.ForeColor = Color.White;
-            lblGender.Location = new Point(83, 26);
+            lblGender.Location = new Point(83, 28);
             lblGender.Name = "lblGender";
             lblGender.RightToLeft = RightToLeft.Yes;
-            lblGender.Size = new Size(58, 23);
+            lblGender.Size = new Size(52, 25);
             lblGender.TabIndex = 9;
             lblGender.Text = "........";
             // 
@@ -311,10 +325,10 @@
             panel3.BackColor = Color.FromArgb(21, 32, 43);
             panel3.Controls.Add(label1);
             panel3.Controls.Add(lblBlood);
-            panel3.Location = new Point(28, 212);
+            panel3.Location = new Point(28, 227);
             panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(206, 73);
+            panel3.Size = new Size(206, 78);
             panel3.TabIndex = 1;
             // 
             // label1
@@ -322,9 +336,9 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.DarkGray;
-            label1.Location = new Point(134, 8);
+            label1.Location = new Point(134, 9);
             label1.Name = "label1";
-            label1.Size = new Size(60, 14);
+            label1.Size = new Size(62, 15);
             label1.TabIndex = 6;
             label1.Text = "فصيلة الدم";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -334,23 +348,23 @@
             lblBlood.AutoSize = true;
             lblBlood.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblBlood.ForeColor = Color.White;
-            lblBlood.Location = new Point(68, 28);
+            lblBlood.Location = new Point(68, 30);
             lblBlood.Name = "lblBlood";
-            lblBlood.Size = new Size(58, 23);
+            lblBlood.Size = new Size(52, 25);
             lblBlood.TabIndex = 5;
             lblBlood.Text = "........";
             // 
             // PatientDetailsForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 14F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(494, 492);
+            ClientSize = new Size(494, 527);
             Controls.Add(panel1);
             Controls.Add(panel2);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
-            MaximumSize = new Size(510, 543);
-            MinimumSize = new Size(510, 470);
+            MaximumSize = new Size(510, 579);
+            MinimumSize = new Size(510, 501);
             Name = "PatientDetailsForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "PatientDetailsForm";
@@ -399,5 +413,6 @@
         private Button btnPrescription;
         private Panel panelLastPresc;
         private Label lblLastPresc;
+        private Label label6;
     }
 }

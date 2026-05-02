@@ -36,7 +36,6 @@ namespace kliniek.Forms
             lblRatingTitle.Size = new Size(196, 34);
             lblRatingTitle.TabIndex = 0;
             lblRatingTitle.Text = "اختر الدكتور لتقييمه";
-            lblRatingTitle.Click += lblRatingTitle_Click;
             // 
             // comboBoxRatingDoctors
             // 
@@ -46,7 +45,7 @@ namespace kliniek.Forms
             comboBoxRatingDoctors.RightToLeft = RightToLeft.No;
             comboBoxRatingDoctors.Size = new Size(263, 23);
             comboBoxRatingDoctors.TabIndex = 0;
-            comboBoxRatingDoctors.SelectedIndexChanged += comboBoxRatingDoctors_SelectedIndexChanged;
+          
             // 
             // numRating
             // 
@@ -60,7 +59,7 @@ namespace kliniek.Forms
             numRating.TextAlign = HorizontalAlignment.Center;
             toolTip1.SetToolTip(numRating, "التقييم من 10");
             numRating.Value = new decimal(new int[] { 5, 0, 0, 0 });
-            numRating.ValueChanged += numRating_ValueChanged;
+          
             // 
             // btnSubmitRating
             // 

@@ -168,20 +168,17 @@ namespace kliniek.Forms
             }
         }
 
-        private void Label6_Click(object sender, EventArgs e)
-        {
 
-        }
 
         //search text box
-        private void TextBox1_TextChanged(object sender, EventArgs e)
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
         {
-            string search = textBox1.Text.ToLower(); // بياخد الحرف بحرفه
+            string search = textBox1.Text.ToLower(); 
             Data.DataStore data = Program.SharedData;
 
-            var filtered = data.patient.Where(p =>  //  بتبحث
-                p.fullname.Contains(search, StringComparison.CurrentCultureIgnoreCase) && // عن الي يحتوي على الكلمات
-                data.appointments.Any(a => // any بتشوف الأول هل فيه المريض دا عند الطبيب دا ولا لععع
+            var filtered = data.patient.Where(p =>  
+                p.fullname.Contains(search, StringComparison.CurrentCultureIgnoreCase) && 
+                data.appointments.Any(a => 
                     a.doctorusername == data.LogedInDoc?.username &&
                     a.patientusername == p.username)
             ).ToList();
@@ -426,20 +423,12 @@ namespace kliniek.Forms
         }
 
 
-
-
-
-
         private void DoctorForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (logO) this.Hide();
             else Application.Exit();
         }
 
-        private void Label3_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private async void button2_Click(object sender, EventArgs e)
         {
@@ -475,7 +464,6 @@ namespace kliniek.Forms
             }
 
         }
-
 
         private void LoadHistory()
         {
@@ -574,14 +562,8 @@ namespace kliniek.Forms
             }
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
 
-        }
 
-        private void panelPrescriptions_Paint(object sender, PaintEventArgs e)
-        {
 
-        }
     }
 }

@@ -58,23 +58,6 @@ namespace kliniek.Forms
 
         }
 
-        private void btnSubmitRating_Click_1(object sender, EventArgs e)
-        {
 
-        }
-        private void lblRatingTitle_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBoxRatingDoctors_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void numRating_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

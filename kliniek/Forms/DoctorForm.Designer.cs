@@ -97,17 +97,17 @@
             panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(panel3);
             panel1.Controls.Add(panel2);
-            panel1.Location = new Point(-11, -2);
+            panel1.Location = new Point(-10, -2);
             panel1.Margin = new Padding(5);
             panel1.Name = "panel1";
             panel1.Size = new Size(262, 665);
             panel1.TabIndex = 0;
-            panel1.Paint += panel1_Paint;
             // 
             // panel4
             // 
             panel4.BackColor = Color.Gray;
             panel4.Location = new Point(259, 4);
+            panel4.Margin = new Padding(4, 3, 4, 3);
             panel4.Name = "panel4";
             panel4.Size = new Size(6, 656);
             panel4.TabIndex = 2;
@@ -118,6 +118,7 @@
             lblRatingDisplay.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblRatingDisplay.ForeColor = Color.Gold;
             lblRatingDisplay.Location = new Point(30, 91);
+            lblRatingDisplay.Margin = new Padding(4, 0, 4, 0);
             lblRatingDisplay.Name = "lblRatingDisplay";
             lblRatingDisplay.Size = new Size(46, 19);
             lblRatingDisplay.TabIndex = 12;
@@ -153,11 +154,11 @@
             button2.FlatStyle = FlatStyle.Flat;
             button2.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button2.ForeColor = Color.Firebrick;
-            button2.Location = new Point(12, 611);
-            button2.Margin = new Padding(3, 2, 3, 2);
+            button2.Location = new Point(12, 613);
+            button2.Margin = new Padding(4, 2, 4, 2);
             button2.Name = "button2";
             button2.RightToLeft = RightToLeft.Yes;
-            button2.Size = new Size(253, 50);
+            button2.Size = new Size(253, 34);
             button2.TabIndex = 10;
             button2.Text = "حذف الحساب   🗑️";
             button2.TextAlign = ContentAlignment.MiddleRight;
@@ -174,9 +175,9 @@
             button1.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.White;
             button1.Location = new Point(12, 574);
-            button1.Margin = new Padding(3, 2, 3, 2);
+            button1.Margin = new Padding(4, 2, 4, 2);
             button1.Name = "button1";
-            button1.Size = new Size(266, 50);
+            button1.Size = new Size(266, 35);
             button1.TabIndex = 9;
             button1.Text = "🚪    تسجيل الخروج";
             button1.TextAlign = ContentAlignment.MiddleLeft;
@@ -193,8 +194,8 @@
             radioButton1.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold);
             radioButton1.ForeColor = Color.White;
             radioButton1.ImageAlign = ContentAlignment.MiddleLeft;
-            radioButton1.Location = new Point(17, 158);
-            radioButton1.Margin = new Padding(3, 2, 3, 2);
+            radioButton1.Location = new Point(18, 158);
+            radioButton1.Margin = new Padding(4, 2, 4, 2);
             radioButton1.Name = "radioButton1";
             radioButton1.Size = new Size(233, 34);
             radioButton1.TabIndex = 5;
@@ -214,8 +215,8 @@
             radioButton2.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold);
             radioButton2.ForeColor = Color.White;
             radioButton2.ImageAlign = ContentAlignment.MiddleLeft;
-            radioButton2.Location = new Point(17, 196);
-            radioButton2.Margin = new Padding(3, 2, 3, 2);
+            radioButton2.Location = new Point(18, 196);
+            radioButton2.Margin = new Padding(4, 2, 4, 2);
             radioButton2.Name = "radioButton2";
             radioButton2.Size = new Size(233, 34);
             radioButton2.TabIndex = 6;
@@ -236,7 +237,7 @@
             radioButton3.ForeColor = Color.White;
             radioButton3.ImageAlign = ContentAlignment.MiddleLeft;
             radioButton3.Location = new Point(20, 234);
-            radioButton3.Margin = new Padding(3, 2, 3, 2);
+            radioButton3.Margin = new Padding(4, 2, 4, 2);
             radioButton3.Name = "radioButton3";
             radioButton3.Size = new Size(230, 34);
             radioButton3.TabIndex = 11;
@@ -252,6 +253,7 @@
             label2.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.FromArgb(148, 163, 184);
             label2.Location = new Point(163, 92);
+            label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
             label2.Size = new Size(64, 19);
             label2.TabIndex = 4;
@@ -263,6 +265,7 @@
             label1.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(241, 245, 249);
             label1.Location = new Point(84, 68);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
             label1.Size = new Size(85, 20);
             label1.TabIndex = 1;
@@ -272,8 +275,8 @@
             // 
             pictureBox1.BackColor = Color.FromArgb(21, 32, 43);
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(96, 13);
-            pictureBox1.Margin = new Padding(3, 2, 3, 2);
+            pictureBox1.Location = new Point(96, 14);
+            pictureBox1.Margin = new Padding(4, 2, 4, 2);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(60, 52);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -286,7 +289,7 @@
             panel3.Location = new Point(15, 571);
             panel3.Margin = new Padding(0);
             panel3.Name = "panel3";
-            panel3.Size = new Size(235, 1);
+            panel3.Size = new Size(234, 1);
             panel3.TabIndex = 2;
             // 
             // panel2
@@ -295,7 +298,7 @@
             panel2.Location = new Point(12, 129);
             panel2.Margin = new Padding(0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(235, 1);
+            panel2.Size = new Size(234, 1);
             panel2.TabIndex = 3;
             // 
             // HistoryPanel
@@ -304,9 +307,9 @@
             HistoryPanel.Controls.Add(label6);
             HistoryPanel.Controls.Add(flowHistory);
             HistoryPanel.Location = new Point(251, -10);
-            HistoryPanel.Margin = new Padding(3, 2, 3, 2);
+            HistoryPanel.Margin = new Padding(4, 2, 4, 2);
             HistoryPanel.Name = "HistoryPanel";
-            HistoryPanel.Size = new Size(1061, 671);
+            HistoryPanel.Size = new Size(1060, 670);
             HistoryPanel.TabIndex = 9;
             HistoryPanel.Visible = false;
             // 
@@ -316,6 +319,7 @@
             label6.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.FromArgb(241, 245, 249);
             label6.Location = new Point(29, 25);
+            label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
             label6.Size = new Size(78, 25);
             label6.TabIndex = 14;
@@ -323,10 +327,13 @@
             // 
             // flowHistory
             // 
+            flowHistory.AutoScroll = true;
             flowHistory.BackColor = Color.FromArgb(13, 17, 23);
+            flowHistory.FlowDirection = FlowDirection.TopDown;
             flowHistory.Location = new Point(42, 91);
+            flowHistory.Margin = new Padding(4, 3, 4, 3);
             flowHistory.Name = "flowHistory";
-            flowHistory.Size = new Size(940, 579);
+            flowHistory.Size = new Size(940, 564);
             flowHistory.TabIndex = 13;
             // 
             // patientpanel
@@ -336,9 +343,9 @@
             patientpanel.Controls.Add(panel15);
             patientpanel.Controls.Add(label20);
             patientpanel.Location = new Point(251, -1);
-            patientpanel.Margin = new Padding(3, 2, 3, 2);
+            patientpanel.Margin = new Padding(4, 2, 4, 2);
             patientpanel.Name = "patientpanel";
-            patientpanel.Size = new Size(1061, 662);
+            patientpanel.Size = new Size(1060, 662);
             patientpanel.TabIndex = 10;
             // 
             // flowLayoutPanel1
@@ -346,9 +353,9 @@
             flowLayoutPanel1.AutoScroll = true;
             flowLayoutPanel1.BackColor = Color.FromArgb(21, 32, 43);
             flowLayoutPanel1.Location = new Point(78, 121);
-            flowLayoutPanel1.Margin = new Padding(3, 2, 3, 2);
+            flowLayoutPanel1.Margin = new Padding(4, 2, 4, 2);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(879, 539);
+            flowLayoutPanel1.Size = new Size(878, 539);
             flowLayoutPanel1.TabIndex = 12;
             // 
             // panel15
@@ -356,11 +363,12 @@
             panel15.BackColor = Color.FromArgb(21, 32, 43);
             panel15.Controls.Add(textBox1);
             panel15.Location = new Point(702, 67);
-            panel15.Margin = new Padding(3, 2, 3, 2);
+            panel15.Margin = new Padding(4, 2, 4, 2);
             panel15.Name = "panel15";
-            panel15.Padding = new Padding(17, 15, 17, 15);
+            panel15.Padding = new Padding(18, 15, 18, 15);
             panel15.Size = new Size(254, 46);
             panel15.TabIndex = 8;
+          
             // 
             // textBox1
             // 
@@ -369,13 +377,14 @@
             textBox1.Dock = DockStyle.Fill;
             textBox1.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             textBox1.ForeColor = Color.White;
-            textBox1.Location = new Point(17, 15);
-            textBox1.Margin = new Padding(3, 2, 3, 2);
+            textBox1.Location = new Point(18, 15);
+            textBox1.Margin = new Padding(4, 2, 4, 2);
             textBox1.Name = "textBox1";
             textBox1.PlaceholderText = "بحث عن مريض...";
             textBox1.RightToLeft = RightToLeft.Yes;
-            textBox1.Size = new Size(220, 20);
+            textBox1.Size = new Size(218, 20);
             textBox1.TabIndex = 11;
+            textBox1.TextChanged += textBox1_TextChanged_1;
             // 
             // label20
             // 
@@ -383,6 +392,7 @@
             label20.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label20.ForeColor = Color.FromArgb(241, 245, 249);
             label20.Location = new Point(29, 16);
+            label20.Margin = new Padding(4, 0, 4, 0);
             label20.Name = "label20";
             label20.Size = new Size(117, 25);
             label20.TabIndex = 0;
@@ -398,7 +408,7 @@
             mainPanel.Controls.Add(panel6);
             mainPanel.Controls.Add(panelWeekPresc);
             mainPanel.Location = new Point(251, -2);
-            mainPanel.Margin = new Padding(3, 2, 3, 2);
+            mainPanel.Margin = new Padding(4, 2, 4, 2);
             mainPanel.Name = "mainPanel";
             mainPanel.Size = new Size(1041, 667);
             mainPanel.TabIndex = 14;
@@ -408,8 +418,8 @@
             flowLayoutPanel2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             flowLayoutPanel2.BackColor = Color.FromArgb(21, 32, 43);
             flowLayoutPanel2.Controls.Add(label10);
-            flowLayoutPanel2.Location = new Point(95, 309);
-            flowLayoutPanel2.Margin = new Padding(3, 2, 3, 2);
+            flowLayoutPanel2.Location = new Point(94, 309);
+            flowLayoutPanel2.Margin = new Padding(4, 2, 4, 2);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
             flowLayoutPanel2.Padding = new Padding(0, 8, 0, 0);
             flowLayoutPanel2.Size = new Size(859, 351);
@@ -420,7 +430,8 @@
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Gray;
-            label10.Location = new Point(3, 8);
+            label10.Location = new Point(4, 8);
+            label10.Margin = new Padding(4, 0, 4, 0);
             label10.Name = "label10";
             label10.Size = new Size(81, 19);
             label10.TabIndex = 7;
@@ -431,7 +442,8 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.White;
-            label4.Location = new Point(885, 16);
+            label4.Location = new Point(886, 16);
+            label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
             label4.Size = new Size(61, 25);
             label4.TabIndex = 1;
@@ -442,7 +454,8 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(34, 17);
+            label3.Location = new Point(34, 16);
+            label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
             label3.Size = new Size(73, 25);
             label3.TabIndex = 0;
@@ -454,9 +467,9 @@
             panel8.Controls.Add(label5);
             panel8.Controls.Add(lblTodayAppts);
             panel8.Location = new Point(565, 84);
-            panel8.Margin = new Padding(3, 2, 3, 2);
+            panel8.Margin = new Padding(4, 2, 4, 2);
             panel8.Name = "panel8";
-            panel8.Size = new Size(389, 126);
+            panel8.Size = new Size(388, 126);
             panel8.TabIndex = 2;
             // 
             // label5
@@ -465,6 +478,7 @@
             label5.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Gray;
             label5.Location = new Point(0, 0);
+            label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
             label5.Size = new Size(81, 19);
             label5.TabIndex = 7;
@@ -475,7 +489,8 @@
             lblTodayAppts.AutoSize = true;
             lblTodayAppts.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTodayAppts.ForeColor = Color.FromArgb(37, 99, 235);
-            lblTodayAppts.Location = new Point(171, 50);
+            lblTodayAppts.Location = new Point(172, 50);
+            lblTodayAppts.Margin = new Padding(4, 0, 4, 0);
             lblTodayAppts.Name = "lblTodayAppts";
             lblTodayAppts.Size = new Size(28, 37);
             lblTodayAppts.TabIndex = 6;
@@ -486,10 +501,10 @@
             panel6.BackColor = Color.FromArgb(21, 32, 43);
             panel6.Controls.Add(label11);
             panel6.Controls.Add(lblPatientsCount);
-            panel6.Location = new Point(95, 84);
-            panel6.Margin = new Padding(3, 2, 3, 2);
+            panel6.Location = new Point(94, 84);
+            panel6.Margin = new Padding(4, 2, 4, 2);
             panel6.Name = "panel6";
-            panel6.Size = new Size(389, 126);
+            panel6.Size = new Size(388, 126);
             panel6.TabIndex = 1;
             // 
             // label11
@@ -498,6 +513,7 @@
             label11.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label11.ForeColor = Color.Gray;
             label11.Location = new Point(0, 0);
+            label11.Margin = new Padding(4, 0, 4, 0);
             label11.Name = "label11";
             label11.Size = new Size(98, 19);
             label11.TabIndex = 5;
@@ -509,6 +525,7 @@
             lblPatientsCount.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblPatientsCount.ForeColor = Color.White;
             lblPatientsCount.Location = new Point(168, 50);
+            lblPatientsCount.Margin = new Padding(4, 0, 4, 0);
             lblPatientsCount.Name = "lblPatientsCount";
             lblPatientsCount.Size = new Size(28, 37);
             lblPatientsCount.TabIndex = 0;
@@ -519,8 +536,8 @@
             panelWeekPresc.BackColor = Color.FromArgb(21, 32, 43);
             panelWeekPresc.Controls.Add(lblWeekPrescTitle);
             panelWeekPresc.Controls.Add(lblWeekPresc);
-            panelWeekPresc.Location = new Point(95, 241);
-            panelWeekPresc.Margin = new Padding(3, 2, 3, 2);
+            panelWeekPresc.Location = new Point(94, 241);
+            panelWeekPresc.Margin = new Padding(4, 2, 4, 2);
             panelWeekPresc.Name = "panelWeekPresc";
             panelWeekPresc.Size = new Size(859, 60);
             panelWeekPresc.TabIndex = 8;
@@ -531,6 +548,7 @@
             lblWeekPrescTitle.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblWeekPrescTitle.ForeColor = Color.Gray;
             lblWeekPrescTitle.Location = new Point(0, 0);
+            lblWeekPrescTitle.Margin = new Padding(4, 0, 4, 0);
             lblWeekPrescTitle.Name = "lblWeekPrescTitle";
             lblWeekPrescTitle.Size = new Size(128, 19);
             lblWeekPrescTitle.TabIndex = 0;
@@ -542,6 +560,7 @@
             lblWeekPresc.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblWeekPresc.ForeColor = Color.FromArgb(106, 191, 106);
             lblWeekPresc.Location = new Point(385, 15);
+            lblWeekPresc.Margin = new Padding(4, 0, 4, 0);
             lblWeekPresc.Name = "lblWeekPresc";
             lblWeekPresc.Size = new Size(28, 37);
             lblWeekPresc.TabIndex = 1;
@@ -553,7 +572,7 @@
             panelPrescriptions.Controls.Add(flowLayoutPanelPrescriptions);
             panelPrescriptions.Controls.Add(lblPrescTitle);
             panelPrescriptions.Location = new Point(251, -8);
-            panelPrescriptions.Margin = new Padding(3, 2, 3, 2);
+            panelPrescriptions.Margin = new Padding(4, 2, 4, 2);
             panelPrescriptions.Name = "panelPrescriptions";
             panelPrescriptions.Size = new Size(1058, 672);
             panelPrescriptions.TabIndex = 15;
@@ -565,9 +584,9 @@
             flowLayoutPanelPrescriptions.BackColor = Color.FromArgb(13, 17, 23);
             flowLayoutPanelPrescriptions.FlowDirection = FlowDirection.TopDown;
             flowLayoutPanelPrescriptions.Location = new Point(77, 69);
-            flowLayoutPanelPrescriptions.Margin = new Padding(3, 2, 3, 2);
+            flowLayoutPanelPrescriptions.Margin = new Padding(4, 2, 4, 2);
             flowLayoutPanelPrescriptions.Name = "flowLayoutPanelPrescriptions";
-            flowLayoutPanelPrescriptions.Size = new Size(879, 600);
+            flowLayoutPanelPrescriptions.Size = new Size(878, 600);
             flowLayoutPanelPrescriptions.TabIndex = 1;
             flowLayoutPanelPrescriptions.WrapContents = false;
             // 
@@ -577,6 +596,7 @@
             lblPrescTitle.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblPrescTitle.ForeColor = Color.FromArgb(241, 245, 249);
             lblPrescTitle.Location = new Point(21, 23);
+            lblPrescTitle.Margin = new Padding(4, 0, 4, 0);
             lblPrescTitle.Name = "lblPrescTitle";
             lblPrescTitle.Size = new Size(130, 25);
             lblPrescTitle.TabIndex = 0;
@@ -587,17 +607,17 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
-            ClientSize = new Size(1274, 661);
+            ClientSize = new Size(1270, 646);
             Controls.Add(panel1);
+            Controls.Add(patientpanel);
             Controls.Add(panelPrescriptions);
             Controls.Add(mainPanel);
             Controls.Add(HistoryPanel);
-            Controls.Add(patientpanel);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(5);
             MaximizeBox = false;
-            MaximumSize = new Size(1290, 700);
-            MinimumSize = new Size(1290, 700);
+            MaximumSize = new Size(1286, 685);
+            MinimumSize = new Size(1286, 685);
             Name = "DoctorForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "لوحة تحكم الطبيب";

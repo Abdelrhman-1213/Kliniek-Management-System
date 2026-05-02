@@ -61,7 +61,7 @@ namespace kliniek.Forms
                 await Program.SharedData.SavePrescription(prescription);
                 Program.SharedData.prescriptions.Add(prescription);
 
-                MessageBox.Show("تم حفظ الروشتة بنجاح ✅", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("تم حفظ الروشتة بنجاح ", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
@@ -69,7 +69,7 @@ namespace kliniek.Forms
             {
                 MessageBox.Show($"خطأ في حفظ الروشتة: {ex.Message}", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 btnSave.Enabled = true;
-                btnSave.Text = "💾 حفظ الروشتة";
+                btnSave.Text = " حفظ الروشتة";
             }
         }
     }

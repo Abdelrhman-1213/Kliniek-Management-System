@@ -66,15 +66,6 @@ namespace kliniek.Forms
             {
                 Patient? foundPatient =data.patient.FirstOrDefault(p => p.username == username_text.Text); 
                 
-                
-                //foreach (var p in data.patient)
-                //{
-                //    if (p.username == username_text.Text)
-                //    {
-                //        foundPatient = p;
-                //        break;
-                //    }
-                //}
 
                 // no user found
                 if (foundPatient == null) MessageBox.Show("اسم المستخدم غير موجود.");
@@ -119,15 +110,6 @@ namespace kliniek.Forms
                 //check if the doctor username exist
                 Doctor? foundDoc = data.doctor.FirstOrDefault(p => p.username == username_text.Text);
 
-                //foreach (var d in data.doctor)
-                //{
-                //    if (d.username == username_text.Text)
-                //    {
-                //        Program.SharedData.LogedInDoc = d;
-                //        break;
-                //    }
-                //}
-
                 //not found
                 if (foundDoc == null)
                     MessageBox.Show("اسم المستخدم غير موجود.");
@@ -136,7 +118,7 @@ namespace kliniek.Forms
                 //wrong password
                 else if (foundDoc.password != password_text.Text)
                 {
-                    //Program.SharedData.LogedInDoc = null;
+
                     MessageBox.Show("كلمة المرور خاطئة.");
                 }
                 else

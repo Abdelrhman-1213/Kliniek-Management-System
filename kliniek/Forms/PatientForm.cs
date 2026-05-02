@@ -13,10 +13,6 @@ namespace kliniek.Forms
         public PatientForm()
         {
             InitializeComponent();
-            //load patient data
-
-            //remove the appointment passed
-            //Program.SharedData.appointments.RemoveAll(app => app.date < DateTime.Now);
         }
 
 
@@ -164,13 +160,6 @@ namespace kliniek.Forms
 
 
 
-
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         bool logOFP;
         //logout button 
         private void button1_Click(object sender, EventArgs e)
@@ -226,10 +215,6 @@ namespace kliniek.Forms
             comboBox2.ValueMember = "username";
         }
 
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private async void Ok_Click(object sender, EventArgs e)
         {
@@ -309,10 +294,6 @@ namespace kliniek.Forms
             
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -336,10 +317,7 @@ namespace kliniek.Forms
             lblDoctorInfo.Visible = true;
         }
 
-        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-        }
 
         private void PatientForm_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -464,25 +442,10 @@ namespace kliniek.Forms
             }
         }
 
-        private void label5_Click(object sender, EventArgs e)
-        {
 
-        }
 
-        private void label4_Click(object sender, EventArgs e)
-        {
 
-        }
 
-        private void comboBoxRatingDoctors_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void numRating_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void radioButton4_CheckedChanged(object sender, EventArgs e)
         {
@@ -498,12 +461,7 @@ namespace kliniek.Forms
             radioButton1.Checked = true; 
         }
 
-        
 
-        private void label4_Click_1(object sender, EventArgs e)
-        {
-
-        }
     }
 }
 

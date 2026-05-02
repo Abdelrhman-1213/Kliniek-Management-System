@@ -30,10 +30,7 @@ namespace kliniek.Forms
             label11.Text = "فصيلة الدم";
         }
 
-        private void Panel1_Paint(object sender, PaintEventArgs e)
-        {
 
-        }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -43,27 +40,8 @@ namespace kliniek.Forms
 
         }
 
-        private void Register_Leave(object sender, EventArgs e)
-        {
 
 
-        }
-
-        private void Register_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            //LoginForm loginform = new LoginForm();
-            //loginform.Show();
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label11_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
@@ -194,50 +172,7 @@ namespace kliniek.Forms
 
         }
 
-        private void label9_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void FullName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void DoctorCode_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label13_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtDescription_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolTip1_Popup(object sender, PopupEventArgs e)
-        {
-
-        }
+        
 
         private void UserName_TextChanged(object sender, EventArgs e)
         {
@@ -249,9 +184,9 @@ namespace kliniek.Forms
                 : data.doctor.Any(d => d.username == typed);
 
             if (exists)
-                toolTip1.SetToolTip(UserName, "⚠️ اسم المستخدم موجود بالفعل");
+                toolTip1.SetToolTip(UserName, " اسم المستخدم موجود بالفعل");
             else if (typed.Length >= 3)
-                toolTip1.SetToolTip(UserName, "✅ اسم المستخدم متاح");
+                toolTip1.SetToolTip(UserName, " اسم المستخدم متاح");
             else
                 toolTip1.SetToolTip(UserName, "");
 

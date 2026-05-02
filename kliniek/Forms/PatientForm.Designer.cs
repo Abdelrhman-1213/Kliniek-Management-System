@@ -89,7 +89,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(235, 585);
             panel1.TabIndex = 0;
-            panel1.Paint += panel1_Paint;
+
             // 
             // radioButton3
             // 
@@ -387,7 +387,7 @@
             comboBox3.Name = "comboBox3";
             comboBox3.Size = new Size(252, 27);
             comboBox3.TabIndex = 3;
-            comboBox3.SelectedIndexChanged += comboBox3_SelectedIndexChanged;
+         
             // 
             // dateTimePicker1
             // 
@@ -401,7 +401,7 @@
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(252, 23);
             dateTimePicker1.TabIndex = 2;
-            dateTimePicker1.ValueChanged += dateTimePicker1_ValueChanged;
+          
             // 
             // comboBox2
             // 
@@ -465,7 +465,6 @@
             label4.Name = "label4";
             label4.Size = new Size(0, 25);
             label4.TabIndex = 1;
-            label4.Click += label4_Click_1;
             // 
             // toolTip1
             // 
